@@ -1,0 +1,5115 @@
+
+
+
+
+
+
+
+全国车险信息共享平台
+商业车险接口规范
+
+
+
+
+
+
+
+
+
+
+
+
+
+车险信息共享平台项目组
+2011年4月
+V1.4.1
+
+ 
+目  录
+1.	引言	1
+1.1.	目的	1
+1.2.	文档说明	1
+1.3.	名词解释	1
+2.	引用文件	2
+3.	接口概述	3
+3.1.	接口列表	3
+3.2.	报文格式	4
+3.2.1.	请求报文	5
+3.2.2.	返回报文	5
+3.3.	数据类型	7
+4.	承保部分	8
+4.1.	投保查询	8
+4.1.1.	请求报文	8
+4.1.2.	返回报文	11
+4.1.3.	报文范例	18
+4.2.	投保预确认	28
+4.2.1.	请求报文	28
+4.2.2.	返回报文	31
+4.2.3.	报文范例	31
+4.3.	投保确认	34
+4.3.1.	请求报文	34
+4.3.2.	返回报文	39
+4.3.3.	报文范例	39
+4.4.	投保注销	45
+4.4.1.	请求报文	45
+4.4.2.	返回报文	45
+4.4.3.	报文范例	45
+4.5.	车辆查询	46
+4.5.1.	请求报文	46
+4.5.2.	返回报文	47
+4.5.3.	报文范例	49
+4.6.	保单号上传	52
+4.6.1.	请求报文	52
+4.6.2.	返回报文	53
+4.6.3.	报文范例	53
+4.7.	直接承保	54
+4.7.1.	请求报文	54
+4.7.2.	返回报文	59
+4.7.3.	报文范例	59
+5.	批改部分	66
+5.1.	批改查询	66
+5.1.1.	请求报文	66
+5.1.2.	返回报文	69
+5.1.3.	报文范例	75
+5.2.	批改预确认	83
+5.2.1.	请求报文	83
+5.2.2.	返回报文	85
+5.2.3.	报文范例	86
+5.3.	批改确认	89
+5.3.1.	请求报文	89
+5.3.2.	返回报文	94
+5.3.3.	报文范例	94
+5.4.	批改注销	100
+5.4.1.	请求报文	100
+5.4.2.	返回报文	100
+5.4.3.	报文范例	100
+6.	理赔部分	101
+6.1.	报案登记	101
+6.1.1.	请求消息	101
+6.1.2.	返回消息	102
+6.1.3.	报文范例	103
+6.2.	立案登记	105
+6.2.1.	请求消息	105
+6.2.2.	返回消息	106
+6.2.3.	报文范例	107
+6.3.	结案登记	109
+6.3.1.	请求消息	109
+6.3.2.	返回消息	111
+6.3.3.	报文范例	112
+6.4.	结案追加	115
+6.4.1.	请求消息	115
+6.4.2.	返回消息	116
+6.4.3.	报文范例	116
+6.5.	赔付登记	117
+6.5.1.	请求消息	117
+6.5.2.	返回消息	118
+6.5.3.	报文范例	118
+6.6.	案件注销	119
+6.6.1.	请求消息	119
+6.6.2.	返回消息	119
+6.6.3.	报文范例	119
+7.	代码定义	121
+7.1.	平台公共代码	121
+7.1.1.	接口错误代码	121
+7.1.2.	币种代码	126
+7.1.3.	号牌底色代码	127
+7.1.4.	投保人性质代码	128
+7.1.5.	车主性质码	128
+7.1.6.	车辆种类代码	128
+7.1.7.	使用性质代码	130
+7.1.8.	号牌种类代码	130
+7.1.9.	单位性质代码	131
+7.1.10.	被保险人性质代码	133
+7.1.11.	性别代码	133
+7.1.12.	证件类型代码	133
+7.1.13.	客户忠诚度浮动原因代码	134
+7.1.14.	无赔优浮动原因代码	134
+7.1.15.	制造方法	135
+7.1.16.	险种代码	135
+7.1.17.	险种性质代码	138
+7.1.18.	驾驶员状态分类代码	139
+7.1.19.	案件状态代码	139
+7.1.20.	保险公司机构代码	140
+7.1.21.	事故责任划分代码	141
+7.1.22.	事故处理方式代码	141
+7.1.23.	保险事故分类代码	142
+7.1.24.	理赔类型代码	144
+7.1.25.	垫付原因代码	144
+7.1.26.	损失赔偿类型代码	145
+7.1.27.	赔付明细代码	145
+7.1.28.	赔付类型代码	147
+7.1.29.	案件注销类型代码	147
+7.1.30.	案件注销原因代码	147
+7.1.31.	销售渠道代码	148
+7.1.32.	天平公司客户忠诚度浮动原因代码	149
+7.1.33.	天平公司无赔优浮动原因代码	149
+7.1.34.	风险标志代码	149
+7.1.35.	不浮动原因代码	150
+7.1.36.	直接承保原因代码	150
+7.1.37.	风险警示类型代码	150
+7.2.	公安交管代码	151
+7.2.1.	交管车辆机动车状态代码	151
+7.2.2.	交管车辆类型	152
+7.2.3.	驾驶证类型代码	156
+
+
+
+关于本文档
+主    题	全国车险信息共享平台商业险数据交换接口规范
+说　　明	
+适用对象	全国车险信息共享平台系统项目组成员、各家保险公司、平台维护人员
+修 订 历 史
+版本	章节	类型	日期	作者	说明
+V1.1.0	全部	C	2010-5-20	项目组	
+V1.3.1	7.1.1	A	2010-8-18	项目组	结案追加接口调整业务规则
+V1.3.2	7.1.1	A	2010-10-14	项目组	黑龙江号牌个性调整业务规则
+V1.3.3	7.1.1	A	2010-10-15	项目组	湖北，青岛个性调整业务规则
+V1.3.5	7.1.1	A	2010-12-08	项目组	河北、山西、吉林、黑龙江、内蒙古、河南新车判断规则
+V1.4.0	4.1.3、4.2.1、4.3.1、4、7、5.1.1、5.1.2、5.2.1、5.3.1
+6.3.2.1	A	2010-12-20	项目组	浙江、辽宁返回上张保单销售渠道功能;保单信息中添加必传项总基础(表定)保费，总标准(应缴)保费字段;新增直接承保接口;在结案登记返回信息中新增赔案结案校验码
+V1.4.1	4.1.2.10
+4.1.2.11
+7.1.37	A	2011-4-6	项目组	浙江需求添加风险警示
+说明：类型－创建（C）、修改（U）、删除（D）、增加（A）；
+ 
+1.	引言
+本文档的目的是为了形成车险信息平台与各财产保险公司商业车险数据交换的接口规范，来指导商业车险信息上平台后续的程序开发、联调等工作。
+1.1.	目的
+本文档的主要内容是描述车险信息平台在投承保、批改、理赔业务环节中保险公司与平台的交换接口数据项及相关规则。文档一开始对接口进行概述，给出了商业车险的接口交易列表，并对接口报文进行了概述。随后，文档按承保部分、批改部分、理赔部分分别描述了各部分的具体接口内容，最后给出了在数据交换中使用到的代码的定义。
+
+1.2.	文档说明
+此次平台上线不涉及交管交互及车型车价库交互，故涉及到此部分内容实用斜体字特殊标记。
+
+1.3.	名词解释
+公司：指保险公司
+投保单：又称投保书，是投保人表示愿意同保险人订立保险合同的书面申请。
+保险单：简称保单，是保险人与投保人之间订立的保险合同的正式书面凭证。
+批单：是指由保险人出具的，证明保险合同双方当事人协商变更保单载明的合同内容的文件。
+表定保费：指根据“机动车商业保险行业基本费率表”（中国保险行业协会制定 2008年）计算得到的保费。
+应缴保费：根据表定保费和投保车辆的费率浮动系数根据费率浮动规则计算得到的投保车辆最终应缴纳的保费。
+签单保费：指最终体现在保险公司保单合同上的保费，原则上，签单保费应与应缴保费一致。
+保险期间：保险人和投保人约定的保险责任的有效期限，又称保险期限。
+
+2.	引用文件
+?	《机动车商业保险行业基本条款（A 款）》，中保协条款[2007]1号
+?	《机动车商业保险行业基本条款（B 款）》，中保协条款[2007]2号
+?	《机动车商业保险行业基本条款（C 款）》，中保协条款[2007]3号
+?	《机动车保险数据交换规范》 JR/T0053-2009
+?	《商业车险信息平台接口交互规范（征求意见稿）》，2009年6月
+
+
+
+ 
+3.	接口概述
+平台提供HTTPServlet服务，接受保险公司的数据请求，并在处理后返回给保险公司相应的处理结果。数据接口格式为XML数据报文，在每次接口的交易中，都包含了请求的XML数据与平台返回的XML数据。
+接口列表和基本格式如下：
+3.1.	接口列表
+环节	请求类型	名称	描述
+承
+保
+环
+节	V0101	投保查询	客户通过保险公司投保时，保险公司将投保车辆信息情况送平台，平台根据车辆信息计算风险控制系数返回保险公司,同时，平台保留查询轨迹。
+	V0209	投保预确认	车险信息平台对保险公司上传的已核投保单（虚拟确认）信息与平台记录的此投保单对应信息进行校验，判断保单车辆信息与风险管控系数是否与平台相符，进而返回投保预确认信息。（包含投保预确认成功标识或投保预确认失败标识及失败原因信息）
+	V0201	投保确认	平台对保险公司上传的保单信息与该标的投保预确认信息进行校验，判断保单车辆信息与风险管控系数是否与平台相符，进而返回投保确认信息。（包含投保确认码或投保确认失败标识及失败原因信息）
+	V04	投保注销	在保单生效前，允许注销。
+	V42	车辆查询	提供简易接口，供保险公司单独查询第三方车型车价、交管车辆信息。
+保险公司通过发送车辆信息查询请求到平台来查询交管信息平台上的车辆信息。同时，查询第三方车型库中的车型车价相关信息。
+	V0309	保单号上传	保单确认时保险公司没有生成保单号，则通过该接口上传保单号，并实时更新。
+	V05	直接承保	保险公司可通过保单直接上传到平台接口
+批
+改
+环
+节	V2101	批改查询	投保车辆发生信息变更时，保险公司将批改后投保车辆信息送平台，平台重新计算风险系数，并将风险系数变更结果返回保险公司，同时，平台保留查询轨迹。。
+	V2109	批改预确认	车险信息平台对保险公司上传的预核批单（虚拟批改确认）与该标的批改查询信息进行校验，判断批单车辆信息、风险管控系数是否批改查询时相符，进而返回批改预确认信息，包含批改预确认状态或错误码及错误提示。
+	V22	批改确认	车险信息平台对保险公司上传的批单信息及批改预确认信息进行校验，判断批单车辆信息、风险管控系数是否批改查询时相符，并返回批单确认信息。（包含批单确认码或批改错误码及错误提示）
+	V24	批改注销	在批单生效前，允许注销。
+理
+赔
+环
+节	V3101	报案登记	保险公司在接到报案后，将案件出险信息送平台进行记录。
+	V3102	立案登记	保险公司在确定了保险责任，对报案进行立案后，将立案信息送平台进行登记。
+	V3104	结案登记	保险公司在处理完案件，对案件进行结案后，将结案信息送平台进行登记。
+	V3105	结案追加	案件结案后，若需要对案件赔款进行追加时，保险公司将案件追加信息送平台进行登记。
+	V3106	赔付登记	案件理算后，需要对案件进行赔付，保险公司将案件赔付信息送平台进行登记
+	V34	案件注销	案件在结案前，保险公司可以对案件进行注销。
+
+3.2.	报文格式
+数据文件采用标准的XML格式，字符编码为GBK；标准报文的根是PACKET，并由报文头（HEAD）和报文体（BODY）两部分组成，如下：
+报文块	描述
+声明部分	以<?xml version="1.0" encoding="GBK"?>为格式声明；
+报文根	以<Packet>为起始标记，以</Packet>为结束标记。
+报文头	以<Head>为起始标记，以</Head>为结束标记。
+报文体	以<Body>为起始标记，以</Body>为结束标记。
+
+3.2.1.	请求报文
+请求报文的报文头部分是固定的，格式如下：
+序号	字段名称	类型	大小	必传	说明
+1	RequestType	枚举	2	Y	请求的接口类型代码； 
+2	User	字符	30	Y	用户名
+3	Password	字符	200	Y	密码
+
+    而报文的报文体部分因具体的接口类型不同，而不同。请求报文的报文格式范例：
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V0101</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		……
+	</Body>
+</Packet>
+
+3.2.2.	返回报文
+返回报文按照平台处理结果，分为成功时的返回报文和失败时的报文。它们的报文头的格式相同，不同的是具体的值。另外，失败的时候，是没有报文体的。
+报文头块的格式如下：
+序号	字段名称	类型	大小	必传	说明
+1	RequestType	字符	2	Y	请求的接口类型代码； 
+2	ResponseCode	布尔	1	Y	
+3	ErrorCode	枚举	4	Y	错误代码；参见代码4	ErrorMessage	字符	600	Y	错误说明；
+
+返回成功时的报文格式范例：
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V0101</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		……
+	</Body>
+</Packet>
+返回失败时的报文格式范例：
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V0101</ResquestType>
+		<ResponseCode>0</ResponseCode>
+		<ErrorCode>9314</ErrorCode>
+		<ErrorMessage>保单不存在或者处于无效状态！</ErrorMessage>
+	</Head>
+</Packet>
+3.3.	数据类型
+在XML中的数据类型有以下几种：
+类型	描述
+字符	文本信息，标明最大的长度。该长度是按单字节进行计算的，对于双字节数据按照长度为2为计。
+数值	有正负符号的整数和小数两种：1、整数，标明最大的位数。2、小数，标明p精度（位数）和s等级（小数点后位数）。如：(3,2)表明[-9.99, +9.99]。
+日期	泛指日期（Date）和时间（Time），根据使用的情况可以仅包含日期部分，也可能包含小时、分钟等部分；格式为：年月日时分秒，YYYYMMDDHHMMSS，中间不用连接符号。
+布尔	代表了一个两价逻辑值（或者假）。
+用0，代表假或否；用1，代表真或是
+货币	以元为单位，默认对应数值类型（14,2），即精确到分；默认币种为人民币。用正负号代表指定的含义，如：用正值代表收款，负值代表付款。
+枚举	枚举是字符的扩展类型，通常用于限制元素的取值。枚举型数据类型可以分为开放式枚举（Open Enum）和封闭式枚举（Close Enum）。
+1.	开放式枚举是指对一些有效的枚举值进行了定义，同时允许本标准的用户进行扩展。开放式枚举型为客户和终端系统提供了一种机制，使得只需要消息流的两端（起点和终点）都能够理解消息的含义，而中间媒介不需要理解消息就能够完成系统之间的数据交换。
+2.	封闭式枚举型是指已经对所有有效的枚举值进行了定义的枚举类型。任何未包含在定义范围内的值都是无效的。
+——如果未加特别说明，本规范中的枚举默认代表封闭式枚举。
+对象	当在XML格式中嵌套一个或多个含有复杂属性的标签时，使用对象名称进行说明。如：重复投保提示中包含险种信息，而险种信息又包含险种代码；这时，在描述重复投保提示的险种信息时，可以使用对象的引用进行描述。参见DTD的属性定义方式。
+
+
+ 
+4.	承保部分
+承保部分接口包括投保查询、投保预确认、保单确认、投保注销、车辆查询、保单号上传、直接承保等7个接口。在进行投承保交互时，各保险公司首先调用投保查询接口向平台进行投保查询，平台返回该标的车辆的投承保辅助信息（包括对应车型的新车购置价、车辆登记信息、历史年度投保车辆理赔信息及相关风险系数等）及该投保单投保查询码后，保险公司根据平台返回信息计算商业车险保费，并将平台返回信息及保费计算结果交客户进行确认。客户确认投保后，保险公司对需由平台校验的投保单相关信息通过投保预确认接口传送平台，进行投保单预确认。预确认通过后，保险公司对投保单进行收费操作，将完整投保单信息（含保费）通过投保确认接口传送至平台做投保确认。平台对其中需由平台校验的信息进行校验确认，校验成功后，平台保存保单信息，并返回投保确认码给保险公司，保险公司生成保单并打印，最终完成该车辆的投承保操作。
+保险公司在投保前可以通过车辆查询接口，通过平台来查询车辆的交管信息和车辆对应的车型、车价信息。
+保险公司如果在投保确认交互时没有生成保单号，可以通过保单号上传接口，把后生成的保单号上传给平台。保险公司应保证每天生成的保单号，在当天能及时传送给平台。
+
+4.1.	投保查询
+4.1.1.	请求报文
+4.1.1.1.	车辆信息
+代码：Vehicle
+说明：主要保单投保车辆信息。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	号牌号码
+2		LicensePlateColorCode	枚举	2		号牌底色；参见代码3		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码4		MotorTypeCode	枚举	2	Y	车辆种类代码；参见代码5		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码6		FirstRegisterDate	日期		Y	车辆初始登记日期。格式：精确到天
+7		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+8		EngineNo	字符	50	Y	发动机号
+9		VehicleType	枚举	3	Y	交管车辆种类；参见代码10		IneffectualDate	日期			检验有效日期止；格式：精确到天
+11		RejectDate	日期			强制有效期止；格式：精确到天
+12		LastCheckDate	日期			最近定检日期；格式：精确到天
+13		TransferDate	日期			转移登记日期；格式：精确到天
+14		WholeWeight	数值	8		整备质量(千克)
+15		RatedPassengerCapacity	数值	3		核定载客人数
+16		Tonnage	数值	8		核定载质量(千克)
+17		MadeFactory	字符	168		制造厂名称
+18		Model	字符	64	Y	车辆型号
+19		BrandCN	字符	64		中文品牌
+20		BrandEN	字符	64		英文品牌
+21		Haulage	数值	8		准牵引总质量(千克)
+22		NoLicenseFlag	布尔	1	Y	未上牌车辆标志
+0：上牌车辆
+1：未上牌车辆
+23		NewVehicleFlag	布尔	1	Y	新车标志
+0：非新车
+1：新车
+24		ChgOwnerFlag	布尔	1	Y	过户车辆标志
+1：过户重新投保
+0：未过户投保
+25		EcdemicVehicleFlag	布尔	1	Y	外地车标志
+0：本地车
+1：外地车
+26		LoanVehicleFlag	布尔	1	Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+27		FleetFlag	布尔	1	Y	车队标志
+0：非车队车
+1：车队车
+28		FleetNo	字符	50		车队号
+29		PmQueryNo	字符	50		交管车辆查询码
+30		Displacement	数值	8		排量(毫升)
+31		LfDate	日期			出厂日期；格式：精确到天
+32		NoDamageYears	数字	2		跨省首年投保未出险证明的年数
+
+4.1.1.2.	驾驶员信息
+代码：SpecifiedDriver
+说明：包含约定驾驶员信息，没有约定驾驶员的可以不送
+序号	字段名称	类型	大小	必传	说明
+1		Name	字符	30	Y	驾驶员名称
+2		CredentialCode	枚举	2		证件类型代码；参见代码3		CredentialNo	字符	20		证件号码
+4		Age	数值	2		年龄
+5		DriverTypeCode	枚举	1	Y	驾驶证类型；参见代码6		LicenseDesc	字符	200		驾驶证描述
+7		LicenseNo	字符	18	Y	驾驶证号
+8		LicenseStatusCode	字符	1		驾驶证状态代码；参加代码9		LicensedDate	日期			驾驶证首次发证日期，精确到天
+10		IsMajorDriver	布尔			是否主驾驶员
+
+4.1.1.3.	投保单信息
+代码：Application
+说明：投保单相关信息
+序号	字段名称	类型	大小	必传	说明
+1		LastPolicyNo	字符	50		上年投保保单号
+2		BillDate	日期		Y	签单日期；格式：精确到天
+3		EffectiveDate	日期		Y	起保日期；格式：精确到分钟
+4		ExpireDate	日期		Y	终保日期；格式：精确到分钟
+5		PeriodDesc	字符	200		期限描述信息
+说明：无 
+
+
+4.1.1.4.	险种信息
+代码：CoverageItem
+说明：投保的险种信息
+序号	字段名称	类型	大小	必传	说明
+1		CoverageClassCode	枚举	1		险种性质代码，参见代码2		CoverageCode	枚举	3	Y	险种代码，参见代码3		SumLimit	货币			保额/限额
+
+
+4.1.2.	返回报文
+4.1.2.1.	基本信息
+代码：BasePart
+说明：返回平台生成的投保查询码和查询码有效止期。
+
+序号	字段名称	类型	大小	必传	说明
+1		QuerySequenceNo	字符	30	Y	投保查询码
+2		QueryPastDate	日期		Y	查询码有效止期；格式：精确到分钟
+
+4.1.2.2.	上张保单
+代码：LastPolicy
+说明：返回上张保单销售渠道代码信息
+序号	字段名称	类型	大小	必传	说明
+1		LastProducerCode	枚举	2		销售渠道代码，参见代码
+
+4.1.2.3.	交管车辆信息（暂不返回）
+代码：PmVehicle
+说明：返回匹配到的交管车辆信息，在匹配不到交管车辆信息时不送。
+序号	字段名称	类型	大小	必传	说明
+1		PmQueryNo	字符	20	Y	交管车辆查询码
+2		VehicleId	字符	14	Y	机动车序号
+3		LicensePlateNo	字符	15	Y	号牌号码
+4		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码8		VehicleType	枚举	3	Y	交管车辆种类代码；参见代码9		IneffectualDate	日期			检验有效日期止；格式：精确到天
+10		RejectDate	日期			强制有效期止；格式：精确到天
+11		FirstRegisterDate	日期		Y	车辆初始登记日期；格式：精确到天
+12		LastCheckDate	日期			最近定检日期（用以判断是否在保险期限内）；格式：精确到天
+13		TransferDate	日期			转移登记日期(费率浮动相关) ；格式：精确到天
+14		WholeWeight	数值	8	Y	整备质量(千克)
+15		RatedPassengerCapacity	数值	3	Y	核定载客人数
+16		Tonnage	数值	8	Y	核定载质量(千克)
+17		MadeFactory	字符	168		制造厂名称
+18		Model	字符	64		车辆型号
+19		BrandCN	字符	64		中文品牌
+20		BrandEN	字符	64		英文品牌
+21		Haulage	数值	8		准牵引总质量(千克)
+22		Status	枚举	1	Y	机动车状态代码；参见代码
+4.1.2.4.	车型车价信息
+代码：VehicleModel
+说明：返回匹配到的第三方车型车价信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ModelCode	字符	15	Y	车型代码（车型编码）
+2		ModelName	字符	64	Y	车型名称（车型库名称）
+3		ModelDesc	字符	1000		车型描述
+4		Brand	字符	64		品牌名称
+5		Series	字符	64		车系名称（车型库车系）
+6		ImportFlag	字符	10		车型种类（国产/进口/合资）
+7		RatedPassengerCapacity	数值	5		核定载客人数
+8		TotalVehicleWeight	数值	50		整车质量；单位：千克。
+9		Tonnage	数值	10，3		载重量；单位吨。
+10		DerailleurType	字符	50		变速器形式
+11		ABSFlag	布尔	1		是否有ABS
+0：无ABS；
+1：有ABS
+12		AlarmFlag	布尔	1		是否有防盗装备
+0：无防盗装备
+1：有防盗装备
+13		AirbagNum	数值	5		安全气囊数
+14		Displacement	数值	8		排量；单位：毫升。
+15		MarketYear	字符	20		上市年份
+16		RiskFlag	枚举	1		风险标志；参加代码17		ReplacementValue	货币	10	Y	新车购置价
+18		RefCode1	字符	15	Y	参考代码1
+19		RefCode2	字符	15	Y	参考代码2
+
+4.1.2.5.	违法信息列表（暂不返回）
+代码：Violation
+说明：一条或多条违法信息 
+序号	字段名称	类型	大小	必传	说明
+1		ViolationCode	字符	22	Y	违法编号
+2		ViolationRecordTypeCode	字符	4	Y	违法行为代码
+3		DecisionCode	字符	10	Y	决定书编号
+4		DecisionTypeCode	字符	1	Y	决定书类型
+5		ViolationSequence	数字	2	Y	序号
+6		DriverLicenseNo	字符	18		违法驾驶员驾驶证号
+7		LicensePlateNo	字符	15	Y	号牌号码
+8		LicensePlateTypeCode	枚举	2	Y	号牌种类代码；参见代码9		ViolationPlace	字符	200		违法地点
+10		ViolationTime	日期	14	Y	违法时间
+11		RecognitionDate	日期	14	Y	违法处理时间
+12		JurisdictionAgencyCode	字符	10	Y	违法处理机关代码
+
+4.1.2.6.	历史理赔列表
+代码：BusinessPolicyAccident
+说明：返回车辆的历史理赔信息。
+序号	字段名称	类型	大小	必传	说明
+1		InsurerCode	字符	8	Y	保险公司代码，四位标准的公司名称简写；参见代码2		PolicyNo	字符	50	Y	保单号
+3		EffectiveDate	日期		Y	起保日期；格式：精确到分钟
+4		ExpireDate	日期		Y	终保日期；格式：精确到分钟
+5		ClaimSequenceNo	字符	50	Y	理赔编码
+6		ClaimNotificationNo	字符	50	Y	报案号
+7		ClaimRegistrationNo	字符	50	Y	立案号
+8		CaseID	字符	50	Y	结案编号
+9		LossTime	日期		Y	出险时间。格式：精确到分钟
+10		ClaimCloseTime	日期		Y	结案时间。格式：精确到分钟
+11		ClaimAmount	货币		Y	赔付金额
+
+4.1.2.7.	承保车辆风险系数
+代码：RiskItem
+说明：返回承保相关浮动系数。
+序号	字段名称	类型	大小	必传	说明
+1		ClaimAdjustValue	数值	3，2	Y	无赔优调整系数
+2		ClaimAdjustReason	枚举	2	Y	无赔优浮动原因代码，参见代码3		NoClaimAdjustReason	枚举	2		无赔优不浮动原因代码，参见代码4		IsContinuousPolicy	布尔		Y	续保标志
+5		LoyaltyAdjustValue	数值	3，2	Y	客户忠诚度调整系数
+6		LoyaltyAdjustReason	枚举	2	Y	客户忠诚度浮动原因代码，参见代码7		NoLoyaltyAdjustReason	枚举	2		客户忠诚度不浮动原因代码，参加代码8		MileageAdjustValue	数值	3，2		行驶里程调整系数
+9		MileageAdjustReason	字符	2		行驶里程浮动原因
+10		PeccancyAdjustValue	数值	3，2		违法调整系数
+11		PeccancyAdjustReason	字符	2		违法浮动原因
+12		TravelAdjustValue	数值	3，2		约定行驶区调整系数
+13		TravelAdjustReason	字符	2		约定行驶区浮动原因
+14		DriverAdjustValue	数值	3，2		指定驾驶人调整系数
+15		DriverAdjustReason	字符	2		指定驾驶人浮动原因
+16		LossAdjustValue	数值	3，2		车辆损失险车型系数
+17		TheftAdjustValue	数值	3，2		盗抢险车型系数
+18		FleetAdjustValue	数值	3，2		车队调整系数
+19		AdjustValueReason	字符	2		车队浮动原因
+
+4.1.2.8.	重复投保提示
+代码：ReInsureItem
+说明：返回重复投保信息。
+序号	字段名称	类型	大小	必传	说明
+1		PolicyNo	字符	50		重复投保保单号
+2		InsurerCode	字符	4	Y	保险公司代码，四位标准的公司名称简写；参见代码3		<CoverageItem>
+对象		Y	险种信息
+4		LicensePlateNo	字符	15	Y	号牌号码
+5		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码6		LicensePlateColorCode	枚举	2		号牌底色；参见代码7		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+8		EngineNo	字符	50	Y	发动机号
+9		EffectiveDate	日期		Y	起保日期；格式:精确到分钟
+10		ExpireDate	日期		Y	终保日期；格式:精确到分钟
+11		BillDate	日期		Y	签单日期；精确到天
+
+4.1.2.9.	险种信息
+代码：CoverageItem
+说明：CoverageItem是ReInsureItem的子标签，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageCode	枚举	3	Y	险种代码，参见代码
+4.1.2.10.	风险警示
+代码：RiskWarning
+说明：返回车辆的风险警示信息。
+序号	字段名称	类型	大小	必传	说明
+1		RiskWarningType	枚举	2	Y	风险警示类型；参见代码2		<RiskWarningClaimItem>
+对象		Y	风险警示关联的理赔信息
+说明：
+1	该对象返回的是风险警示信息，一条或多条；
+2	该对象在没有风险警示时，不返回。
+3	该对象在“风险警示开关”关闭时，不返回。
+
+4.1.2.11.	风险警示理赔信息
+代码：RiskWarningClaimItem
+说明：RiskWarningClaimItem是RiskWarning的子标签，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+2		InsurerCode	字符	8	Y	保险公司代码，四位标准的公司名称简写；参见代码3		LossTime	日期			出险时间；格式：精确到分钟
+4		LossArea	字符	100		出险地点
+说明：（无）
+
+4.1.3.	报文范例
+4.1.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V0101</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<Vehicle>
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateColorCode>01</LicensePlateColorCode>
+			<!--号牌底色-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorTypeCode>11</MotorTypeCode>
+			<!--车辆种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<FirstRegisterDate>20080808</FirstRegisterDate>
+			<!--车辆初始登记日期-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<VehicleType>K31</VehicleType>
+			<!--交管车辆种类-->
+			<IneffectualDate></IneffectualDate>
+			<!--检验有效日期止-->
+			<RejectDate></RejectDate>
+			<!--强制有效期止-->
+			<LastCheckDate></LastCheckDate>
+			<!--最近定检日期-->
+			<TransferDate></TransferDate>
+			<!--转移登记日期-->
+			<WholeWeight></WholeWeight>
+			<!--整备质量(千克)-->
+			<RatedPassengerCapacity></RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<Tonnage></Tonnage>
+			<!--核定载质量(千克)-->
+			<MadeFactory></MadeFactory>
+			<!--制造厂名称-->
+			<Model>78924234</Model>
+			<!--车辆型号-->
+			<BrandCN></BrandCN>
+			<!--中文品牌-->
+			<BrandEN></BrandEN>
+			<!--英文品牌-->
+			<Haulage></Haulage>
+			<!--准牵引总质量(千克)-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->
+			<FleetFlag></FleetFlag>
+			<!--车队标志-->
+			<FleetNo>0</FleetNo>
+			<!--车队号-->
+			<PmQueryNo></PmQueryNo>
+			<!--交管车辆查询码-->			
+	        <Displacement></Displacement>
+	        <!--排量-->    
+			<LfDate></LfDate>
+			<!--出厂日期--> 		
+			<NoDamageYears></NoDamageYears>
+			<!--跨省首年投保未出险证明的年数-->
+		</Vehicle>
+		<SpecifiedDriver>
+				<Name>张三</Name>
+				<!--驾驶员名称-->
+				<CredentialCode>01</CredentialCode>
+				<!--证件类型代码-->
+				<CredentialNo>110103198011220011</CredentialNo>
+				<!--证件号码-->
+				<Age>29</Age>
+				<!--年龄-->
+				<DriverTypeCode>A2</DriverTypeCode>
+				<!--驾驶证类型-->
+				<LicenseDesc></LicenseDesc>
+				<!--驾驶证描述-->
+				<LicenseNo>110103198011220011</LicenseNo>
+				<!--驾驶证号-->
+				<LicenseStatusCode>1</LicenseStatusCode>
+				<!--驾驶证状态代码-->
+				<LicensedDate>20080808</LicensedDate>
+				<!--驾驶证首次发证日期-->
+				<IsMajorDriver></IsMajorDriver>
+				<!--是否主驾驶员-->
+		</SpecifiedDriver>
+		<Application>
+			<LastPolicyNo></LastPolicyNo>
+			<!--上年投保保单号-->
+			<BillDate>2009080800</BillDate>
+			<!--签单日期-->
+			<EffectiveDate>2009090900</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>2010090900</ExpireDate>
+			<!--终保日期-->
+			<PeriodDesc></PeriodDesc>
+			<!--期限描述信息-->			
+		</Application>
+		<CoverageItem>
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>200</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+		</CoverageItem>
+		<CoverageItem>
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>210</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>800</SumLimit>
+			<!--保额/限额-->
+		</CoverageItem>
+	</Body>
+</Packet>
+4.1.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V0101</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<BasePart>
+			<QuerySequenceNo>V010PICC330009001234567890125</QuerySequenceNo>
+			<!--投保查询码-->
+			<QueryPastDate>200909090000</QueryPastDate>
+			<!--查询码有效止期。精确到分钟-->
+		</BasePart>
+<LastPolicy>
+			<LastProducerCode>10</LastProducerCode>
+			<!--上张保单的销售渠道代码-->
+	</LastPolicy>
+		<PmVehicle>
+			<!--交管车辆信息（暂不返回）-->
+			<PmQueryNo>PM123456789012345</PmQueryNo>
+			<!--交管车辆查询码-->
+			<VehicleId>1234567890</VehicleId>
+			<!--机动车序号-->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<VehicleType>K31</VehicleType>
+			<!--交管车辆种类代码-->
+			<IneffectualDate></IneffectualDate>
+			<!--检验有效日期止-->
+			<RejectDate></RejectDate>
+			<!--强制有效期止-->
+			<FirstRegisterDate>20080808</FirstRegisterDate>
+			<!--车辆初始登记日期-->
+			<LastCheckDate></LastCheckDate>
+			<!--最近定检日期-->
+			<TransferDate></TransferDate>
+			<!--转移登记日期-->
+			<WholeWeight>3600</WholeWeight>
+			<!--整备质量-->
+			<RatedPassengerCapacity>5</RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<Tonnage>1000</Tonnage>
+			<!--核定载质量-->
+			<MadeFactory></MadeFactory>
+			<!--制造厂名称-->
+			<Model></Model>
+			<!--车辆型号-->
+			<BrandCN></BrandCN>
+			<!--中文品牌-->
+			<BrandEN></BrandEN>
+			<!--英文品牌-->
+			<Haulage></Haulage>
+			<!--准牵引总质量(千克)-->
+			<Status>A</Status>
+			<!--机动车状态代码-->
+		</PmVehicle>
+		<VehicleModel>
+			<!--车型车价信息-->
+			<ModelCode>VC1234567890123451</ModelCode>
+			<!--车型代码-->
+			<ModelName>车型名称1</ModelName>
+			<!--车型名称-->
+			<ModelDesc></ModelDesc>
+			<!--车型描述-->
+			<Brand></Brand>
+			<!--品牌名称-->
+			<Series></Series>
+			<!--车型名称-->
+			<ImportFlag>国产</ImportFlag>
+			<!--车型种类-->
+			<RatedPassengerCapacity></RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<TotalVehicleWeight></TotalVehicleWeight>
+			<!--整车质量-->
+			<Tonnage></Tonnage>
+			<!--载重量-->
+			<DerailleurType></DerailleurType>
+			<!--变速器形式-->
+			<ABSFlag></ABSFlag>
+			<!--是否有ABS -->
+			<AlarmFlag></AlarmFlag>
+			<!--是否有防盗装备-->
+			<AirbagNum></AirbagNum>
+			<!--安全气囊数-->
+			<Displacement></Displacement>
+			<!--排量-->
+			<MarketYear>199905</MarketYear>
+			<!--上市年份-->
+			<RiskFlag></RiskFlag>
+			<!--风险标志-->
+			<ReplacementValue>120000</ReplacementValue>
+			<!--风险标志-->
+			<RefCode1>参考代码1</RefCode1>
+			<!--参考代码1-->
+			<RefCode2>参考代码2</RefCode2>
+			<!--参考代码2-->
+		</VehicleModel>		
+		<VehicleModel>
+			<!--车型车价信息-->
+			<ModelCode>VC1234567890123452</ModelCode>
+			<!--车型代码-->
+			<ModelName>车型名称2</ModelName>
+			<!--车型名称-->
+			<ModelDesc></ModelDesc>
+			<!--车型描述-->
+			<Brand></Brand>
+			<!--品牌名称-->
+			<Series></Series>
+			<!--车型名称-->
+			<ImportFlag>国产</ImportFlag>
+			<!--车型种类-->
+			<RatedPassengerCapacity></RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<TotalVehicleWeight></TotalVehicleWeight>
+			<!--整车质量-->
+			<Tonnage></Tonnage>
+			<!--载重量-->
+			<DerailleurType></DerailleurType>
+			<!--变速器形式-->
+			<ABSFlag></ABSFlag>
+			<!--是否有ABS -->
+			<AlarmFlag></AlarmFlag>
+			<!--是否有防盗装备-->
+			<AirbagNum></AirbagNum>
+			<!--安全气囊数-->
+			<Displacement></Displacement>
+			<!--排量-->
+			<MarketYear>1999</MarketYear>
+			<!--上市年份-->
+			<RiskFlag></RiskFlag>
+			<!--风险标志-->
+			<ReplacementValue>110000</ReplacementValue>
+			<!--风险标志-->
+			<RefCode1>参考代码1</RefCode1>
+			<!--参考代码1-->
+			<RefCode2>参考代码2</RefCode2>
+			<!--参考代码2-->
+		</VehicleModel>
+		<Violation>
+			<!--违法信息列表(暂不返回)-->
+			<ViolationCode></ViolationCode>
+			<!--违法编号-->
+			<ViolationRecordTypeCode></ViolationRecordTypeCode>
+			<!--违法行为代码-->
+			<DecisionCode></DecisionCode>
+			<!--决定书编号-->
+			<DecisionTypeCode></DecisionTypeCode>
+			<!--决定书类型-->
+			<ViolationSequence></ViolationSequence>
+			<!--序号-->
+			<DriverLicenseNo></DriverLicenseNo>
+			<!--违法驾驶员驾驶证号-->
+			<LicensePlateNo></LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateTypeCode></LicensePlateTypeCode>
+			<!--号牌种类代码-->
+			<ViolationPlace></ViolationPlace>
+			<!--违法地点-->
+			<ViolationTime></ViolationTime>
+			<!--违法时间-->
+			<RecognitionDate></RecognitionDate>
+			<!--违法处理时间-->
+			<JurisdictionAgencyCode></JurisdictionAgencyCode>
+			<!--违法处理机关代码-->
+		</Violation>
+		<BusinessPolicyAccident>
+			<!--历史理赔信息-->
+			<InsurerCode>PICC</InsurerCode>
+			<!--保险公司代码-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号-->
+			<EffectiveDate>200801010000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>200901010000</ExpireDate>
+			<!--终保日期-->
+			<ClaimSequenceNo>V3101PICC330009001234567890123</ClaimSequenceNo>
+			<!--理赔编码-->
+			<ClaimNotificationNo>PICCBA1234567890</ClaimNotificationNo>
+			<!--报案号-->
+			<ClaimRegistrationNo>PICCLA1234567890</ClaimRegistrationNo>
+			<!--立案号-->
+			<CaseID>PICCCI1234567890</CaseID>
+			<!--结案编号-->
+			<LossTime>200812120000</LossTime>
+			<!--出险时间-->
+			<ClaimCloseTime>200812220000</ClaimCloseTime>
+			<!--结案时间-->
+			<ClaimAmount>1000</ClaimAmount>
+			<!--赔付金额-->
+		</BusinessPolicyAccident>
+		<RiskItem>
+			<!--承保车辆风险系数-->
+			<ClaimAdjustValue>-0.2</ClaimAdjustValue>
+			<!--无赔优调整系数-->
+			<ClaimAdjustReason>B2</ClaimAdjustReason>
+			<!--无赔优浮动原因代码-->
+			<NoClaimAdjustReason></NoClaimAdjustReason>
+			<!--无赔优不浮动原因代码-->
+			<IsContinuousPolicy>1</IsContinuousPolicy>
+			<!--续保标志-->
+			<LoyaltyAdjustValue>-0.1</LoyaltyAdjustValue>
+			<!--客户忠诚度调整系数-->
+			<LoyaltyAdjustReason>D2</LoyaltyAdjustReason>
+			<!--客户忠诚度浮动原因代码-->
+			<NoLoyaltyAdjustReason></NoLoyaltyAdjustReason>
+			<!--客户忠诚度不浮动原因代码-->
+			<MileageAdjustValue></MileageAdjustValue>
+			<!--行驶里程调整系数-->
+			<MileageAdjustReason></MileageAdjustReason>
+			<!--行驶里程浮动原因-->
+			<PeccancyAdjustValue></PeccancyAdjustValue>
+			<!--违法调整系数-->
+			<PeccancyAdjustReason></PeccancyAdjustReason>
+			<!--违法浮动原因-->
+			<TravelAdjustValue></TravelAdjustValue>
+			<!--约定行驶区调整系数-->
+			<TravelAdjustReason></TravelAdjustReason>
+			<!--约定行驶区浮动原因-->
+			<DriverAdjustValue></DriverAdjustValue>
+			<!--指定驾驶人调整系数-->
+			<DriverAdjustReason></DriverAdjustReason>
+			<!--指定驾驶人浮动原因-->
+			<LossAdjustValue></LossAdjustValue>
+			<!--车辆损失险车型系数-->
+			<TheftAdjustValue></TheftAdjustValue>
+			<!--盗抢险车型系数-->
+			<FleetAdjustValue></FleetAdjustValue>
+			<!--车队调整系数-->
+			<AdjustValueReason></AdjustValueReason>
+			<!--车队浮动原因-->
+		</RiskItem>
+		<ReInsureItem>
+			<!--重复投保提示-->
+			<PolicyNo></PolicyNo>
+			<!--重复投保保单号-->
+			<InsurerCode>PICC</InsurerCode>
+			<!--保险公司代码-->
+			<CoverageItem>
+				<!--险种信息-->
+				<CoverageCode>200</CoverageCode>
+				<!--险种代码-->
+			</CoverageItem>
+			<CoverageItem>
+				<!--险种信息-->
+				<CoverageCode>201</CoverageCode>
+				<!--险种代码-->
+			</CoverageItem>
+			<CoverageItem>
+				<!--险种信息-->
+				<CoverageCode>202</CoverageCode>
+				<!--险种代码-->
+			</CoverageItem>
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<LicensePlateColorCode>01</LicensePlateColorCode>
+			<!--号牌底色-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<EffectiveDate>200807070000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>200907070000</ExpireDate>
+			<!--终保日期-->
+			<BillDate>20080701</BillDate>
+			<!--签单日期-->
+		</ReInsureItem>
+<RiskWarning>
+             <RiskWarningType>01</RiskWarningType>
+             <!--风险警示类型-->
+             <RiskWarningClaimItem>
+                <!--风险警示理赔信息-->
+                <ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+                <!--理赔编号-->
+                <InsurerCode>PICC</InsurerCode>
+                <!--保险公司代码-->
+                <LossTime>201103010000</LossTime>
+                <!--出险时间-->
+                <LossArea>北京</LossArea>
+                <!--出险地点-->
+             </RiskWarningClaimItem>
+             <RiskWarningClaimItem>
+                <!--风险警示理赔信息-->
+                <ClaimSequenceNo>V3101PICCCSN1234567891</ClaimSequenceNo>
+                <!--理赔编号-->
+                <InsurerCode>PICC</InsurerCode>
+                <!--保险公司代码-->
+                <LossTime>201104010000</LossTime>
+                <!--出险时间-->
+                <LossArea>北京</LossArea>
+                <!--出险地点-->
+              </RiskWarningClaimItem>
+</RiskWarning>
+	</Body>
+</Packet>
+
+
+4.2.	投保预确认
+4.2.1.	请求报文
+4.2.1.1.	基本信息
+代码：BasePart
+说明：投保查询时，平台返回的投保查询码。
+序号	字段名称	类型	大小	必传	说明
+1		QuerySequenceNo	字符	30	Y	投保查询码
+
+4.2.1.2.	投保单信息
+代码：Application
+说明：投保单相关信息
+序号	字段名称	类型	大小	必传	说明
+1		ApplicationFormNo	字符	30	Y	投保单号
+2		ProducerCode	字符	2	Y	销售渠道代码；参见代码3		BillDate	日期		Y	签单日期；精确到天
+4		EffectiveDate	日期		Y	起保日期；精确到分钟
+5		ExpireDate	日期		Y	终保日期；精确到分钟
+6		Agent	字符	100		经办人
+7		Operator	字符	100		操作员
+8		CurrencyCode	字符	3	Y	币种类别代码；参见代码9		TotalBasicPremium	货币		Y	总基础(表定)保费
+10		TotalStandardPremium	货币		Y	总标准(应缴)保费
+11		TotalPremium	货币		Y	总签单(实收)保费
+说明：无
+
+4.2.1.3.	投保预确认校验信息
+代码：CheckItem
+说明：平台在预确认时需要校验的信息。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	号牌号码
+2		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码3		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码4		MotorTypeCode	枚举	2	Y	车辆种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		FirstRegisterDate	日期		Y	车辆初次登记日期；精确到天
+8		ModelCode	字符	15	Y	车型代码
+9		ReplacementValue	货币		Y	新车购置价
+10		ClaimAdjustValue	数值	3，2	Y	无赔优系数
+11		PeccancyAdjustValue	字符	1		交通违法系数（暂不校验）
+12		LoyaltyAdjustValue	数值	3，2	Y	续优（客户忠诚度）系数
+13		NoLicenseFlag	布尔	1	Y	未上牌车辆标志
+0：上牌车辆；
+1：未上牌车辆
+14		NewVehicleFlag	布尔	1	Y	新车标志
+0：非新车
+1：新车
+15		ChgOwnerFlag	布尔	1	Y	过户车辆标志
+1：过户重新投保
+0：未过户投保
+16		EcdemicVehicleFlag	布尔	1	Y	外地车标志
+0：本地车
+1：外地车
+17		LoanVehicleFlag	布尔	1	Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+18		FleetFlag	布尔	1	Y	车队标志
+0：非车队车；
+1：车队车
+19		FleetNo	字符	50		车队号
+说明：
+
+4.2.1.4.	险种信息
+代码：CoverageItem
+说明：投保的险种信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageClassCode	枚举	1		险种性质代码，参见代码2		CoverageCode	枚举	3	Y	险种代码，参见代码3		SumLimit	货币		Y	保额/限额
+4		DiscountValue	数值	7,4	Y	折扣系数
+5		BasicPremium	货币		Y	基础(表定)保费
+6		StandardPremuim	货币		Y	标准(应缴)保费
+7		Premuim	货币		Y	签单(实收)保费
+8		UnderInsuranceFlag	布尔	1		不足额投保标志
+0:足额投保
+1:不足额投保
+
+4.2.2.	返回报文
+只有HEAD部分，参见接口概述。没有BODY部分。
+4.2.3.	报文范例
+4.2.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V0209</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+		<!-- 基本信息 -->
+	<QuerySequenceNo>V010PICC330009001234567890125</QuerySequenceNo>
+			<!--投保查询码-->
+		</BasePart>
+		<Application>
+		<!--投保单信息-->
+			<ApplicationFormNo>PICCPN1234567890</ApplicationFormNo>
+			<!--投保单号-->
+			<ProducerCode>10</ProducerCode>
+			<!--销售渠道代码-->
+			<BillDate>20090808</BillDate>
+			<!--签单日期-->
+			<EffectiveDate>20090090900</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>2010090900</ExpireDate>
+			<!--终保日期-->
+			<Agent></Agent>
+			<!--经办人-->
+			<Operator></Operator>
+			<!--操作员-->
+			<CurrencyCode>CNY</CurrencyCode>
+			<!--币种类别代码-->
+<TotalBasicPremium>100</TotalBasicPremium>
+<!--总基础(表定)保费-->
+<TotalStandardPremium>2000</TotalStandardPremium>
+<!--总标准(应缴)保费-->
+			<TotalPremium>1500</TotalPremium>
+			<!--总签单(实收)保费-->
+		</Application>
+		<CheckItem>
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<MotorTypeCode>11</MotorTypeCode>
+			<!--车辆种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<FirstRegisterDate>20090808</FirstRegisterDate>
+			<!--车辆初次登记日期-->
+			<ModelCode>车型代码</ModelCode>
+			<!--车型代码-->
+			<ReplacementValue>138888</ReplacementValue>
+			<!--新车购置价-->
+			<ClaimAdjustValue>-0.2</ClaimAdjustValue>
+			<!--无赔优系数-->
+			<PeccancyAdjustValue></PeccancyAdjustValue>
+			<!--交通违法系数-->
+			<LoyaltyAdjustValue>-0.1</LoyaltyAdjustValue>
+			<!--续优（客户忠诚度）系数-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->
+			<FleetFlag>0</FleetFlag>
+			<!--车队标志-->
+			<FleetNo></FleetNo>
+			<!--车队号-->
+		</CheckItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>200</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag>1</UnderInsuranceFlag>
+			<!--不足额投保标志-->			
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>201</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->	
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>210</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->	
+		</CoverageItem>	
+	</Body>
+</Packet>
+
+4.2.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V0209</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>		
+</Packet>
+
+
+4.3.	投保确认
+4.3.1.	请求报文
+4.3.1.1.	基本信息
+代码：BasePart
+说明：投保查询时，平台返回的投保查询码。
+序号	字段名称	类型	大小	必传	说明
+1		QuerySequenceNo	字符	30	Y	投保查询码
+
+4.3.1.2.	保单数据
+代码：Policy
+说明：保单的相关信息
+序号	字段名称	类型	大小	必传	说明
+1		ApplicationFormNo	字符	30	Y	投保单号
+2		PolicyNo	字符	50		保单号
+3		ProducerCode	字符	2	Y	销售渠道代码；参见代码4		BillDate	日期		Y	签单日期；精确到天
+5		EffectiveDate	日期		Y	起保日期；精确到分钟
+6		ExpireDate	日期		Y	终保日期；精确到分钟
+7		PeriodDesc	字符	200		期限描述信息
+8		SpecialAgreementDesc	字符	2000		特别约定
+9		Agent	字符	100		经办人
+10		Operator	字符	100		操作员
+11		CurrencyCode	字符	3	Y	币种类别代码；参见代码12		TotalBasicPremium	货币		Y	总基础(表定)保费
+13		TotalStandardPremium	货币		Y	总标准(应缴)保费
+14		TotalPremium	货币		Y	总签单(实收)保费
+说明：（无）
+
+4.3.1.3.	投保确认校验信息
+代码：CheckItem
+说明：平台在确认时需要校验的信息
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	号牌号码
+2		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码3		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码4		MotorTypeCode	枚举	2	Y	车辆种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		FirstRegisterDate	日期		Y	车辆初次登记日期；精确到天
+8		ModelCode	字符	16		车型代码
+9		ReplacementValue	货币		Y	新车购置价
+10		ClaimAdjustValue	数值	3，2	Y	无赔优系数
+11		PeccancyAdjustValue	字符	1		交通违法系数（暂不校验）
+12		LoyaltyAdjustValue	数值	3，2	Y	续优（客户忠诚度）系数
+13		NoLicenseFlag	布尔	1	Y	未上牌车辆标志
+0：上牌车辆；
+1：未上牌车辆
+14		NewVehicleFlag	布尔	1	Y	新车标志
+0：非新车
+1：新车
+15		ChgOwnerFlag	布尔	1	Y	过户车辆标志
+1：过户重新投保
+0：未过户投保
+16		EcdemicVehicleFlag	布尔	1	Y	外地车标志
+0：本地车
+1：外地车
+17		LoanVehicleFlag	布尔	1	Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+18		FleetFlag	布尔	1	Y	车队标志
+0：非车队车；1：车队车
+19		FleetNo	字符	50		车队号
+
+4.3.1.4.	投保人信息
+代码：Applicant
+说明：送投保人信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ApplicantName	字符	60	Y	投保人名称
+2		ApplicantNature	枚举	1		投保人性质代码；参见代码3		CredentialCode	枚举	2	Y	证件类型代码；参见代码4		CredentialNo	字符	20	Y	证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+4.3.1.5.	被保险人信息
+代码：Insured
+说明：送被保险人信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		InsuredName	字符	60	Y	被保险人名称
+2		InsuredNature	枚举	1		被保险人性质代码；参见代码3		CredentialCode	枚举	2	Y	证件类型代码；参见代码4		CredentialNo	字符	20	Y	证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+4.3.1.6.	车主信息
+代码：VehicleOwner
+说明： 送车主信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		VehicleOwnerName	字符	60	Y	车主名称
+2		VehicleOwnerNature	枚举	1		车主性质代码；参见代码3		CredentialCode	枚举	2	Y	证件类型代码；参见代码4		CredentialNo	字符	20	Y	证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+4.3.1.7.	险种信息
+代码：CoverageItem
+说明：险种信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageClassCode	枚举	1		险种性质代码，参见代码2		CoverageCode	枚举	3	Y	险种代码，参见代码3		SumLimit	货币		Y	保额/限额
+4		DiscountValue	数值	7,4	Y	折扣系数
+5		BasicPremium	货币		Y	基础(表定)保费
+6		StandardPremuim	货币		Y	标准(应缴)保费
+7		Premuim	货币		Y	签单(实收)保费
+8		UnderInsuranceFlag	布尔	1		不足额投保标志
+0:足额投保
+1:不足额投保
+
+4.3.2.	返回报文
+4.3.2.1.	基本信息
+代码：BasePart
+说明：返回平台生成的投保确认码。
+序号	字段名称	类型	大小	必传	说明
+1	ConfirmSequenceNo	字符	50	Y	投保确认码
+说明：（无）
+
+4.3.3.	报文范例
+4.3.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V0201</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+        <BasePart>
+		<!--基本信息-->
+	<QuerySequenceNo>V010PICC330009001234567890125</QuerySequenceNo>
+			<!--投保查询码-->
+		</BasePart>
+		<Policy>
+			<!--保单信息-->
+			<ApplicationFormNo>PICCAFN1234567890</ApplicationFormNo>
+			<!--投保单号-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号-->
+			<ProducerCode>10</ProducerCode>
+			<!--销售渠道代码-->
+			<BillDate>20090808</BillDate>
+			<!--签单日期-->
+			<EffectiveDate>200909090000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>201009090000</ExpireDate>
+			<!--终保日期-->
+			<SpecialAgreementDesc></SpecialAgreementDesc>
+			<!--特别约定-->
+			<Agent></Agent>
+			<!--经办人-->
+			<Operator></Operator>
+			<!--操作员-->
+			<CurrencyCode>CNY</CurrencyCode>
+			<!--币种类别代码-->
+<TotalBasicPremium>100</TotalBasicPremium>
+<!--总基础(表定)保费-->
+<TotalStandardPremium>2000</TotalStandardPremium>
+<!--总标准(应缴)保费-->
+			<TotalPremium>1500</TotalPremium>
+			<!--总签单(实收)保费-->
+		</Policy>
+		<CheckItem>
+		<!-- 投保确认校验信息 -->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<MotorTypeCode>11</MotorTypeCode>
+			<!--车辆种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<FirstRegisterDate>20090808</FirstRegisterDate>
+			<!--车辆初次登记日期-->
+			<ModelCode>车型代码</ModelCode>
+			<!--车型代码-->
+			<ReplacementValue>138888</ReplacementValue>
+			<!--新车购置价-->
+			<ClaimAdjustValue>-0.2</ClaimAdjustValue>
+			<!--无赔优系数-->
+			<PeccancyAdjustValue></PeccancyAdjustValue>
+			<!--交通违法系数-->
+			<LoyaltyAdjustValue></LoyaltyAdjustValue>
+			<!--续优（客户忠诚度）系数-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->
+			<FleetFlag>0</FleetFlag>
+			<!--车队标志-->
+			<FleetNo></FleetNo>
+			<!--车队号-->			
+		</CheckItem>
+		<Applicant>
+			<!--投保人信息-->
+			<ApplicantName>张三</ApplicantName>
+			<!--投保人名称-->
+			<ApplicantNature></ApplicantNature>
+			<!--投保人性质代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码-->
+			<CredentialNo>100000198008080888</CredentialNo>
+			<!--证件号码-->
+			<GenderCode></GenderCode>
+			<!--自然人性别代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码-->
+		</Applicant>
+		<Insured>
+			<!--被保险人信息-->
+			<InsuredName>李四</InsuredName>
+			<!--被保险人名称-->
+			<InsuredNature>1</InsuredNature>
+			<!--被保险人类别代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码-->
+			<CredentialNo>100000198008080889</CredentialNo>
+			<!--证件号码-->
+			<GenderCode>1</GenderCode>
+			<!--自然人性别代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码-->
+		</Insured>
+		<VehicleOwner>
+			<!--车主信息-->
+			<VehicleOwnerName>王五</VehicleOwnerName>
+			<!--车主名称-->
+			<VehicleOwnerNature></VehicleOwnerNature>
+			<!--车主类别代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码-->
+			<CredentialNo>100000198008080887</CredentialNo>
+			<!--证件号码-->
+			<GenderCode></GenderCode>
+			<!--自然人性别代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码--> 
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码-->
+		</VehicleOwner>
+		<CoverageItem>
+			<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>200</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag>1</UnderInsuranceFlag>
+			<!--不足额投保标志-->			
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>201</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->	
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>210</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->	
+		</CoverageItem>	
+	</Body>
+</Packet>
+
+
+4.3.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V0201</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<BasePart>
+	<ConfirmSequenceNo>V0201330009001234567890126</ConfirmSequenceNo>
+			<!--投保确认码-->
+		</BasePart>
+	</Body>
+</Packet>
+
+4.4.	投保注销
+4.4.1.	请求报文
+代码：BasePart
+说明：投保确认时，平台生成的投保确认码。
+序号	字段名称	类型	大小	必传	说明
+1		ConfirmSequenceNo	字符	50	Y	投保确认码
+
+4.4.2.	返回报文
+只有HEAD部分，参见接口概述。没有BODY部分。
+4.4.3.	报文范例
+4.4.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V04</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+	<ConfirmSequenceNo>V0201330009001234567890126</ConfirmSequenceNo>
+	<!--投保确认码-->
+		</BasePart>
+	</Body>
+</Packet>
+
+
+4.4.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V04</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>		
+</Packet>
+
+
+
+4.5.	车辆查询
+4.5.1.	请求报文
+4.5.1.1.	车辆信息
+代码：Vehicle
+说明：主要包含车辆信息。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15		号牌号码
+2		LicensePlateType	枚举	2		号牌种类代码；参见代码3		EngineNo	字符	50		发动机号
+4		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+5		LfDate	日期			出厂日期；格式：精确到天
+6		FirstRegisterDate	日期			车辆初始登记日期。格式：精确到天
+7		MadeFactory	字符	168		制造厂名称
+8		BrandCN	字符	64		中文品牌
+9		BrandEN	字符	64		英文品牌
+10		Model	字符	64	Y	车辆型号
+11		Tonnage	数值	8		核定载质量(千克)
+12		RatedPassengerCapacity	数值	3		核定载客人数
+13		WholeWeight	数值	8		整备质量(千克)
+14		Displacement	数值	8		排量(毫升)
+15		VehicleType	枚举	3		交管车辆种类；参见代码16		Haulage	数值	8		准牵引总质量(千克)
+
+4.5.2.	返回报文
+4.5.2.1.	交管车辆信息
+代码：PmVehicle
+说明：返回匹配到的交管车辆信息
+序号	字段名称	类型	大小	必传	说明
+1		PmQueryNo	字符	30	Y	交管车辆查询码
+2		VehicleId	字符	14	Y	机动车序号
+3		LicensePlateNo	字符	15	Y	号牌号码
+4		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码8		VehicleType	枚举	3	Y	交管车辆种类；参见代码9		IneffectualDate	日期			检验有效日期止；格式：精确到天
+10		RejectDate	日期			强制有效期止；格式：精确到天
+11		FirstRegisterDate	日期		Y	车辆初始登记日期；格式：精确到天
+12		LastCheckDate	日期			最近定检日期（用以判断是否在保险期限内）；格式：精确到天
+13		TransferDate	日期			转移登记日期(费率浮动相关)；格式：精确到天
+14		WholeWeight	数值	8	Y	整备质量(千克)
+15		RatedPassengerCapacity	数值	3	Y	核定载客人数
+16		Tonnage	数值	8	Y	核定载质量(千克)
+17		MadeFactory	字符	168		制造厂名称
+18		Model	字符	64		车辆型号
+19		BrandCN	字符	64		中文品牌
+20		BrandEN	字符	64		英文品牌
+21		Haulage	数值	8		准牵引总质量(千克)
+22		Status	枚举	1	Y	机动车状态代码；参见代码
+4.5.2.2.	车型车价信息
+代码：VehicleModel
+说明：返回匹配到的第三方车型车价信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ModelCode	字符	15	Y	车型代码（车型编码）
+2		ModelName	字符	64	Y	车型名称（车型库名称）
+3		ModelDesc	字符	1000		车型描述
+4		Brand	字符	64		品牌名称
+5		Series	字符	64		车系名称（车型库车系）
+6		ImportFlag	字符	10		车型种类；（国产/进口/合资）
+7		RatedPassengerCapacity	数值	5		核定载客人数
+8		TotalVehicleWeight	数值	50		整车质量；单位：千克。
+9		Tonnage	数值	10，3		载重量；单位吨。
+10		DerailleurType	字符	50		变速器形式
+11		ABSFlag	布尔	1		是否有ABS
+0：无ABS；
+1：有ABS
+12		AlarmFlag	布尔	1		是否有防盗装备
+0：无防盗装备
+1：有防盗装备
+13		AirbagNum	数值	5		安全气囊数
+14		Displacement	数值	8		排量；单位：毫升。
+15		MarketYear	字符	20		上市年份
+16		RiskFlag	枚举	1		风险标志；参加代码17		ReplacementValue	货币	10	Y	新车购置价
+18		RefCode1	字符	15	Y	参考代码1
+19		RefCode2	字符	15	Y	参考代码2
+
+4.5.3.	报文范例
+4.5.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V42</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<Vehicle>
+		<!--车辆信息-->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<EngineNo>ENA1235</EngineNo>
+			<!--发动机号-->
+			<VIN>FNA12345</VIN>
+			<!--车架号-->
+			<LfDate></LfDate>
+			<!--出厂日期-->
+			<FirstRegisterDate>20050102</FirstRegisterDate>
+			<!--车辆初始登记日期-->
+			<MadeFactory>一汽</MadeFactory>
+			<!--制造厂名称-->
+			<BrandCN>地方</BrandCN>
+			<!--中文品牌-->
+			<BrandEN>dfg</BrandEN>
+			<!--英文品牌-->
+			<Model>cheliangxinghao</Model>
+			<!--车辆型号-->
+			<Tonnage>404</Tonnage>
+			<!--核定载质量-->
+			<RatedPassengerCapacity>12</RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<WholeWeight>200</WholeWeight>
+			<!--整备质量-->
+			<Displacement>20</Displacement>
+			<!--排量-->
+			<VehicleType>B11</VehicleType>
+			<!--交管车辆种类-->
+			<Haulage>432</Haulage>
+			<!--准牵引总质量-->             
+		</Vehicle>
+	</Body>
+</Packet>
+
+
+4.5.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V42</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<PmVehicle>
+			<!--交管车辆信息（暂不返回）-->
+			<PmQueryNo>PQN1234567890</PmQueryNo>
+			<!--交管车辆查询码-->
+			<VehicleId>VI1234567890</VehicleId>
+			<!--机动车序号-->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<VehicleType>11</VehicleType>
+			<!--车辆类型代码-->
+			<IneffectualDate></IneffectualDate>
+			<!--检验有效日期止-->
+			<RejectDate></RejectDate>
+			<!--强制有效期止-->
+			<FirstRegisterDate>20080808</FirstRegisterDate>
+			<!--车辆初始登记日期-->
+			<LastCheckDate></LastCheckDate>
+			<!--最近定检日期-->
+			<TransferDate></TransferDate>
+			<!--转移登记日期-->
+			<WholeWeight>3200</WholeWeight>
+			<!--整备质量-->
+			<RatedPassengerCapacity>5</RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<Tonnage>1000</Tonnage>
+			<!--核定载质量-->
+			<MadeFactory></MadeFactory>
+			<!--制造厂名称-->
+			<Model></Model>
+			<!--车辆型号-->
+			<BrandCN></BrandCN>
+			<!--中文品牌-->
+			<BrandEN></BrandEN>
+			<!--英文品牌-->
+			<Haulage></Haulage>
+			<!--准牵引总质量(千克)-->
+			<Status>1</Status>
+			<!--机动车状态代码-->
+		</PmVehicle>
+		<VehicleModel>
+			<ModelCode>VC1234567890123456</ModelCode>
+			<!--车型代码-->
+			<ModelName>车型名称</ModelName>
+			<!--车型名称-->
+			<ModelDesc></ModelDesc>
+			<!--车型描述-->
+			<Brand></Brand>
+			<!--品牌名称-->
+			<Series></Series>
+			<!--车型别名-->
+			<ImportFlag>国产</ImportFlag>
+			<!--车型种类-->
+			<RatedPassengerCapacity></RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<TotalVehicleWeight></TotalVehicleWeight>
+			<!--整车质量-->
+			<Tonnage></Tonnage>
+			<!--载重量-->
+			<DerailleurType></DerailleurType>
+			<!--变速器形式-->
+			<ABSFlag></ABSFlag>
+			<!--是否有ABS -->
+			<AlarmFlag></AlarmFlag>
+			<!--是否有防盗装备-->
+			<AirbagNum></AirbagNum>
+			<!--安全气囊数-->
+			<Displacement></Displacement>
+			<!--排量-->
+			<MarketYear></MarketYear>
+			<!--上市年份-->
+			<RiskFlag></RiskFlag>
+			<!--风险标志-->
+			<ReplacementValue>120000</ReplacementValue>
+			<!--风险标志-->
+			<RefCode1>参考代码1</RefCode1>
+			<!--参考代码1-->
+			<RefCode2>参考代码2</RefCode2>
+			<!--参考代码2-->
+		</VehicleModel>
+	</Body>
+</Packet>
+
+
+4.6.	保单号上传
+4.6.1.	请求报文
+4.6.1.1.	保单号上传信息
+代码：Policy
+说明：主要包含投保确认码和保单号。
+序号	字段名称	类型	大小	必传	说明
+1	ConfirmSequenceNo	字符	50	Y	投保确认码
+2	PolicyNo	字符	50	Y	保单号
+
+4.6.2.	返回报文
+只有HEAD部分，没有BODY部分。
+
+4.6.3.	报文范例
+4.6.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V0309</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<Policy>
+	<ConfirmSequenceNo>V0201330009001234567890126</ConfirmSequenceNo>
+			<!--投保确认码-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号-->
+		</Policy>
+	</Body>
+</Packet>
+
+
+4.6.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V0309</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>	
+</Packet>
+4.7.	直接承保
+4.7.1.	请求报文
+4.7.1.1.	车辆信息
+代码：Vehicle
+说明：主要保单投保车辆信息
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	号牌号码
+2		LicensePlateColorCode	枚举	2		号牌底色；参见代码3		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码4		MotorTypeCode	枚举	2	Y	车辆种类代码；参见代码5		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码6		FirstRegisterDate	日期		Y	车辆初始登记日期。格式：精确到天
+7		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+8		EngineNo	字符	50	Y	发动机号
+9		VehicleType	枚举	3	Y	交管车辆种类；参见代码10		IneffectualDate	日期			检验有效日期止；格式：精确到天
+11		RejectDate	日期			强制有效期止；格式：精确到天
+12		LastCheckDate	日期			最近定检日期；格式：精确到天
+13		TransferDate	日期			转移登记日期；格式：精确到天
+14		WholeWeight	数值	8		整备质量(千克)
+15		RatedPassengerCapacity	数值	3		核定载客人数
+16		Tonnage	数值	8		核定载质量(千克)
+17		MadeFactory	字符	168		制造厂名称
+18		Model	字符	64	Y	车辆型号
+19		BrandCN	字符	64		中文品牌
+20		BrandEN	字符	64		英文品牌
+21		Haulage	数值	8		准牵引总质量(千克)
+22		NoLicenseFlag	布尔	1	Y	未上牌车辆标志
+0：上牌车辆
+1：未上牌车辆
+23		NewVehicleFlag	布尔	1	Y	新车标志
+0：非新车
+1：新车
+24		ChgOwnerFlag	布尔	1	Y	过户车辆标志
+1：过户重新投保
+0：未过户投保
+25		EcdemicVehicleFlag	布尔	1	Y	外地车标志
+0：本地车
+1：外地车
+26		LoanVehicleFlag	布尔	1	Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+27		FleetFlag	布尔	1	Y	车队标志
+0：非车队车
+1：车队车
+28		FleetNo	字符	50		车队号
+29		PmQueryNo	字符	50		交管车辆查询码
+30		Displacement	数值	8		排量(毫升)
+31		LfDate	日期			出厂日期；格式：精确到天
+32		NoDamageYears	数字	2		跨省首年投保未出险证明的年数
+
+4.7.1.2.	车型车价信息
+代码：VehicleModel
+序号	字段名称	类型	大小	必传	说明
+1		ModelCode	字符	16	Y	车型代码
+2		ReplacementValue	货币		Y	新车购置价
+
+4.7.1.3.	驾驶员信息
+代码：SpecifiedDriver
+说明：包含约定驾驶员信息，没有约定驾驶员的可以不送
+序号	字段名称	类型	大小	必传	说明
+1		Name	字符	30	Y	驾驶员名称
+2		CredentialCode	枚举	2		证件类型代码；参见代码3		CredentialNo	字符	20		证件号码
+4		Age	数值	2		年龄
+5		DriverTypeCode	枚举	1	Y	驾驶证类型；参见代码6		LicenseDesc	字符	200		驾驶证描述
+7		LicenseNo	字符	18	Y	驾驶证号
+8		LicenseStatusCode	字符	1		驾驶证状态代码；参加代码9		LicensedDate	日期			驾驶证首次发证日期，精确到天
+10		IsMajorDriver	布尔			是否主驾驶员
+
+4.7.1.4.	保单信息
+代码：Policy
+说明：保单的相关信息
+序号	字段名称	类型	大小	必传	说明
+1		ApplicationFormNo	字符	30	Y	投保单号
+2		PolicyNo	字符	50		保单号
+3		ProducerCode	字符	2	Y	销售渠道代码；参见代码4		BillDate	日期		Y	签单日期；精确到天
+5		EffectiveDate	日期		Y	起保日期；精确到分钟
+6		ExpireDate	日期		Y	终保日期；精确到分钟
+7		PeriodDesc	字符	200		期限描述信息
+8		SpecialAgreementDesc	字符	2000		特别约定
+9		Agent	字符	100		经办人
+10		Operator	字符	100		操作员
+11		CurrencyCode	字符	3	Y	币种类别代码；参见代码12		TotalBasicPremium	货币		Y	总基础(表定)保费
+13		TotalStandardPremium	货币		Y	总标准(应缴)保费
+14		TotalPremium	货币		Y	总签单(实收)保费
+15		UnderwriteReason	枚举	1	Y	直接承保原因代码；参见代码
+4.7.1.5.	承保车辆风险系数
+代码：RiskItem
+序号	字段名称	类型	大小	必传	说明
+1		ClaimAdjustValue	数值	3，2	Y	无赔优调整系数
+2		LoyaltyAdjustValue	数值	3，2	Y	客户忠诚度调整系数
+
+4.7.1.6.	险种信息
+代码：CoverageItem
+说明：险种信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageClassCode	枚举	1		险种性质代码，参见代码2		CoverageCode	枚举	3	Y	险种代码，参见代码3		SumLimit	货币		Y	保额/限额
+4		DiscountValue	数值	7,4	Y	折扣系数
+5		BasicPremium	货币		Y	基础(表定)保费
+6		StandardPremuim	货币		Y	标准(应缴)保费
+7		Premuim	货币		Y	签单(实收)保费
+8		UnderInsuranceFlag	布尔	1		不足额投保标志
+0:足额投保
+1:不足额投保
+
+4.7.1.7.	车主信息
+代码：VehicleOwner
+说明：送车主信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		VehicleOwnerName	字符	60	Y	车主名称
+2		VehicleOwnerNature	枚举	1		车主性质代码；参见代码3		CredentialCode	枚举	2	Y	证件类型代码；参见代码4		CredentialNo	字符	20	Y	证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+4.7.1.8.	投保人信息
+代码：Applicant
+说明：送投保人信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ApplicantName	字符	60	Y	投保人名称
+2		ApplicantNature	枚举	1		投保人性质代码；参见代码3		CredentialCode	枚举	2	Y	证件类型代码；参见代码4		CredentialNo	字符	20	Y	证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+4.7.1.9.	被保险人信息
+代码：Insured
+说明：送被保险人信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		InsuredName	字符	60	Y	被保险人名称
+2		InsuredNature	枚举	1		被保险人性质代码；参见代码3		CredentialCode	枚举	2	Y	证件类型代码；参见代码4		CredentialNo	字符	20	Y	证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+4.7.2.	返回报文
+4.7.2.1.	基本信息
+代码：BasePart
+说明：返回平台生成的投保确认码。
+序号	字段名称	类型	大小	必传	说明
+1	ConfirmSequenceNo	字符	50	Y	投保确认码
+
+4.7.3.	报文范例
+4.7.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V05</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+	  <Vehicle>
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateColorCode>01</LicensePlateColorCode>
+			<!--号牌底色-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorTypeCode>11</MotorTypeCode>
+			<!--车辆种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<FirstRegisterDate>20080808</FirstRegisterDate>
+			<!--车辆初始登记日期-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<VehicleType>K31</VehicleType>
+			<!--交管车辆种类-->
+			<IneffectualDate></IneffectualDate>
+			<!--检验有效日期止-->
+			<RejectDate></RejectDate>
+			<!--强制有效期止-->
+			<LastCheckDate></LastCheckDate>
+			<!--最近定检日期-->
+			<TransferDate></TransferDate>
+			<!--转移登记日期-->
+			<WholeWeight></WholeWeight>
+			<!--整备质量(千克)-->
+			<RatedPassengerCapacity></RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<Tonnage></Tonnage>
+			<!--核定载质量(千克)-->
+			<MadeFactory></MadeFactory>
+			<!--制造厂名称-->
+			<Model>78924234</Model>
+			<!--车辆型号-->
+			<BrandCN></BrandCN>
+			<!--中文品牌-->
+			<BrandEN></BrandEN>
+			<!--英文品牌-->
+			<Haulage></Haulage>
+			<!--准牵引总质量(千克)-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->
+			<FleetFlag></FleetFlag>
+			<!--车队标志-->
+			<FleetNo>0</FleetNo>
+			<!--车队号-->
+			<PmQueryNo></PmQueryNo>
+			<!--交管车辆查询码-->			
+	        <Displacement></Displacement>
+	        <!--排量-->    
+			<LfDate></LfDate>
+			<!--出厂日期--> 		
+			<NoDamageYears></NoDamageYears>
+			<!--跨省首年投保未出险证明的年数-->
+		</Vehicle>
+		<VehicleModel>
+			<ModelCode>CC5020XALL</ModelCode>
+			<!--车型代码-->
+			<ReplacementValue>150000</ReplacementValue>
+			<!--新车购置价-->
+		</VehicleModel>
+		<SpecifiedDriver>
+			<Name>zhangsan</Name>
+			<!--驾驶员名称-->
+			<CredentialCode>02</CredentialCode>
+			<!--证件类型代码；参见代码-->
+			<CredentialNo>1234567890123456</CredentialNo>
+			<!--证件号码-->
+			<Age></Age>
+			<!--年龄-->
+			<DriverTypeCode>C1</DriverTypeCode>
+			<!--驾驶证类型；参见代码-->
+			<LicenseDesc></LicenseDesc>
+			<!--驾驶证描述-->
+			<LicenseNo>10928387829187898</LicenseNo>
+			<!--驾驶证号-->
+			<LicenseStatusCode></LicenseStatusCode>
+			<!--驾驶证状态代码；参加代码-->
+			<LicensedDate></LicensedDate>
+			<!--驾驶证首次发证日期，精确到天-->
+			<IsMajorDriver></IsMajorDriver>
+			<!--是否主驾驶员-->
+		</SpecifiedDriver>
+		<Policy>
+			<ApplicationFormNo>1235456789</ApplicationFormNo>
+			<!--投保单号-->
+			<PolicyNo>123456789</PolicyNo>
+			<!--保单号-->
+			<ProducerCode></ProducerCode>
+			<!--销售渠道代码；参见代码-->
+			<BillDate>20101220</BillDate>
+			<!--签单日期；精确到天-->
+			<EffectiveDate>201012201220</EffectiveDate>
+			<!--起保日期；精确到分钟-->
+			<ExpireDate>201112201220</ExpireDate>
+			<!--终保日期；精确到分钟-->
+			<PeriodDesc></PeriodDesc>
+			<!--期限描述信息-->
+			<SpecialAgreementDesc></SpecialAgreementDesc>
+			<!--特别约定-->
+			<Agent></Agent>
+			<!--经办人-->
+			<Operator></Operator>
+			<!--操作员-->
+			<CurrencyCode></CurrencyCode>
+			<!--币种类别代码；参见代码-->
+			<TotalBasicPremium>1000</TotalBasicPremium>
+			<!--总基础(表定)保费-->
+			<TotalStandardPremium>1000</TotalStandardPremium>
+			<!--总标准(应缴)保费-->
+			<TotalPremium>1000</TotalPremium>
+			<!--总签单(实收)保费-->
+			<UnderwriteReason></UnderwriteReason>
+			<!--直接承保原因代码；参见代码-->
+		</Policy>
+		<RiskItem>
+			<ClaimAdjustValue>0.23</ClaimAdjustValue>
+			<!--无赔优调整系数-->
+			<LoyaltyAdjustValue>0.23</LoyaltyAdjustValue>
+			<!--客户忠诚度调整系数-->
+		</RiskItem>
+		<VehicleOwner>
+			<VehicleOwnerName>zhangsan</VehicleOwnerName>
+			<!--车主名称-->
+			<VehicleOwnerNature>02</VehicleOwnerNature>
+			<!--车主性质代码；参见代码-->
+			<CredentialCode>02</CredentialCode>
+			<!--证件类型代码；参见代码-->
+			<CredentialNo>1234567890123456</CredentialNo>
+			<!--证件号码-->
+			<GenderCode>02</GenderCode>
+			<!--自然人性别代码；参见代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码；参见代码-->
+		</VehicleOwner>
+		<CoverageItem>
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码，参见代码-->
+			<CoverageCode>200</CoverageCode>
+			<!--险种代码，参见代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag>1</UnderInsuranceFlag>
+			<!--不足额投保标志  0:足额投保  1:不足额投保-->
+		</CoverageItem>
+		<Applicant>
+			<ApplicantName>test</ApplicantName>
+			<!--投保人名称-->
+			<ApplicantNature></ApplicantNature>
+			<!--投保人性质代码；参见代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码；参见代码-->
+			<CredentialNo>1234567</CredentialNo>
+			<!--证件号码-->
+			<GenderCode></GenderCode>
+			<!--自然人性别代码；参见代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码；参见代码-->
+		</Applicant>
+		<Insured>
+			<InsuredName>test</InsuredName>
+			<!--被保险人名称-->
+			<InsuredNature></InsuredNature>
+			<!--被保险人性质代码；参见代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码；参见代码-->
+			<CredentialNo>123456</CredentialNo>
+			<!--证件号码-->
+			<GenderCode></GenderCode>
+			<!--自然人性别代码；参见代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码；参见代码-->
+		</Insured>
+	</Body>
+</Packet>
+4.7.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V05</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+	 <BasePart>
+	  <ConfirmSequenceNo>V0201330009001234567890126</ConfirmSequenceNo>
+			<!--投保确认码-->
+	 </BasePart>
+	</Body>
+</Packet>
+ 
+5.	批改部分
+批改部分包括批改查询、批改预确认和批改确认、批改注销4个接口。
+在保单生效后，保险公司受理了客户的批改请求后，进行批改时，首先需要通过批改查询接口向平台进行批改查询，平台返回查询结果后，保险公司依据平台返回的结果计算批改退补费并报价给客户，经得客户同意后，保险公司通过批改预确认接口上传批单内容至平台验证，平台预确认成功后保险公司收费并通过批改确认接口上传批改及最新保单信息，批改由平台确认成功后保险公司最终生成批单并打印出单。
+5.1.	批改查询
+说明：
+1）	只能对作为交互车管车辆信息依据的部分数据进行修改（如：车牌号、车架号等）；
+2）	不得修改交管传送的车辆其他信息，如出现交管信息错误，需由平台和交管确认后，从数据源头进行修改。
+3）	批改之后的字段送新值；没有批改的字段，送原值或者不送标签。
+4）	历史上传的保单，由于数据质量较差，在批改时不涉及对原保单车辆信息变更的校验，即在批改确认时，不校验车辆信息是否与交管信息一致，只传送平台车辆信息。
+5.1.1.	请求报文
+5.1.1.1.	基本信息
+代码：BasePart
+说明：无
+序号	字段名称	类型	大小	必传	说明
+1		ConfirmSequenceNo	字符	50	Y	投保确认码
+
+5.1.1.2.	批单信息
+代码：Endorsement
+说明：批单信息。
+序号	字段名称	类型	大小	必传	说明
+1		EndorsementDate	日期		Y	批改日期；格式：精确到分钟
+2		EffectiveTime	日期		Y	批改生效时间；格式：精确到分钟
+
+5.1.1.3.	批改车辆信息
+代码：Vehicle
+说明：批改后的车辆信息。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	批改后号牌号码
+2		LicensePlateColorCode	枚举	2		批改后号牌底色；参见代码3		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码4		MotorTypeCode	枚举	2	Y	批改后车辆种类代码；参见代码5		MotorUsageTypeCode	枚举	3	Y	批改后车辆使用性质代码；参见代码6		VIN	字符	17	Y	批改后17位VIN码
+7		EngineNo	字符	50	Y	批改后发动机号
+8		FirstRegisterDate	日期		Y	批改后初次登记日期；格式：精确到天
+9		TransferDate	日期			批改后的转移登记（过户）日期；格式：精确到天
+10		NoLicenseFlag	布尔	1	Y	批改后未上牌车辆标志；
+0：上牌车辆
+1：未上牌车辆
+11		NewVehicleFlag	布尔	1	Y	批改后新车标志；
+0：非新车
+1：新车
+12		EcdemicVehicleFlag	布尔	1	Y	批改后外地车标志；
+0：本地车
+1：外地车
+13		ChgOwnerFlag	布尔	1	Y	批改后过户车标志；
+0：非过户车
+1：过户车
+14		LoanVehicleFlag	布尔		Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+15		FleetFlag	布尔	1	Y	批改后车队标志
+0：非车队车
+1：车队车
+16		FleetNo	字符	50		车队号
+17		Displacement	数值	8		排量(毫升)
+18		LfDate	日期			出厂日期；格式：精确到天
+19		Model	字符	64	Y	车辆型号
+
+5.1.1.4.	批改保单信息
+代码：Policy
+说明：保单相关信息。
+序号	字段名称	类型	大小	必传	说明
+1		LastPolicyNo	字符	50		上年投保保单号
+2		BillDate	日期		Y	签单日期；格式：精确到天
+3		EffectiveDate	日期		Y	起保日期；格式：精确到分钟
+4		ExpireDate	日期		Y	终保日期；格式：精确到分钟
+5		PeriodDesc	字符	200		期限描述信息
+6		EndorOwnerFlag	布尔	1	Y	是否批改过户标志； 
+0：非过户
+1：过户
+7		SurrenderFlag	字符	1	Y	是否退保标志；
+0：不是退保
+1：退保
+
+5.1.1.5.	批改停驶信息
+代码：StopTravelInfo
+说明：批改停驶信息。
+序号	字段名称	类型	大小	必传	说明
+1		StopTravelStratDate	日期			机动车停驶起期；格式：精确到小时
+2		StopTravelEndDate	日期			机动车停驶止期；格式： 精确到小时
+3		ExtendStartDate	日期			保期顺延起期；格式：精确到小时
+4		ExtendEndDate	日期			保期顺延止期；格式：精确到小时
+5		ReqDate	日期			申请日；格式：精确到小时
+6		RecoverTravelDate	日期			机动车提前复驶日期；格式：精确到小时
+7		StopTravelType	枚举	1		停驶类型
+1-停驶
+2-复驶
+
+5.1.2.	返回报文
+5.1.2.1.	基本信息
+代码：BasePart
+说明：返回平台生成的投保查询码和查询码有效止期。
+序号	字段名称	类型	大小	必传	说明
+1		AmendQueryNo	字符	50	Y	批改查询码
+2		AmendQueryPastDate	日期		Y	批改查询码有效止期。格式：精确到分钟
+
+5.1.2.2.	上张保单
+代码：LastPolicy
+说明：返回上张保单销售渠道代码信息
+序号	字段名称	类型	大小	必传	说明
+1		LastProducerCode	枚举	2		销售渠道代码，参见代码
+5.1.2.3.	交管车辆信息（暂不返回）
+代码：PmVehicle
+说明：返回匹配到的交管车辆信息
+序号	字段名称	类型	大小	必传	说明
+1		PmQueryNo	字符	30	Y	交管车辆查询码
+2		VehicleId	字符	14	Y	机动车序号
+3		LicensePlateNo	字符	15	Y	号牌号码
+4		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码8		VehicleType	枚举	3	Y	交管车辆种类；参见代码9		IneffectualDate	日期			检验有效日期止；格式：精确到天
+10		RejectDate	日期			强制有效期止；格式：精确到天
+11		FirstRegisterDate	日期		Y	车辆初始登记日期；格式：精确到天
+12		LastCheckDate	日期			最近定检日期（用以判断是否在保险期限内）；格式：精确到天
+13		TransferDate	日期			转移登记日期(费率浮动相关)；格式：精确到天
+14		WholeWeight	数值	8	Y	整备质量(千克)
+15		RatedPassengerCapacity	数值	3	Y	核定载客人数
+16		Tonnage	数值	8	Y	核定载质量(千克)
+17		MadeFactory	字符	168		制造厂名称
+18		Model	字符	64		车辆型号
+19		BrandCN	字符	64		中文品牌
+20		BrandEN	字符	64		英文品牌
+21		Haulage	数值	8		准牵引总质量(千克)
+22		Status	枚举	1	Y	机动车状态代码；参见代码
+5.1.2.4.	车型车价信息
+代码：VehicleModel
+说明：返回匹配到的第三方车型车价信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ModelCode	字符	15	Y	车型代码（车型编码）
+2		ModelName	字符	64	Y	车型名称（车型库名称）
+3		ModelDesc	字符	1000		车型描述
+4		Brand	字符	64		品牌名称
+5		Series	字符	64		车系名称（车型库车系）
+6		ImportFlag	字符	10		车型种类；（国产/进口/合资）
+7		RatedPassengerCapacity	数值	5		核定载客人数
+8		TotalVehicleWeight	数值	50		整车质量；单位：千克。
+9		Tonnage	数值	10，3		载重量；单位吨。
+10		DerailleurType	字符	50		变速器形式
+11		ABSFlag	布尔	1		是否有ABS
+0：无ABS；
+1：有ABS
+12		AlarmFlag	布尔	1		是否有防盗装备
+0：无防盗装备
+1：有防盗装备
+13		AirbagNum	数值	5		安全气囊数
+14		Displacement	数值	8		排量；单位：毫升。
+15		MarketYear	字符	20		上市年份
+16		RiskFlag	枚举	1		风险标志；参加代码17		ReplacementValue	货币	10	Y	新车购置价
+18		RefCode1	字符	15	Y	参考代码1
+19		RefCode2	字符	15	Y	参考代码2
+
+5.1.2.5.	违法信息列表（暂不返回）
+代码：Violation
+说明：一条或多条违法信息
+序号	字段名称	类型	大小	必传	说明
+1		ViolationCode	字符	22	Y	违法编号
+2		ViolationRecordTypeCode	字符	4	Y	违法行为代码
+3		DecisionCode	字符	10	Y	决定书编号
+4		DecisionTypeCode	字符	1	Y	决定书类型
+5		ViolationSequence	数字	2	Y	序号
+6		DriverLicenseNo	字符	18		违法驾驶员驾驶证号
+7		LicensePlateNo	字符	15	Y	号牌号码
+8		LicensePlateTypeCode	枚举	2	Y	号牌种类代码；参见代码9		ViolationPlace	字符	200		违法地点
+10		ViolationTime	日期	14	Y	违法时间
+11		RecognitionDate	日期	14	Y	违法处理时间
+12		JurisdictionAgencyCode	字符	10	Y	违法处理机关代码
+
+5.1.2.6.	历史理赔列表
+代码：BusinessPolicyAccident
+说明：主要包含车辆的历史理赔信息。
+序号	字段名称	类型	大小	必传	说明
+1		InsurerCode	字符	8	Y	保险公司代码，四位标准的公司名称简写；参见代码2		PolicyNo	字符	50	Y	保单号
+3		EffectiveDate	日期		Y	起保日期；格式：精确到分钟
+4		ExpireDate	日期		Y	终保日期；格式：精确到分钟
+5		ClaimSequenceNo	字符	50	Y	理赔编码
+6		ClaimNotificationNo	字符	50	Y	报案号
+7		ClaimRegistrationNo	字符	50	Y	立案号
+8		CaseID	字符	50	Y	结案编号
+9		LossTime	日期		Y	出险时间。格式：精确到分钟
+10		ClaimCloseTime	日期		Y	结案时间。格式：精确到分钟
+11		ClaimAmount	货币		Y	赔付金额
+
+5.1.2.7.	承保车辆风险系数
+代码：RiskItem
+说明：批改后的车辆相关浮动系数。
+序号	字段名称	类型	大小	必传	说明
+1		ClaimAdjustValue	数值	3，2	Y	无赔优调整系数
+2		ClaimAdjustReason	枚举	2	Y	无赔优浮动原因代码，参见代码3		NoClaimAdjustReason	枚举	2		无赔优不浮动原因代码，参见代码4		IsContinuousPolicy	布尔		Y	续保标志
+5		LoyaltyAdjustValue	数值	3，2	Y	客户忠诚度调整系数
+6		LoyaltyAdjustReason	枚举	2	Y	客户忠诚度浮动原因代码，参见代码7		NoLoyaltyAdjustReason	枚举	2		客户忠诚度不浮动原因代码，参加代码8		MileageAdjustValue	数值	3，2		行驶里程调整系数
+9		MileageAdjustReason	字符	2		行驶里程浮动原因
+10		PeccancyAdjustValue	数值	3，2		违法调整系数
+11		PeccancyAdjustReason	字符	2		违法浮动原因
+12		TravelAdjustValue	数值	3，2		约定行驶区调整系数
+13		TravelAdjustReason	字符	2		约定行驶区浮动原因
+14		DriverAdjustValue	数值	3，2		指定驾驶人调整系数
+15		DriverAdjustReason	字符	2		指定驾驶人浮动原因
+16		LossAdjustValue	数值	3，2		车辆损失险车型系数
+17		TheftAdjustValue	数值	3，2		盗抢险车型系数
+18		FleetAdjustValue	数值	3，2		车队调整系数
+19		AdjustValueReason	字符	2		车队浮动原因
+
+5.1.2.8.	重复投保提示
+代码：ReInsureItem
+说明：主要包含重复投保信息。 
+序号	字段名称	类型	大小	必传	说明
+1		PolicyNo	字符	50		重复投保保单号
+2		InsurerCode	字符	4	Y	保险公司代码，四位标准的公司名称简写；参见代码3		<CoverageItem>
+对象		Y	所有险种信息
+4		LicensePlateNo	字符	15	Y	号牌号码
+5		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码6		LicensePlateColorCode	枚举	2		号牌底色；参见代码7		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+8		EngineNo	字符	50	Y	发动机号
+9		EffectiveDate	日期		Y	起保日期；格式：精确到分钟
+10		ExpireDate	日期		Y	终保日期；格式：精确到分钟
+11		BillDate	日期		Y	签单日期；精确到天
+
+5.1.2.9.	险种信息
+代码：CoverageItem
+说明：CoverageItem是ReInsureItem的子标签，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageCode	枚举	3	Y	险种代码，参见代码
+5.1.3.	报文范例
+5.1.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V2101</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ConfirmSequenceNo>V0201330009001234567890126</ConfirmSequenceNo>
+			<!--投保确认码-->
+		</BasePart>
+		<Endorsement>
+			<EndorsementDate>200912090000</EndorsementDate>
+			<!--批改日期-->
+			<EffectiveTime>200912100000</EffectiveTime>
+			<!--批改生效日期-->
+		</Endorsement>
+		<Vehicle>
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateColorCode>01</LicensePlateColorCode>
+			<!--号牌底色-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorTypeCode>11</MotorTypeCode>
+			<!--车辆种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--批改后使用性质代码-->
+			<VIN>FNA12345</VIN>
+			<!--批改后车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--批改后发动机号-->
+			<FirstRegisterDate>20080808</FirstRegisterDate>
+			<!--批改后车辆初始登记日期-->
+			<TransferDate>20090130</TransferDate>
+			<!--批改后转移登记日期-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--批改后未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--批改后新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--批改后过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--批改后外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->
+			<FleetFlag>0</FleetFlag>
+			<!--批改后车队标志-->
+			<FleetNo></FleetNo>
+			<!--批改后车队号-->			
+			<Displacement></Displacement>
+			<!--排量-->
+			<LfDate></LfDate>
+			<!--出厂日期-->
+			<Model>asdfgh</Model>
+			<!--车辆型号-->
+		</Vehicle>
+		<Policy>
+			<LastPolicyNo></LastPolicyNo>
+			<!--上年投保保单号-->
+			<BillDate>20090808</BillDate>
+			<!--签单日期-->
+			<EffectiveDate>200909090000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>201010090000</ExpireDate>
+			<!--终保日期-->
+			<PeriodDesc></PeriodDesc>
+			<!--期限描述信息-->
+			<EndorOwnerFlag>0</EndorOwnerFlag>
+			<!--是否批改过户标志-->
+			<SurrenderFlag></SurrenderFlag>
+			<!--是否退保标志-->
+		</Policy>
+		<StopTravelInfo>
+			<StopTravelStratDate>2009100900</StopTravelStratDate>
+			<!--机动车停驶起期；格式：精确到小时-->
+			<StopTravelEndDate>2009110900</StopTravelEndDate>
+			<!--机动车停驶止期；格式： 精确到小时-->
+			<ExtendStartDate>2010090900</ExtendStartDate>
+			<!--保期顺延起期；格式：精确到小时-->
+			<ExtendEndDate>2010100900</ExtendEndDate>
+			<!--保期顺延止期；格式：精确到小时-->
+			<ReqDate></ReqDate>
+			<!--申请日；格式：精确到小时-->
+			<RecoverTravelDate></RecoverTravelDate>
+			<!--机动车提前复驶日期；格式：精确到小时-->
+			<StopTravelType>1</StopTravelType>
+			<!--停驶类型-->
+		</StopTravelInfo>		
+	</Body>
+</Packet>
+
+
+5.1.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V2101</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<BasePart>
+			<AmendQueryNo>V2101PICC330009001234567890128</AmendQueryNo>
+			<!--批改查询码-->
+			<AmendQueryPastDate>200910090000</AmendQueryPastDate>
+			<!--批改查询码有效止期-->
+		</BasePart>
+<LastPolicy>
+			<LastProducerCode>10</LastProducerCode>
+			<!--上张保单的销售渠道代码-->
+	</LastPolicy>
+		<PmVehicle>
+		<!--交管车辆信息（暂不返回）-->
+			<PmQueryNo>PM123456789012345</PmQueryNo>
+			<!--交管车辆查询码-->
+			<VehicleId>1234567890</VehicleId>
+			<!--机动车序号-->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<VehicleType>11</VehicleType>
+			<!--车辆类型代码-->
+			<VehicleType>K31</VehicleType>
+			<!--交管车辆种类代码-->
+			<IneffectualDate></IneffectualDate>
+			<!--检验有效日期止-->
+			<RejectDate></RejectDate>
+			<!--强制有效期止-->
+			<FirstRegisterDate>20080808</FirstRegisterDate>
+			<!--车辆初始登记日期-->
+			<LastCheckDate></LastCheckDate>
+			<!--最近定检日期-->
+			<TransferDate></TransferDate>
+			<!--转移登记日期-->
+			<WholeWeight>3600</WholeWeight>
+			<!--整备质量-->
+			<RatedPassengerCapacity>5</RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<Tonnage>1000</Tonnage>
+			<!--核定载质量-->
+			<MadeFactory></MadeFactory>
+			<!--制造厂名称-->
+			<Model></Model>
+			<!--车辆型号-->
+			<BrandCN></BrandCN>
+			<!--中文品牌-->
+			<BrandEN></BrandEN>
+			<!--英文品牌-->
+			<Haulage></Haulage>
+			<!--准牵引总质量(千克)-->
+			<Status>A</Status>
+			<!--机动车状态代码-->
+		</PmVehicle>
+		<VehicleModel>
+			<ModelCode>VC1234567890123456</ModelCode>
+			<!--车型代码-->
+			<ModelName>车型名称</ModelName>
+			<!--车型名称-->
+			<ModelDesc></ModelDesc>
+			<!--车型描述-->
+			<Brand></Brand>
+			<!--品牌名称-->
+			<Series></Series>
+			<!--车型别名-->
+			<ImportFlag>国产</ImportFlag>
+			<!--车型种类-->
+			<RatedPassengerCapacity></RatedPassengerCapacity>
+			<!--核定载客人数-->
+			<TotalVehicleWeight></TotalVehicleWeight>
+			<!--整车质量-->
+			<Tonnage></Tonnage>
+			<!--载重量-->
+			<DerailleurType></DerailleurType>
+			<!--变速器形式-->
+			<ABSFlag></ABSFlag>
+			<!--是否有ABS -->
+			<AlarmFlag></AlarmFlag>
+			<!--是否有防盗装备-->
+			<AirbagNum></AirbagNum>
+			<!--安全气囊数-->
+			<Displacement></Displacement>
+			<!--排量-->
+			<MarketYear></MarketYear>
+			<!--上市年份-->
+			<RiskFlag></RiskFlag>
+			<!--风险标志-->
+			<ReplacementValue>120000</ReplacementValue>
+			<!--风险标志-->
+			<RefCode1>参考代码1</RefCode1>
+			<!--参考代码1-->
+			<RefCode2>参考代码2</RefCode2>
+			<!--参考代码2-->
+		</VehicleModel>
+		<Violation>
+			<!--违法信息列表(暂不返回)-->
+			<ViolationCode></ViolationCode>
+			<!--违法编号-->
+			<ViolationRecordTypeCode></ViolationRecordTypeCode>
+			<!--违法行为代码-->
+			<DecisionCode></DecisionCode>
+			<!--决定书编号-->
+			<DecisionTypeCode></DecisionTypeCode>
+			<!--决定书类型-->
+			<ViolationSequence></ViolationSequence>
+			<!--序号-->
+			<DriverLicenseNo></DriverLicenseNo>
+			<!--违法驾驶员驾驶证号-->
+			<LicensePlateNo></LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateTypeCode></LicensePlateTypeCode>
+			<!--号牌种类代码-->
+			<ViolationPlace></ViolationPlace>
+			<!--违法地点-->
+			<ViolationTime></ViolationTime>
+			<!--违法时间-->
+			<RecognitionDate></RecognitionDate>
+			<!--违法处理时间-->
+			<JurisdictionAgencyCode></JurisdictionAgencyCode>
+			<!--违法处理机关代码-->
+		</Violation>
+		<BusinessPolicyAccident>
+			<!--历年度商业理赔列表-->
+			<InsurerCode>PICC</InsurerCode>
+			<!--保险公司代码-->
+			<PolicyNo>124415</PolicyNo>
+			<!--保单号-->
+			<EffectiveDate>200801010000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>200901010000</ExpireDate>
+			<!--终保日期-->
+			<ClaimSequenceNo>123124</ClaimSequenceNo>
+			<!--理赔编码-->
+			<ClaimNotificationNo>123123</ClaimNotificationNo>
+			<!--报案号-->
+			<ClaimRegistrationNo>123123</ClaimRegistrationNo>
+			<!--立案号-->
+			<CaseID>12312312</CaseID>
+			<!--赔案号-->
+			<LossTime>200901010000</LossTime>
+			<!--出险时间-->
+			<ClaimCloseTime>200902020000</ClaimCloseTime>
+			<!--结案时间-->
+			<ClaimAmount>888</ClaimAmount>
+			<!--赔付金额-->
+		</BusinessPolicyAccident>
+		<RiskItem>
+			<!--承保车辆风险系数-->
+			<ClaimAdjustValue>-0.2</ClaimAdjustValue>
+			<!--无赔优调整系数-->
+			<ClaimAdjustReason>B2</ClaimAdjustReason>
+			<!--无赔优浮动原因代码-->
+			<NoClaimAdjustReason></NoClaimAdjustReason>
+			<!--无赔不优浮动原因代码-->
+			<IsContinuousPolicy>0</IsContinuousPolicy>
+			<!--续保标志-->
+			<LoyaltyAdjustValue>0</LoyaltyAdjustValue>
+			<!--客户忠诚度调整系数-->
+			<LoyaltyAdjustReason>D1</LoyaltyAdjustReason>
+			<!--客户忠诚度浮动原因代码-->
+			<NoLoyaltyAdjustReason></NoLoyaltyAdjustReason>
+			<!--客户忠诚度不浮动原因代码-->
+			<MileageAdjustValue></MileageAdjustValue>
+			<!--行驶里程调整系数-->
+			<MileageAdjustReason></MileageAdjustReason>
+			<!--行驶里程浮动原因-->
+			<PeccancyAdjustValue></PeccancyAdjustValue>
+			<!--违法调整系数-->
+			<PeccancyAdjustReason></PeccancyAdjustReason>
+			<!--违法浮动原因-->
+			<TravelAdjustValue></TravelAdjustValue>
+			<!--约定行驶区调整系数-->
+			<TravelAdjustReason></TravelAdjustReason>
+			<!--约定行驶区浮动原因-->
+			<DriverAdjustValue></DriverAdjustValue>
+			<!--指定驾驶人调整系数-->
+			<DriverAdjustReason></DriverAdjustReason>
+			<!--指定驾驶人浮动原因-->
+			<LossAdjustValue></LossAdjustValue>
+			<!--车辆损失险车型系数-->
+			<TheftAdjustValue></TheftAdjustValue>
+			<!--盗抢险车型系数-->
+			<FleetAdjustValue></FleetAdjustValue>
+			<!--车队调整系数-->
+			<AdjustValueReason></AdjustValueReason>
+			<!--车队浮动原因-->
+		</RiskItem>
+		<ReInsureItem>
+			<!--重复投保提示-->
+			<PolicyNo></PolicyNo>
+			<!--重复投保保单号-->
+			<InsurerCode>PICC</InsurerCode>
+			<!--保险公司代码-->
+			<CoverageItem>
+				<!--险种信息-->
+				<CoverageCode>200</CoverageCode>
+				<!--险种代码-->
+			</CoverageItem>
+			<CoverageItem>
+				<!--险种信息-->
+				<CoverageCode>201</CoverageCode>
+				<!--险种代码-->
+			</CoverageItem>
+			<CoverageItem>
+				<!--险种信息-->
+				<CoverageCode>202</CoverageCode>
+				<!--险种代码-->
+			</CoverageItem>
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<LicensePlateColorCode>01</LicensePlateColorCode>
+			<!--号牌底色-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号（车架号/VIN码）-->
+			<EngineNo>ENA12345</EngineNo>
+			<!--发动机号-->
+			<EffectiveDate>200807070000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>200907070000</ExpireDate>
+			<!--终保日期-->
+			<BillDate>20080701</BillDate>
+			<!--签单日期-->
+		</ReInsureItem>
+	</Body>
+</Packet>
+
+
+5.2.	批改预确认
+5.2.1.	请求报文
+5.2.1.1.	基本信息
+代码：BasePart
+说明：无。
+序号	字段名称	类型	大小	必传	说明
+1		AmendQueryNo	字符	30	Y	批改查询码
+
+5.2.1.2.	批改后保单数据
+代码：Policy
+说明：批改后的保单数据 
+序号	字段名称	类型	大小	必传	说明
+1		ProducerCode	字符	2	Y	销售渠道代码；参见代码2		BillDate	日期		Y	签单日期；格式：精确到天
+3		EffectiveDate	日期		Y	起保日期；格式：精确到分钟
+4		ExpireDate	日期		Y	终保日期；格式：精确到分钟
+5		SpecialAgreementDesc	字符	2000		特别约定
+6		Agent	字符	100		经办人
+7		Operator	字符	100		操作员
+8		CurrencyCode	字符	3	Y	币种类别代码；参见代码9		TotalBasicPremium	货币		Y	总基础(表定)保费
+10		TotalStandardPremium	货币		Y	总标准(应缴)保费
+11		TotalPremium	货币		Y	总签单(实收)保费
+
+5.2.1.3.	批改预确认校验信息
+代码：CheckItem
+说明：平台在批改预确认需要校验的信息。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	号牌号码
+2		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码3		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码4		MotorTypeCode	枚举	2	Y	车辆种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		FirstRegisterDate	日期		Y	车辆初次登记日期；精确到天
+8		ModelCode	字符	64	Y	车型代码
+9		ReplacementValue	货币		Y	新车购置价
+10		ClaimAdjustValue	数值	3，2	Y	无赔优系数
+11		PeccancyAdjustValue	字符	1		交通违法系数（暂不校验）
+12		LoyaltyAdjustValue	数值	14,2	Y	续优（客户忠诚度）系数（待确定，暂不校验）
+13		NoLicenseFlag	布尔	1	Y	未上牌车辆标志
+0：上牌车辆；
+1：未上牌车辆
+14		NewVehicleFlag	布尔	1	Y	新车标志
+0：非新车
+1：新车
+15		ChgOwnerFlag	布尔	1	Y	过户车辆标志
+1：过户重新投保
+0：未过户投保
+16		EcdemicVehicleFlag	布尔	1	Y	外地车标志
+0：本地车
+1：外地车
+17		LoanVehicleFlag	布尔		Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+18		FleetFlag	布尔	1	Y	车队标志
+0：非车队车；
+1：车队车
+19		FleetNo	字符	50		车队号
+
+5.2.1.4.	批改后商业险种信息
+代码：CoverageItem
+说明：主要包含批改后险种信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageClassCode	枚举	1		险种性质代码，参见代码2		CoverageCode	枚举	3	Y	险种代码，参见代码3		SumLimit	货币		Y	保额/限额
+4		DiscountValue	数值	7,4	Y	折扣系数
+5		BasicPremium	货币		Y	基础(表定)保费
+6		StandardPremuim	货币		Y	标准(应缴)保费
+7		Premuim	货币		Y	签单(实收)保费
+8		UnderInsuranceFlag	布尔	1		不足额投保标志
+0:足额投保
+1:不足额投保
+
+5.2.2.	返回报文
+只有HEAD部分，没有BODY部分。
+
+5.2.3.	报文范例
+5.2.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V2109</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<AmendQueryNo>V2101PICC330009001234567890128</AmendQueryNo>
+			<!--批改查询码-->
+		</BasePart>
+		<Policy>
+			<!--保单信息-->			
+			<ProducerCode>10</ProducerCode>
+			<!--销售渠道代码-->
+			<BillDate>20090808</BillDate>
+			<!--签单日期-->
+			<EffectiveDate>200909090000</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>201009090000</ExpireDate>
+			<!--终保日期-->
+			<SpecialAgreementDesc></SpecialAgreementDesc>
+			<!--特别约定-->			
+			<Agent></Agent>
+			<!--经办人-->
+			<Operator></Operator>
+			<!--操作员-->
+			<CurrencyCode>CNY</CurrencyCode>
+			<!--币种类别代码-->
+<TotalBasicPremium>100</TotalBasicPremium>
+<!--总基础(表定)保费-->
+<TotalStandardPremium>2000</TotalStandardPremium>
+<!--总标准(应缴)保费-->
+			<TotalPremium>200.00</TotalPremium>
+			<!--总签单(实收)保费-->
+		</Policy>
+		<CheckItem>
+			<!--批改确认校验信息-->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<MotorTypeCode></MotorTypeCode>
+			<!--车辆种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号-->
+			<EngineNo>123123</EngineNo>
+			<!--发动机号-->
+			<FirstRegisterDate>20010101</FirstRegisterDate>
+			<!--车辆初次登记日期-->
+			<ModelCode>123</ModelCode>
+			<!--车型代码-->
+			<ReplacementValue>456</ReplacementValue>
+			<!--新车购置价-->
+			<ClaimAdjustValue>0.1</ClaimAdjustValue>
+			<!--无赔优系数-->
+			<PeccancyAdjustValue></PeccancyAdjustValue>
+			<!--交通违法系数-->
+			<LoyaltyAdjustValue>-0.1</LoyaltyAdjustValue>
+			<!--续优（客户忠诚度）系数-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->			
+			<FleetFlag>0</FleetFlag>
+			<!--车队标志-->
+			<FleetNo></FleetNo>
+			<!--车队号-->
+		</CheckItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>200</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag>1</UnderInsuranceFlag>
+			<!--不足额投保标志-->
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>210</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->
+		</CoverageItem>				
+	</Body>
+</Packet>
+
+
+5.2.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V2109</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>	
+</Packet>
+
+
+
+5.3.	批改确认
+5.3.1.	请求报文
+5.3.1.1.	基本信息
+代码：BasePart
+说明：返回平台生成的投保查询码。
+序号	字段名称	类型	大小	必传	说明
+1		AmendQueryNo	字符	30		批改查询码
+2		SpecialFlag	布尔	1	Y	特殊批改标志
+0：否
+1：是
+3		ConfirmSequenceNo	字符	50		投保确认码
+
+5.3.1.2.	批单信息
+代码：Endorsement
+说明：批单信息。
+序号	字段名称	类型	大小	必传	说明
+1		EndorsementNo	字符	50	Y	批单号
+2		RebatePremium	货币		Y	实际退补费。
+批加为正，批减为负
+3		EndorsementDate	日期			批改日期；格式：精确到分钟
+4		EffectiveTime	日期			批改生效时间；格式：精确到分钟
+
+5.3.1.3.	批改后保单数据
+代码：Policy
+说明：主要包含批改后的保单信息
+序号	字段名称	类型	大小	必传	说明
+1		ProducerCode	字符	2	Y	销售渠道代码；参见代码2		BillDate	日期		Y	签单日期；精确到天
+3		EffectiveDate	日期		Y	起保日期；精确到分钟
+4		ExpireDate	日期		Y	终保日期；精确到分钟
+5		SpecialAgreementDesc	字符	2000		特别约定
+6		Agent	字符	100		经办人
+7		Operator	字符	100		操作员
+8		CurrencyCode	字符	3	Y	币种类别代码，参见代码9		TotalBasicPremium	货币		Y	总基础(表定)保费
+10		TotalStandardPremium	货币		Y	总标准(应缴)保费
+11		TotalPremium	货币		Y	总签单(实收)保费
+
+5.3.1.4.	批改确认校验信息
+代码：CheckItem
+说明：平台批改确认时需要校验的信息。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15	Y	号牌号码
+2		LicensePlateType	枚举	2	Y	号牌种类代码；参见代码3		MotorUsageTypeCode	枚举	3	Y	使用性质代码；参见代码4		MotorTypeCode	枚举	2	Y	车辆种类代码；参见代码5		VIN	字符	17	Y	车辆识别代号（车架号/VIN码）
+6		EngineNo	字符	50	Y	发动机号
+7		FirstRegisterDate	日期		Y	车辆初次登记日期；精确到天
+8		ModelCode	字符	64	Y	车型代码
+9		ReplacementValue	货币		Y	新车购置价
+10		ClaimAdjustValue	数值	3，2	Y	无赔优系数
+11		PeccancyAdjustValue	字符	1		交通违法系数（暂不校验）
+12		LoyaltyAdjustValue	数值	3，2	Y	续优（客户忠诚度）系数（待确定，暂不校验）
+13		NoLicenseFlag	布尔	1	Y	未上牌车辆标志
+0：上牌车辆；
+1：未上牌车辆
+14		NewVehicleFlag	布尔	2	Y	新车标志
+0：非新车
+1：新车
+15		ChgOwnerFlag	布尔	1	Y	过户车辆标志
+1：过户车
+0：非过户车
+16		EcdemicVehicleFlag	布尔	1	Y	外地车标志
+0：本地车
+1：外地车
+17		LoanVehicleFlag	布尔	1	Y	是否车贷投保多年标志
+0：不是车贷投保多年
+1：车贷投保多年
+18		FleetFlag	字符	1	Y	车队标志
+0：非车队车；1：车队车
+19		FleetNo	字符	50		车队号
+
+5.3.1.5.	批改后保单车主信息
+代码：VehicleOwner
+说明：车主信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		VehicleOwnerName	字符	60		车主名称
+2		VehicleOwnerNature	枚举	1		车主性质代码；参见代码3		CredentialCode	枚举	2		证件类型代码；参见代码4		CredentialNo	字符	20		证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+5.3.1.6.	批改后保单投保人信息
+代码：Applicant
+说明： 主要包含投保人信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		ApplicantName	字符	60		投保人名称
+2		ApplicantNature	枚举	1		投保人性质代码；参见代码3		CredentialCode	枚举	2		证件类型代码；参见代码4		CredentialNo	字符	20		证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+5.3.1.7.	被保险人信息
+代码：Insured
+说明：送被保险人信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		InsuredName	字符	60		被保险人名称
+2		InsuredNature	枚举	1		被保险人性质代码；参见代码3		CredentialCode	枚举	2		证件类型代码；参见代码4		CredentialNo	字符	20		证件号码
+5		GenderCode	枚举	1		自然人性别代码；参见代码6		Address	字符	120		住址
+7		MailingAddress	字符	120		通讯地址
+8		CountryCode	字符	6		邮政编码
+9		PhoneNo	字符	32		联系电话
+10		OrganizationType	枚举	3		单位性质代码；参见代码
+5.3.1.8.	批改后商业险种信息
+代码：CoverageItem
+说明：主要包含批改后险种信息，一条或多条。
+序号	字段名称	类型	大小	必传	说明
+1		CoverageClassCode	枚举	1		险种性质代码，参见代码2		CoverageCode	枚举	3	Y	险种代码，参见代码3		SumLimit	货币		Y	保额/限额
+4		DiscountValue	数值	7,4	Y	折扣系数
+5		BasicPremium	货币		Y	基础(表定)保费
+6		StandardPremuim	货币		Y	标准(应缴)保费
+7		Premuim	货币		Y	签单(实收)保费
+8		UnderInsuranceFlag	布尔	1		不足额投保标志
+0:足额投保
+1:不足额投保
+
+5.3.2.	返回报文
+5.3.2.1.	基本信息
+代码：BasePart
+说明：返回批改确认码。
+序号	字段名称	类型	大小	必传	说明
+1		AmendConfirmNo	字符	50	Y	批改确认码
+
+5.3.3.	报文范例
+5.3.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V22</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<AmendQueryNo>V2101PICC330009001234567890128</AmendQueryNo>
+			<!--批改查询码-->
+			<SpecialFlag>0</SpecialFlag>
+			<!--特殊批改标志-->
+			<ConfirmSequenceNo></ConfirmSequenceNo>
+			<!--投保确认码-->
+		</BasePart>
+		<Endorsement>
+			<!--批单信息-->
+			<EndorsementNo>123123</EndorsementNo>
+			<!--批单号-->
+			<RebatePremium>-10.00</RebatePremium>
+			<!--实际退补费-->
+			<EndorsementDate>200912090000</EndorsementDate>
+			<!--批改日期-->
+			<EffectiveTime>200912100000</EffectiveTime>
+			<!--批改生效时间-->
+		</Endorsement>
+		<Policy>			
+			<ProducerCode>10</ProducerCode>
+			<!--销售渠道代码-->
+			<BillDate>20090808</BillDate>
+			<!--签单日期-->
+			<EffectiveDate>200909090100</EffectiveDate>
+			<!--起保日期-->
+			<ExpireDate>201009090100</ExpireDate>
+			<!--终保日期-->
+			<SpecialAgreementDesc></SpecialAgreementDesc>
+			<!--特别约定-->			
+			<Agent></Agent>
+			<!--经办人-->
+			<Operator></Operator>
+			<!--操作员-->
+			<CurrencyCode>CNY</CurrencyCode>
+			<!--币种类别代码-->
+<TotalBasicPremium>100</TotalBasicPremium>
+<!--总基础(表定)保费-->
+<TotalStandardPremium>2000</TotalStandardPremium>
+<!--总标准(应缴)保费-->
+			<TotalPremium>200.00</TotalPremium>
+			<!--总签单(实收)保费-->
+		</Policy>
+		<CheckItem>
+			<!--批改确认校验信息-->
+			<LicensePlateNo>京A12345</LicensePlateNo>
+			<!--号牌号码-->
+			<LicensePlateType>02</LicensePlateType>
+			<!--号牌种类代码-->
+			<MotorUsageTypeCode>210</MotorUsageTypeCode>
+			<!--使用性质代码-->
+			<MotorTypeCode>11</MotorTypeCode>
+			<!--车辆种类代码-->
+			<VIN>FNA12345</VIN>
+			<!--车辆识别代号-->
+			<EngineNo>123123</EngineNo>
+			<!--发动机号-->
+			<FirstRegisterDate>20010101</FirstRegisterDate>
+			<!--车辆初次登记日期-->
+			<ModelCode>123</ModelCode>
+			<!--车型代码-->
+			<ReplacementValue>456</ReplacementValue>
+			<!--新车购置价-->
+			<ClaimAdjustValue>0.1</ClaimAdjustValue>
+			<!--无赔优系数-->
+			<PeccancyAdjustValue></PeccancyAdjustValue>
+			<!--交通违法系数-->
+			<LoyaltyAdjustValue>0.1</LoyaltyAdjustValue>
+			<!--续优（客户忠诚度）系数-->
+			<NoLicenseFlag>0</NoLicenseFlag>
+			<!--未上牌车辆标志-->
+			<NewVehicleFlag>0</NewVehicleFlag>
+			<!--新车标志-->
+			<ChgOwnerFlag>0</ChgOwnerFlag>
+			<!--过户车辆标志-->
+			<EcdemicVehicleFlag>0</EcdemicVehicleFlag>
+			<!--外地车标志-->
+			<LoanVehicleFlag>0</LoanVehicleFlag>
+			<!--是否车贷投保多年标志-->			
+			<FleetFlag>0</FleetFlag>
+			<!--车队标志-->
+			<FleetNo></FleetNo>
+			<!--车队号-->			
+		</CheckItem>
+		<VehicleOwner>
+			<!--批改后保单车主信息-->
+			<VehicleOwnerName>张三</VehicleOwnerName>
+			<!--车主名称-->
+			<VehicleOwnerNature>1</VehicleOwnerNature>
+			<!--车主类别代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码-->
+			<CredentialNo>220111199909090909</CredentialNo>
+			<!--证件号码-->
+			<GenderCode>1</GenderCode>
+			<!--自然人性别代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码-->
+		</VehicleOwner>
+		<Applicant>
+			<!--批改后保单投保人信息-->
+			<ApplicantName>李四</ApplicantName>
+			<!--投保人名称-->
+			<ApplicantNature>1</ApplicantNature>
+			<!--投保人类别代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码-->
+			<CredentialNo>200000198808080808</CredentialNo>
+			<!--证件号码-->
+			<GenderCode>1</GenderCode>
+			<!--自然人性别代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码-->
+		</Applicant>
+		<Insured>
+			<!--批改后被保险人信息-->
+			<InsuredName>王五</InsuredName>
+			<!--被保险人名称-->
+			<InsuredNature>1</InsuredNature>
+			<!--被保险人类别代码-->
+			<CredentialCode>01</CredentialCode>
+			<!--证件类型代码-->
+			<CredentialNo>200000199909090909</CredentialNo>
+			<!--证件号码-->
+			<GenderCode>1</GenderCode>
+			<!--自然人性别代码-->
+			<Address></Address>
+			<!--住址-->
+			<MailingAddress></MailingAddress>
+			<!--通讯地址-->
+			<CountryCode></CountryCode>
+			<!--邮政编码-->
+			<PhoneNo></PhoneNo>
+			<!--联系电话-->
+			<OrganizationType></OrganizationType>
+			<!--单位性质代码-->
+		</Insured>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>200</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag>1</UnderInsuranceFlag>
+			<!--不足额投保标志-->
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>201</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->
+		</CoverageItem>
+		<CoverageItem>
+		<!--险种信息-->
+			<CoverageClassCode></CoverageClassCode>
+			<!--险种性质代码-->
+			<CoverageCode>210</CoverageCode>
+			<!--险种代码-->
+			<SumLimit>10000</SumLimit>
+			<!--保额/限额-->
+			<DiscountValue>0.8</DiscountValue>
+			<!--折扣系数-->
+			<BasicPremium>1000</BasicPremium>
+			<!--基础(表定)保费-->
+			<StandardPremuim>1000</StandardPremuim>
+			<!--标准(应缴)保费-->
+			<Premuim>800</Premuim>
+			<!--签单(实收)保费-->
+			<UnderInsuranceFlag></UnderInsuranceFlag>
+			<!--不足额投保标志-->
+		</CoverageItem>	
+	</Body>
+</Packet>
+
+
+5.3.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V22</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<BasePart>
+		<AmendConfirmNo>V022PICC330009001234567890128</AmendConfirmNo>
+		<!--批改确认码-->
+	</BasePart>
+</Packet>
+
+
+5.4.	批改注销
+5.4.1.	请求报文
+5.4.1.1.	基本信息
+代码：BasePart
+说明：批改确认时，平台返回的批改确认码。
+序号	字段名称	类型	大小	必传	说明
+1		AmendConfirmNo	字符	50	Y	批改确认码
+
+5.4.2.	返回报文
+只有HEAD部分，没有BODY部分。
+
+5.4.3.	报文范例
+5.4.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V24</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+		<AmendConfirmNo>V022PICC330009001234567890128</AmendConfirmNo>
+			<!--批改确认码-->
+		</BasePart>	
+	</Body>
+</Packet>
+
+
+5.4.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V24</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>		
+</Packet>
+
+
+6.	理赔部分
+理赔部分的流程，必须从报案环节开始，保险公司依次进行报案登记、立案登记、结案登记、结案追加（若适用）；在报案登记时，平台生成唯一的理赔编码，以后保险公司的其他操作都要以该号码为准。平台支持对相同数据的后续更新操作。
+另外，赔付登记可以在立案登记之后，也可以在结案登记之后进行；其中，结案登记之前只能进行预赔（若适用）；结案之后只能进行实际赔付，该环节为必须。
+最后，案件撤销只能在报案登记之后或立案登记之后进行；立案登记之后的案件撤销，案件将处于报案登记状态，保险公司仍可以继续进行立案登记；而报案登记之后，案件终结不能再进行任何操作，如需进行必须重新开始一个新的报案环节。
+6.1.	报案登记
+6.1.1.	请求消息
+6.1.1.1.	基本信息
+代码：BasePart
+说明：报案信息数据。
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30		理赔编号
+2		ConfirmSequenceNo	字符	30	Y	投保确认码
+3		PolicyNo	字符	50	Y	保单号
+4		ClaimNotificationNo	字符	50	Y	报案号
+5		NotificationTime	日期		Y	报案时间；精确到分
+6		Reporter	字符	30	Y	报案人姓名
+7		DriverName	字符	30	Y	出险驾驶员姓名
+8		CertiType	枚举	2		出险驾驶员证件类型 参见代码9		CertiCode	字符	20		出险驾驶员证件号码
+10		LossTime	日期		Y	出险时间；精确到分
+11		LossArea	字符	100	Y	出险地点
+12		LossDesc	字符	1000		出险经过
+
+6.1.2.	返回消息
+6.1.2.1.	基本信息
+代码：BasePart
+说明：无
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+
+6.1.2.2.	出险车辆历史理赔案件列表
+代码：ClaimData
+说明：暂不返回；
+序号	字段名称	类型	大小	必传	说明
+1		InsurerCode	字符	60	Y	理赔受理公司
+2		LicensePlateNo	字符	15		涉案车辆号牌号码
+3		LicensePlateType	字符	2		涉案车辆号牌种类；参见代码4		IsInsuredCar	布尔	1	Y	是否是承保车辆
+5		ClaimNotificationNo	字符	50	Y	报案号
+6		ClaimRegistrationNo	字符	50	Y	立案号
+7		CaseID	字符	50	Y	结案编号
+8		PolicyNo	字符	50	Y	保单号
+9		LossTime	日期		Y	出险时间；精确到分
+10		NotificationTime	日期		Y	报案时间；精确到分
+11		ClaimCloseTime	日期			结案时间；精确到分
+12		EstimatedLossAmount	货币			估损金额
+13		ClaimAmount	货币			赔款金额
+14		Status	枚举	1	Y	案件状态代码；参见代码15		LossArea	字符	200	Y	出险地点
+16		LossDesc	字符	1000	Y	出险经过
+17		AccidentLiability	枚举	1		事故责任划分 参见代码
+6.1.3.	报文范例
+6.1.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V3101</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+			<ConfirmSequenceNo>V02011234567890</ConfirmSequenceNo>
+			<!--投保确认码-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号-->
+			<ClaimNotificationNo>PICCCN1234567890</ClaimNotificationNo>
+			<!--报案编号-->
+			<NotificationTime>200912220000</NotificationTime>
+			<!--报案时间-->
+			<Reporter>李四</Reporter>
+			<!--报案人姓名-->
+			<DriverName>李四</DriverName>
+			<!--出险驾驶员姓名-->
+			<CertiType></CertiType>
+			<!--出险驾驶员证件类型-->
+			<CertiCode></CertiCode>
+			<!--出险驾驶员证件号码-->
+			<LossTime>200912220000</LossTime>
+			<!--出险时间-->
+			<LossArea>北京市朝阳区亚运村</LossArea>
+			<!--出险地点-->
+			<LossDesc>从前有座山</LossDesc>
+			<!--出险经过-->
+		</BasePart>
+	</Body>
+</Packet>
+
+
+6.1.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V3101</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+		</BasePart>
+		<ClaimData>
+		<!--出险车辆历史理赔案件（暂不返回）-->
+				<InsurerCode>PICC</InsurerCode>
+				<!--理赔受理公司-->
+				<LicensePlateNo>京A12345</LicensePlateNo>
+				<!--涉案车辆号牌号码-->
+				<LicensePlateType>02</LicensePlateType>
+				<!--涉案车辆号牌种类-->
+				<ClaimNotificationNo>PICCCNN1234567890</ClaimNotificationNo>
+				<!--报案号-->
+				<ClaimRegistrationNo>PICCCEN1234567890</ClaimRegistrationNo>
+				<!--立案号-->
+				<CaseID>PICCCI1234567890</CaseID>
+				<!--结案编号-->
+				<PolicyNo>PICCPN1234567890</PolicyNo>
+				<!--保单号-->
+				<LossTime>200909090000</LossTime>
+				<!--出险时间-->
+				<NotificationTime>200909110000</NotificationTime>
+				<!--报案时间-->
+				<ClaimCloseTime>200909220000</ClaimCloseTime>
+				<!--结案时间-->
+				<EstimatedLossAmount>1500</EstimatedLossAmount>
+				<!--估损金额-->
+				<ClaimAmount>1200</ClaimAmount>
+				<!--赔款金额-->
+				<Status>4</Status>
+				<!--案件状态代码-->
+				<LossArea>北京市朝阳区亚运村</LossArea>
+				<!--出险地点-->
+				<LossDesc>从前有座山</LossDesc>
+				<!--出险经过-->
+				<AccidentLiability>1</AccidentLiability>
+				<!--事故责任划分-->
+		</ClaimData>
+	</Body>
+</Packet>
+
+6.2.	立案登记
+6.2.1.	请求消息
+6.2.1.1.	基本信息
+代码：BasePart
+说明：立案信息数据
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+2		ConfirmSequenceNo	字符	30	Y	投保确认码
+3		PolicyNo	字符	50	Y	保单号
+4		ClaimNotificationNo	字符	50	Y	报案号
+5		ClaimRegistrationNo	字符	50	Y	立案号
+6		ClaimType	枚举	1	Y	理赔类型；参见代码7		AccidentLiability	枚举	1	Y	责任划分；参见代码8		ClaimRegistrationTime	日期		Y	立案时间；格式：精确到分钟
+9		EstimatedLossAmount	货币		Y	估损金额
+
+6.2.2.	返回消息
+6.2.2.1.	基本信息
+代码：BasePart
+说明：无
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+
+6.2.2.2.	出险车辆历史理赔案件列表（暂不返回）
+代码：ClaimData
+说明：车辆历史理赔信息。
+序号	字段名称	类型	大小	必传	说明
+1		ClaimCompany	字符	60	Y	理赔受理公司
+2		LicensePlateNo	字符	15		涉案车辆号牌号码
+3		LicensePlateType	字符	2		涉案车辆号牌种类；参见代码4		IsInsuredCar	布尔	1	Y	是否是承保车辆
+5		ClaimNotificationNo	字符	50	Y	报案号
+6		ClaimRegistrationNo	字符	50	Y	立案号
+7		CaseID	字符	50	Y	结案编号
+8		PolicyNo	字符	50	Y	保单号
+9		LossTime	日期		Y	出险时间；精确到分
+10		NotificationTime	日期		Y	报案时间；精确到分
+11		ClaimCloseTime	日期			结案时间；精确到分
+12		EstimatedLossAmount	货币			估损金额
+13		ClaimAmount	货币			赔款金额
+14		Status	枚举	1	Y	案件状态 参见代码15		LossArea	字符	200	Y	出险地点
+16		LossDesc	字符	1000		出险经过
+17		AccidentLiability	枚举	1		事故责任划分 参见代码
+6.2.3.	报文范例
+6.2.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V3102</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+			<ConfirmSequenceNo>V0201PICC1234567890</ConfirmSequenceNo>
+			<!--投保确认码-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号-->
+			<ClaimNotificationNo>PICCCNN1234567890</ClaimNotificationNo>
+			<!--报案号-->
+			<ClaimRegistrationNo>PICCCEN1234567890</ClaimRegistrationNo>
+			<!--立案号-->
+			<ClaimType>1</ClaimType>
+			<!--理赔类型-->
+			<AccidentLiability>1</AccidentLiability>
+			<!--责任划分-->
+			<ClaimRegistrationTime>200909110800</ClaimRegistrationTime>
+			<!--立案时间-->
+			<EstimatedLossAmount>1500</EstimatedLossAmount>
+			<!--估损金额-->
+		</BasePart>
+	</Body>
+</Packet>
+
+6.2.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<RequestType>V3102</RequestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+		</BasePart>
+		<ClaimData>
+		<!--出险车辆历史理赔案件（暂不返回）-->
+				<ClaimCompany>PICC</ClaimCompany>
+				<!--理赔受理公司-->
+				<LicensePlateNo>京A12345</LicensePlateNo>
+				<!--涉案车辆号牌种类-->
+				<LicensePlateType>02</LicensePlateType>
+				<!--涉案车辆号牌号码-->
+				<IsInsuredCar>1</IsInsuredCar>
+				<!--是否是承保车辆-->
+				<ClaimNotificationNo>PICCCNN1234567890</ClaimNotificationNo>
+				<!--报案号-->
+				<ClaimRegistrationNo>PICCCEN1234567890</ClaimRegistrationNo>
+				<!--立案号-->
+				<CaseID>PICCCI1234567890</CaseID>
+				<!--结案编号-->
+				<PolicyNo>PICCPN1234567890</PolicyNo>
+				<!--保单号-->
+				<LossTime>200909110808</LossTime>
+				<!--出险时间-->
+				<NotificationTime>200909110810</NotificationTime>
+				<!--报案时间-->
+				<ClaimCloseTime>200909220810</ClaimCloseTime>
+				<!--结案时间-->
+				<EstimatedLossAmount>1500</EstimatedLossAmount>
+				<!--估损金额-->
+				<ClaimAmount>1200</ClaimAmount>
+				<!--赔款金额-->
+				<Status>5</Status>
+				<!--案件状态-->
+				<LossArea>北京市朝阳区亚运村</LossArea>
+				<!--出险地点-->
+				<LossDesc>从前有座山</LossDesc>
+				<!--出险经过-->
+				<AccidentLiability>1</AccidentLiability>
+				<!--事故责任划分-->
+		</ClaimData>
+	</Body>
+</Packet>
+
+6.3.	结案登记
+6.3.1.	请求消息
+6.3.1.1.	基本信息
+代码：BasePart
+说明：结案信息数据
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+2		ConfirmSequenceNo	字符	30	Y	投保确认码
+3		PolicyNo	字符	50	Y	保单号
+4		ClaimNotificationNo	字符	50	Y	报案号
+5		ClaimRegistrationNo	字符	50	Y	立案号
+6		CaseID	字符	50	Y	结案编号
+7		ClaimAmount 	货币		Y	赔款总金额
+8		ClaimCloseTime	日期		Y	结案时间；精确到分
+9		IsInsured	布尔	1	Y	是否属于保险责任
+10		ClaimType	枚举	1	Y	理赔类型；参见代码11		PayCause	枚举	1		垫付原因 参见代码12		RefuseCause	字符	100		拒赔原因描述
+13		DriverName	字符	30	Y	出险驾驶员姓名
+14		CertiType	枚举	2		出险驾驶员证件类型 参见代码15		CertiCode	字符	20		出险驾驶员证件号码
+
+6.3.1.2.	事故信息
+代码：Accident
+说明：无
+序号	字段名称	类型	大小	必传	说明
+1		LossTime	日期		Y	出险时间；精确到分
+2		LossArea	字符	100	Y	出险地点
+3		LossDesc	字符	1000		出险经过
+4		ManageDepartment	字符	60		事故处理部门
+5		AccidentLiability	枚举	1	Y	事故责任划分 参见代码6		OptionType	枚举	1	Y	事故处理类型；参见代码7		AccidentType	枚举	3	Y	保险事故分类；参见代码
+6.3.1.3.	第三方车辆情况列表
+代码：ThirdVehicleData
+说明：一条或多条记录。
+序号	字段名称	类型	大小	必传	说明
+1		LicensePlateNo	字符	15		第三方车辆号牌号码
+2		LicensePlateType	字符	2		第三方车辆号牌种类；参见代码3		VehicleType	枚举	3		第三方交管车辆种类代码 参见代码4		PolicyNo	字符	50		第三方保单号
+5		InsurerCode	枚举	4		第三方保险公司机构代码；参见代码6		DriverName	字符	30		第三方出险驾驶员姓名
+7		CertiType	枚举	2		第三方出险驾驶员证件类型 参见代码8		CertiCode	字符	20		第三方出险驾驶员证件号码
+
+
+
+6.3.1.4.	损失赔偿情况列表
+代码：ClaimCoverData
+说明：一条或多条记录。
+序号	字段名称	类型	大小	必传	说明
+1		liabilityRate	数值	3,2		赔偿责任比例
+2		LossFeeType	枚举	1	Y	损失费用类型代码；参见代码3		CoverageCode	枚举	3		赔偿险种代码；参加代码4		LossAmount	货币		Y	损失金额
+5		ClaimAmount	货币		Y	赔款金额
+6		<DetailData>
+对象			损失赔偿情况明细
+
+6.3.1.5.	损失赔偿情况明细列表
+代码：DetailData
+说明：DetailData是ClaimCoverData的子元素。
+序号	字段名称	类型	大小	必传	说明
+1		IndemnityCode	枚举	3	Y	赔付明细代码；参见代码2		LossAmount	货币		Y	损失金额
+3		ClaimAmount	货币		Y	赔偿金额
+4		liabilityRate	数值	3,2		赔偿责任比例
+
+6.3.2.	返回消息
+6.3.2.1.	基本信息
+代码：BasePart
+说明：无
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+2		ClaimConfirmCode	字符	50	Y	赔案结案校验码
+
+6.3.3.	报文范例
+6.3.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V3104</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+			<ConfirmSequenceNo>V0201PICCCSN1234567890</ConfirmSequenceNo>
+			<!--投保确认码-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号-->
+			<ClaimNotificationNo>PICCCNN1234567890</ClaimNotificationNo>
+			<!--报案编号-->
+			<ClaimRegistrationNo>PICCCRN1234567890</ClaimRegistrationNo>
+			<!--立案编号-->
+			<CaseID>PICCCI1234567890</CaseID>
+			<!--结案编号-->
+			<ClaimAmount>1200</ClaimAmount>
+			<!--赔款总金额-->
+			<ClaimCloseTime>200912220800</ClaimCloseTime>
+			<!--结案时间-->
+			<Insured>1</Insured>
+			<!--是否属于保险责任-->
+			<ClaimType>1</ClaimType>
+			<!--理赔类型-->
+			<PayCause>1</PayCause>
+			<!--垫付原因-->
+			<RefuseCause></RefuseCause>
+			<!--拒赔原因-->
+			<DriverName>李四</DriverName>
+			<!--出险驾驶员姓名-->
+			<CertiType>01</CertiType>
+			<!--出险驾驶员证件类型-->
+			<CertiCode></CertiCode>
+			<!--出险驾驶员证件号码-->
+		</BasePart>
+		<Accident>
+			<LossTime>200909110800</LossTime>
+			<!--出险时间-->
+			<LossArea>北京市朝阳区亚运村</LossArea>
+			<!--出险地点-->
+			<LossDesc>从前有座山</LossDesc>
+			<!--出险经过-->
+			<ManageDepartment>朝阳交通支队</ManageDepartment>
+			<!--事故处理部门-->
+			<AccidentLiability>1</AccidentLiability>
+			<!--事故责任划分-->
+			<OptionType>1</OptionType>
+			<!--事故处理类型-->
+			<AccidentType>140</AccidentType>
+			<!--保险事故分类-->
+		</Accident>
+		<ThirdVehicleData>
+			<LicensePlateNo></LicensePlateNo>
+			<!--第三方车辆号牌号码-->
+			<LicensePlateType></LicensePlateType >
+			<!--第三方车辆号牌种类-->
+			<VehicleType></VehicleType >
+			<!-- 第三方交管车辆种类代码 -->
+			<PolicyNo></PolicyNo>
+			<!--保单号-->
+			<InsurerCode></InsurerCode>
+			<!--保险公司机构代码-->
+			<DriverName></DriverName>
+			<!--出险驾驶员姓名-->
+			<CertiType></CertiType>
+			<!--出险驾驶员证件类型-->
+			<CertiCode></CertiCode>
+			<!--出险驾驶员证件号码-->
+		</ThirdVehicleData>
+		<ThirdVehicleData>
+			<LicensePlateNo></LicensePlateNo>
+			<!--第三方车辆号牌号码-->
+			<LicensePlateType></LicensePlateType>
+			<!--第三方车辆号牌种类-->
+			<VehicleType></VehicleType>
+			<!--交管车辆种类代码-->
+			<PolicyNo></PolicyNo>
+			<!--保单号-->
+			<InsurerCode></InsurerCode>
+			<!--保险公司机构代码-->
+			<DriverName></DriverName>
+			<!--出险驾驶员姓名-->
+			<CertiType></CertiType>
+			<!--出险驾驶员证件类型-->
+			<CertiCode></CertiCode>
+			<!--出险驾驶员证件号码-->
+		</ThirdVehicleData>
+		<ClaimCoverData>
+			<liabilityRate></liabilityRate>
+			<!--赔偿责任比例-->
+			<LossFeeType>1</LossFeeType>
+			<!--损失费用类型-->
+			<CoverageCode></CoverageCode>
+			<!--赔偿险种类型-->
+			<LossAmount>1200</LossAmount>
+			<!--损失金额-->
+			<ClaimAmount>1200</ClaimAmount>
+			<!--赔款金额-->
+			<DetailData>
+				<IndemnityCode>302</IndemnityCode>
+				<!--损失赔偿类型细分-->
+				<LossAmount>1500</LossAmount>
+				<!--损失金额-->
+				<ClaimAmount>1200</ClaimAmount>
+				<!--赔偿金额-->
+				<liabilityRate></liabilityRate>
+				<!--赔偿责任比例-->
+			</DetailData>
+			<DetailData>
+				<IndemnityCode>303</IndemnityCode>
+				<!--损失赔偿类型细分-->
+				<LossAmount>1800</LossAmount>
+				<!--损失金额-->
+				<ClaimAmount>1800</ClaimAmount>
+				<!--赔偿金额-->
+				<liabilityRate></liabilityRate>
+				<!--赔偿责任比例-->
+			</DetailData>
+		</ClaimCoverData>
+	</Body>
+</Packet>
+
+
+
+6.3.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<RequestType>V3104 </RequestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+            <ClaimConfirmCode>55PICC02060000000000000238578</ClaimConfirmCode>
+	        <!—-赔案结案校验码—->
+		</BasePart>
+	</Body>
+</Packet>
+
+
+6.4.	结案追加
+6.4.1.	请求消息
+6.4.1.1.	基本信息
+代码：BasePart
+说明：结案追加信息数据
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+2		SerialNo	数值	2	Y	序号（区分第几次追加，序号规则各保险公司自定）
+3		PolicyNo	字符	50	Y	保单号码
+4		ClaimNotificationNo	字符	50	Y	报案号
+5		ClaimRegistrationNo	字符	50	Y	立案号
+6		CaseID	字符	50	Y	结案编号
+7		ClaimReopenDate	日期		Y	追加日期；精确到分
+8		ClaimReopenDesc	字符	400		追加原因描述
+
+6.4.1.2.	追加赔偿情况列表
+代码：ClaimCoverData
+说明：无
+序号	字段名称	类型	大小	必传	说明
+1		LossFeeType	字符	1	Y	损失费用类型代码；参见代码2		ClaimAmount	货币		Y	追加赔款金额
+
+6.4.2.	返回消息
+    只有HEAD部分，没有BODY部分。
+
+6.4.3.	报文范例
+6.4.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V3105</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+			<SerialNo>1</SerialNo>
+			<!--序号-->
+			<PolicyNo>PICCPN1234567890</PolicyNo>
+			<!--保单号码-->
+			<ClaimNotificationNo>PICCCRN1234567890</ClaimNotificationNo>
+			<!--报案号-->
+			<ClaimRegistrationNo>PICCCRN1234567890</ClaimRegistrationNo>
+			<!--立案号-->
+			<CaseID>PICCCRN1234567890</CaseID>
+			<!--结案号-->
+			<ClaimReopenDate>200912300911</ClaimReopenDate>
+			<!--追加日期-->
+			<ClaimReopenDesc></ClaimReopenDesc>
+			<!--追加原因描述-->
+		</BasePart>
+		<ClaimCoverData>
+			<LossFeeType>1</LossFeeType>
+			<!--赔偿类型-->
+			<ClaimAmount>1200</ClaimAmount>
+			<!--追加赔款金额-->
+		</ClaimCoverData>
+	</Body>
+</Packet>
+
+6.4.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V3105</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+</Packet>
+
+
+6.5.	赔付登记
+6.5.1.	请求消息
+6.5.1.1.	案件赔付信息
+代码：BasePart
+说明：赔付登记信息数据
+序号	字段名称	类型	大小	必传	说明
+1		ClaimSequenceNo	字符	30	Y	理赔编号
+2		ConfirmSequenceNo	字符	30	Y	投保确认码
+3		SerialNo	数值	2	Y	序号（序号规则各保险公司自定）
+4		PayType	枚举	1	Y	赔付类型； 参见代码5		PayDate	日期		Y	赔付时间；精确到分
+6		PayAmount	货币		Y	赔付金额
+
+6.5.2.	返回消息
+    只有HEAD部分，没有BODY部分。
+
+6.5.3.	报文范例
+6.5.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V3106</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+			<ConfirmSequenceNo>V0201PICC1234567890</ConfirmSequenceNo>
+			<!--投保确认码-->
+			<SerialNo>1</SerialNo>
+			<!--序号-->
+			<PayType>1</PayType>
+			<!--赔付类型-->
+			<PayDate>200912120911</PayDate>
+			<!--赔付时间-->
+			<PayAmount>1200</PayAmount>
+			<!--赔付金额-->
+		</BasePart>
+	</Body>
+</Packet>
+
+6.5.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V3106</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+</Packet>
+
+
+
+6.6.	案件注销
+6.6.1.	请求消息
+6.6.1.1.	案件注销信息
+代码：BasePart
+说明：案件注销信息数据
+序号	字段名称	类型	大小	必传	说明
+1	ConfirmSequenceNo	字符	30	Y	投保确认码
+2	ClaimSequenceNo	字符	30	Y	理赔编号；
+3	CancelType	枚举	1	Y	案件注销类型；参见代码4	CancelCause	枚举	2	Y	注销原因；参见代码5	CancelDesc	字符	400		注销描述
+
+6.6.2.	返回消息
+只有HEAD部分，没有BODY部分。
+
+6.6.3.	报文范例
+6.6.3.1.	请求数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="REQUEST" version="1.0">
+	<Head>
+		<RequestType>V34</RequestType>
+		<User>test_user</User>
+		<Password>user321</Password>
+	</Head>
+	<Body>
+		<BasePart>
+			<ConfirmSequenceNo>V02091234567890</ConfirmSequenceNo>
+			<!--投保确认码-->
+			<ClaimSequenceNo>V3101PICCCSN1234567890</ClaimSequenceNo>
+			<!--理赔编号-->
+			<CancelType>1</CancelType>
+			<!--案件注销类型-->
+			<CancelCause>01</CancelCause>
+			<!--注销原因-->
+			<CancelDesc></CancelDesc>
+			<!--注销描述-->
+		</BasePart>
+	</Body>
+</Packet>
+
+
+6.6.3.2.	返回数据
+<?xml version="1.0" encoding="GBK"?>
+<Packet type="RESPONSE" version="1.0">
+	<Head>
+		<ResquestType>V34</ResquestType>
+		<ResponseCode>1</ResponseCode>
+		<ErrorCode>0000</ErrorCode>
+		<ErrorMessage>成功</ErrorMessage>
+	</Head>
+</Packet>
+
+
+ 
+7.	代码定义
+
+7.1.	平台公共代码
+7.1.1.	接口错误代码
+说明：错误返回的标识代码，0000代表成功，其它代表错误。
+编码方法：采用4位数字表示，从0000开始。
+代码	名称	说明
+0000	成功	
+1001	文件读取异常	
+2001	数据库操作失败，重复数据或数据无效。	
+3001	xml解析异常	
+3002	java对象转xml异常	
+3003	密码明文加密异常	
+4001	Servlet异常	
+4002	数据处理失败，请检查是否符合接口规范!	
+4003	错误的请求类型！	
+9101	用户不存在	
+9102	用户处于无效状态	
+9103	用户密码错误	
+9104	用户没有该功能的权限	
+9201	接口数据错误。	
+9202	接口中标识为数字类型的字段应该为数字类型	
+9203	日期长度有误!正确的格式为：YYYYMMDD或 YYYYMMDDHH或 YYYYMMDDHHMM，具体格式请参考接口。	
+9204	日期组成有误!正确的格式为：YYYYMMDD或 YYYYMMDDHH或 YYYYMMDDHHMM，具体格式请参考接口	
+9205	日期格式有误!正确的格式为：YYYYMMDD或 YYYYMMDDHH或 YYYYMMDDHHMM，具体格式请参考接口	
+9301	起保日期必须在当前日期的规定时间范围内。	
+9302	保单终保日期必须晚于保单起保日期。	
+9304	暂未上牌车，不允许有号牌号码和号牌种类！	
+9305	已上牌车，号牌号码和号牌种类不允许为空！	
+9306	投保确认号无效或保单已经注销。	
+9309	该车辆存在完整年度保单，不能送新车标志。	
+9310	投保查询车辆信息不存在。	
+9311	未上牌车辆标志与投保查询不匹配！	
+9312	车辆牌照号与投保查询不匹配！	
+9313	车牌种类与投保查询不匹配！	
+9314	车辆使用性质代码与投保查询不匹配！	
+9315	车辆种类代码与投保查询不匹配！	
+9316	车架号/VIN码与投保查询不匹配！	
+9317	发动机号与投保查询不匹配！	
+9318	车辆初次登记日期与投保查询不匹配！	
+9319	新车标志与投保查询不匹配！	
+9320	过户车辆标志与投保查询不匹配！	
+9321	外地车标志与投保查询不匹配！	
+8322	是否车贷投保多年标志与投保查询不匹配！	
+9323	车队标志与投保查询不匹配！	
+9324	签单日期与投保查询时不匹配！	
+9325	起保日期与投保查询时不匹配！	
+9326	终保日期与投保查询时不匹配！	
+9327	小于新车购置价时,没有提供不足额投保标志！	
+9328	车队号码与投保查询不匹配！	
+9329	车型代码与投保查询不匹配！	
+9330	非车队时,车队号必须为空！	
+9332	投保查询已确认！	
+9333	投保查询码已过期！	
+9334	当车辆属于车队时，车队编号不允许为空！	
+9335	未找到保单信息，可能是投保查询码有误！	
+9336	车型信息不存在，请确认车型代码是否正确！	
+9337	请先执行投保预确认操作！	
+9338	险种列表中不允许存在重复险种！	
+9339	未找到上年保单，可能是输入的上年投保保单号有误！	
+9340	当不是车队时，无赔优系数或客户忠诚度系数不能小于投保查询时的无赔优系数或客户忠诚度系数！	
+9341	起保日期必须在当前日期的规定时间范围内。	
+9344	驾驶员信息列表不允许为空！	
+9345	险种信息列表不允许为空！	
+9347	车型代码与投保预确认时不一致！	
+9349	车牌号过长或过短	
+9350	车牌号不应包含特殊字符或小写字母。	
+9351	车牌号只能以WJ或汉字开头。	
+9352	新车购置价的上下浮动不在规定的范围内！	
+9353	未找到上张保单的风险系数信息！	
+9358	车牌号只能以WJ或汉字或08或38开头。	
+9359	初登日期大于9个月的车辆不能送新车标记	
+9360	投保查询时提供的上年保单号与平台不一致	
+9361	投保查询时平台中不存在上年投保保单号	
+9362	请提供上年保单号	
+9401	批改询价号无效。	
+9402	批改确认码无效。	
+9403	保单不存在！	
+9404	批改生效日期应该不早于批改日期！	
+9405	批改日期应在保单的保险期限内(签单日期到终保日期)！	
+9406	批改生效日期应在保单起止期之间！	
+9407	批改查询信息不存在。	
+9408	批改预确认和批改确认都要在平台规定的批改查询有效期内处理。	
+9409	批改查询车辆信息不存在！	
+9410	使用性质代码与批改查询不匹配！	
+9411	号牌种类代码与批改查询不匹配！	
+9412	号牌号码与批改查询不匹配！	
+9413	车辆种类代码与批改查询不匹配。	
+9414	车辆识别代号（车架号/VIN码）与批改查询不匹配。	
+9415	发动机号与批改查询不匹配！	
+9416	车辆初次登记日期与批改查询不匹配！	
+9417	未上牌车辆标志与批改查询不匹配！	
+9418	新车标志与批改查询不匹配！	
+9419	过户车辆标志与批改查询不匹配。	
+9420	外地车标志 与批改查询不匹配。	
+9421	是否车贷投保多年标志与批改查询不匹配！	
+9422	车队标志与批改查询不匹配！	
+9423	车队号与批改查询不匹配！	
+9424	没有找到请求信息中的车型代码所对应的批改查询车型信息！	
+9425	车型代码不匹配。	
+9426	新车购置价不能大于批改查询时保存的值。	
+9427	风险系数信息不存在！	
+9428	无赔优系数不能低于批改查询时返回的数值！	
+9430	续优（客户忠诚度）系数不能低于批改查询时返回的数值！	
+9431	批改后保单数据不存在。	
+9432	不足额投保标志与批改查询不匹配。	
+9433	本次批改的保单没有车辆信息。	
+9434	本次批改的保单没有车型车价信息。	
+9435	本次批改的保单没有风险系数信息。	
+9436	批改类型是停驶,批改生效日期不得在保单停驶期内,但是批改生效日期可以和停驶起期相等	
+9437	本次批改的保单没有险种信息。	
+9438	本次批改的保单没有关系人信息。	
+9439	批改生效日期不得在保单停驶期限内;并且批改类型不是停驶,批改生效日期不可以和停驶起期相等。	
+9440	顺延止期必须和本次批改传送的保单终保日期一致！	
+9441	当“特殊批改标志”为1时，批改查询码必须为空	
+9442	当“特殊批改标志”为0时，批改查询码不能为空	
+9443	签单日期和批改查询时不匹配！	
+9444	起保日期和批改查询时不匹配！	
+9445	终保日期和批改查询时不匹配！	
+9446	停驶机动车提前复驶日期不可以早于批改生效日期!	
+9447	停驶期间内不许批改，请注销本保单所有生效日期在本次停驶期间内的批改，或者更改停驶区间	
+9448	当“特殊批改标志”为1时，投保确认码不能为空	
+9449	批改报文中"基本信息"不允许为空。	
+9450	批改报文中"批单信息"不允许为空。	
+9451	没有找到保单信息,请检查是否需要补传保单信息。	
+9452	本次批改对应的保单存在,但处于无效状态！	
+9454	当停驶类型为“复驶”时，“机动车提前复驶日期”不能为空！	
+9455	签单日期应该不晚于起保日期	
+9456	起保日期不能晚于终保日期！	
+9457	停驶起期应该早于停驶止期！	
+9458	保期顺延起期应该早于保期顺延止期！	
+9459	机动车提前复驶日期应不早于停驶起期！	
+9460	以往批改预确认中已经做过车型匹配,但本次传来的车型代码与已经匹配成功的车型代码不符！	
+9461	当过户车标记为"1"时,转移登记（过户）日期不能为空！	
+9462	当过户车标记为"0"时,转移登记（过户）日期必须为空！	
+9463	保险期限不允许大于一年！	
+9464	批改预确认信息不存在！	
+9465	批改查询信息不是有效状态！	
+9466	批改预确认信息处于无效状态！	
+9467	机动车在保单有效期内只可以停驶一次,本次批改类型为停驶,但是原保单停驶类型不是空！	
+9468	批改类型为停驶时,停驶起期、停驶止期、保期顺延起期、保期顺延止期不能存在为空的情况！	
+9469	顺延期间不能短于1个月！	
+9470	顺延期间不能长于4个月！	
+9471	批改类型为复驶,但原保单停驶类型不是停驶！	
+9472	批改类型为复驶,申请日、机动车提前复驶日期、保期顺延起期、保期顺延止期不能存在为空的情况！	
+9473	停驶机动车提前复驶日期不可以早于申请日！	
+9474	批改复驶时顺延起期不允许批改！	
+9475	批改后的顺延止期必须不能晚于原顺延止期！	
+9476	停驶期间不能短于1个月！	
+9477	停驶期间不能长于4个月！	
+9478	顺延起期必须和原保单终保日期一致！	
+9480	本次批改应为不足额投保,但不足额投保标记传送错误！	
+9481	批改查询信息不处于预确认状态!	
+9482	做批改查询时的公司与当前公司不一致!	
+9483	顺延天数必须和停驶天数相等!	
+9484	停驶起期应该在保险起止期内!	
+9485	提前复驶日期应该在原停驶止期之前!	
+9486	新终保日期和原终保日期之差必须与提前复驶日期和原停驶止期之差相等!	
+9487	如果上传了请求信息中停驶标签(StopTravelInfo)下的字段,则停驶类型必须是1或者2!	
+9501	出险日期不在保单有效期内。	
+9502	此案件已经结案，不能再次结案。	
+9503	不存在立案信息，不能结案。	
+9504	该案件已立案注销，不能结案。	
+9505	保单号与报案和立案时不一致。	
+9506	报案号与报案和立案时不一致	
+9507	立案号与报案和立案时不一致。	
+9508	结案时间不能在立案时间之前。	
+9509	没有要更新的报案信息。	
+9510	保确认码、保单号、报案号信息必须与原报案信息相同。	
+9511	该理赔编码对应的报案信息不存在，不允许立案	
+9512	该理赔编码对应的报案信息无效。	
+9513	立案时间不能在报案时间之前。	
+9514	该理赔编码对应的保单信息无效。	
+9515	该案件出险时间不在保单有效期内。	
+9516	投保确认码、保单号、报案号或立案号与原立案信息不一致	
+9517	该理赔编码对应的案件状态表不存在，请重新报案!	
+9518	该案件不存在或已经注销！	
+9519	结案号与结案登记时不一致。	
+9520	立案号与立案登记时不一致。	
+9521	报案号与报案登记时不一致。	
+9522	追加时间不能在结案时间之前。	
+9523	报案号或立案号或结案号与原结案追加信息不一致。	
+9524	不存在结案信息，不能进行结案追加。	
+9525	不存在案件信息，不能进行赔付登记	
+9526	该结案信息还未立案或已立案注销，不能进行赔付登记。	
+9527	赔付时间不能在立案时间之前。	
+9528	已结案件不允许注销!	
+9529	请先执行立案注销操作，然后再执行报案注销操作！	
+9530	案件处于报案状态，不允许执行立案注销操作！	
+9531	保单号与结案登记时不一致！	
+9532	保单号与原追加信息不一致！	
+9533	投保确认码与立案时不一致。	
+9534	结案前只能进行预赔付！	
+9535	结案后只能进行实际赔付！	
+9536	不允许对已结案案件进行报案修改。	
+9537	报案号、保单号或投保确认码与报案信息不符！	
+9538	该报案已注销，不允许修改！	
+9539	报案时间不能在出险时间之前。	
+9540	出险时间不能在车辆停驶期内！	
+9541	投保确认码要与报案时一致！	
+9542	该案件已经结案，不能立案。	
+9543	出险时间不能在报案时间之后。	
+9544	不存在该立案信息或已经立案注销，不能进行立案注销。	
+9545	该结案追加信息已存在。	
+9546	结案追加总金额不能为负值。	
+9701	不在注销允许的时间范围内。	
+9702	保单已经生效，不允许注销。	
+9703	批单已经生效，不允许注销。	
+9708	只能注销最新的一次确认，请按提交确认相反的顺序进行注销。	
+9803	投保确认码无效或保单已经注销。	
+9802	保单号已经存在或重复保单号上传。	
+
+
+7.1.2.	币种代码
+说明：国际上表示货币和资金的代码。
+编码方法：本代码采用三位字母编码方法编制。
+代码	名称	说明
+CNY	人民币	
+GBP	英镑	
+HKD	港元	
+USD	美元	
+CHF	瑞士法郎	
+DEM	德国马克	
+FRF	法国法郎	
+SGD	新加坡元	
+NLG	荷兰盾	
+SEK	瑞典克朗	
+DKK	丹麦克朗	
+NOK	挪威克朗	
+ATS	奥地利先令	
+BEF	比利时法郎	
+ITL	意大利里拉	
+JPY	日元	
+CAD	加拿大元	
+AUD	澳大利亚元	
+MYR	马来西亚林吉特	
+FIM	芬兰马克	
+MOP	澳门元	
+PHP	菲律宾比索	
+THB	泰国铢	
+ECU	欧洲通用货币	
+EUR	欧元	
+NTD	新台币	
+ESP	西班牙比塞塔	
+NZD	新西兰元	
+ASF	清算瑞士法郎	
+
+7.1.3.	号牌底色代码
+说明：号牌底色的标识代码。
+编码方法：采用2位数字表示，从01开始。
+代码 	名称	说明
+01	蓝	
+02	黑	
+03	白	
+04	黄	
+05	白蓝	
+99	其他	
+
+7.1.4.	投保人性质代码
+说明：投保人性质的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	车辆所有人	
+2	车辆管理人	
+9	其它	
+
+7.1.5.	车主性质码
+说明：车主性质的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	个人	
+2	机关	
+3	企业	
+
+7.1.6.	车辆种类代码
+说明：交强险机动车车辆种类的标识代码。代码中所有涉及座位和吨位的分类，都按照“含起点不含终点”的原则解释
+编码方法：采用2位数字表示，从11开始。
+代码	名称	说明
+11	六座以下客车	
+12	六座至十座客车	
+13	十座至二十座以下客车	
+14	二十座至三十六座客车	
+15	三十六座以上客车	
+21	二吨以下货车	
+22	二吨至五吨货车	
+23	五吨至十吨货车	
+24	十吨以上货车	
+25	二吨以下挂车	
+26	二吨至五吨挂车	
+27	五吨至十吨挂车	
+28	十吨以上挂车	
+30	油罐车、汽罐车、液罐车	
+31	特种车一挂车 	装置有油罐、汽罐、液罐的挂车
+40	特种车二	专用净水车、特种车一以外的罐式货车，以及用于清障、清扫、清洁、起重、装卸（不合自卸车）、升降、搅拌、挖掘、推土、冷藏、保温等的各种专用机动车
+41	特种车二挂车	装置有油罐、汽罐、液罐以外罐体的挂车，装置有冷藏、保温等设备的挂车
+50	特种车三	装有固定专用仪器设备从事专业工作的监测、消防、运钞、医疗、电视转播等的各种专用机动车
+51	特种车三挂车	装置有固定专业仪器设备从事专业工作的挂车
+60	特种车四	集装箱拖头
+71	摩托车（50cc及以下）	
+72	摩托车（50cc-250cc）	
+73	摩托车（250cc以上及侧三轮）	
+81	拖拉机（14.7kw及以下）	
+82	拖拉机14.7kw以上	
+91	运输型拖拉机14.7KW及以下	
+92	运输型拖拉机14.7KW以上	
+93	低速载货汽车	
+94	三轮汽车	
+
+7.1.7.	使用性质代码
+说明：车辆使用性质的标识代码。
+编码方法：采用3位数字表示，从000开始。
+代码	说明
+000	不区分营业非营业
+100	营业
+101	营业出租租赁
+102	营业城市公交
+103	营业公路客运
+104	营业货车
+105	旅游客运
+200	非营业
+210	非营业个人
+220	非营业企业
+230	非营业机关
+240	非营业货运
+310	兼用型（拖拉机专用）
+320	运输型（拖拉机专用）
+
+7.1.8.	号牌种类代码
+说明：车辆号牌种类的标识代码。
+编码方法：采用2位数字表示，从01开始。
+代码 	名称	说明
+01	大型汽车号牌	黄底黑字（含02式号牌部分）
+02	小型汽船号牌	蓝底白字（含02式号牌部分）
+03	使馆汽车号牌	黑底白字、红“使”字
+04	领馆汽车号牌	黑底白字、红“领”字
+05	境外汽车号牌	黑底白/红字
+06	外籍汽车号牌	黑底白字
+07	两、三轮摩托车号牌	黄底黑字
+08	轻便摩托车号牌	蓝底白字
+09	使馆摩托车号牌	黑底白字、红“使”字
+10	领馆摩托车号牌	黑底白字、红“领”字
+11	境外摩托车号牌	黑底白字
+12	外籍摩托车	黑底白字
+13	农用运输车号牌	黄底黑字黑框线，已按《中华人民共和国道路交通安全法》取消农业运输车，不再发放
+14	拖拉机号牌	黄底黑字
+15	挂车号牌	黄底黑字黑框线
+16	教练汽车号牌	黄底黑字黑框线
+17	教练摩托车号牌	黑底黑字黑框线
+18	试验汽车号牌	
+19	试验摩托车号牌	
+20	临时入境汽车号牌	白底红字黑“临时入境” 
+21	临时入境摩托车号牌	白底红字黑“临时入境” 
+22	临时行驶车号牌	白底黑字黑框线
+23	警用汽车号牌	
+24	警用摩托车号牌	
+31	武警号牌	
+32	军队号牌	
+99	其他号牌	
+
+7.1.9.	单位性质代码
+说明：单位性质的标识代码。
+编码方法：采用3位数字表示，从100开始。
+代码 	名称	说明
+100	机关、团体	
+110	国家机关：包括各级国家权力机关和各级行政机关，即各级人大常委会及其所属办事机构，各级人民政府及其所属各工作部门，各级法院和检察院，以及区、乡、镇、街道人民政府的权力机构和行政办事机构；人民解放军、武警部队也包括在此类	
+120	党政机关：包括中国共产党各级机关和所属办事机构、民主党派各级机关办事机构和各级政治协商会议	
+130	社会团体：包括各级工会、共青团、妇联、文联、残联、工商联及各类协会，中国红十字会、中国福利、中国保护儿童委员会，各类学会团体和宗教团体等	
+140	基层群众自治组织：包括各类居民委员会、村民委员会	
+200	事业单位	
+210	卫生事业	
+220	体育事业	
+230	社会事业	
+240	教育事业	
+250	文化艺术业	
+260	广播电影电视业	
+270	科学研究业	
+280	综合技术服务业	
+300	企业单位	
+310	国有	
+320	集体	
+330	个体	
+340	私有	
+350	外资	
+360	混合所有制	
+900	其他	
+
+7.1.10.	被保险人性质代码
+说明：被保险人性质的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	车辆所有人	
+2	车辆管理人	
+3	保险人允许的合法驾驶员	
+9	其它	
+
+7.1.11.	性别代码
+说明：性别别的标识代码。
+编码方法：采用1位数字表示，从0开始。
+代码	名称	说明
+0	未知的性别	
+1	男性	
+2	女性	
+9	未说明	
+
+7.1.12.	证件类型代码
+说明：性别别的标识代码。
+编码方法：采用2位数字表示，从01开始。
+代码 	名称	说明
+01	居民身份证	
+02	居民户口薄	
+03	驾驶证	
+04	军官证	
+05	士兵证	
+06	军官离退休证	
+07	中国护照	
+08	异常身份证	
+41	港澳通行证	
+42	台湾通行证	
+43	回乡证	
+51	外国护照	
+52	旅行证	
+53	居留证件	
+71	组织机构代码证	
+72	税务登记证	
+73	营业执照	
+99	其他证件	
+
+7.1.13.	客户忠诚度浮动原因代码
+说明：客户忠诚度浮动原因的标识代码。
+编码方法：采用2位字符表示。
+代码	名称	说明
+D1	客户忠诚度-首年投保	商业保险专用
+D2	客户忠诚度-续保	商业保险专用
+
+7.1.14.	无赔优浮动原因代码
+说明：无赔优浮动原因的标识代码。
+编码方法：采用2位字符表示。
+代码	名称	说明
+B1	无赔款优待-连续3年没有发生赔款	商业保险专用
+B2	无赔款优待-连续2年没有发生赔款	商业保险专用
+B3	无赔款优待-上年没有发生赔款	商业保险专用
+B4	无赔款优待-新保或上年赔款次数在3次以下	商业保险专用
+B5	无赔款优待-上年发生3次赔款	商业保险专用
+B6	无赔款优待-上年发生4次赔款	商业保险专用
+B7	无赔款优待-上年发生5次及以上赔款	商业保险专用
+
+
+7.1.15.	制造方法
+说明：制造方法的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	工厂流水线生产	
+2	非工厂流水线生产	
+21	手工打造	
+
+7.1.16.	险种代码
+说明：险种的标识代码。
+编码方法：采用3位数字表示，从100开始。
+代码	名称	其它名称
+100	机动车强制责任保险	　
+200	车损险	　
+201	非常损失险	
+210	车身划痕损失险条款	　
+211	车身油漆单独损伤险条款	　
+220	火灾、爆炸、自燃损失险条款	　
+221	营业用汽车损失保险附加火灾、爆炸损失险	　
+231	玻璃单独破碎险条款	　
+232	车轮单独损坏险条款	　
+233	车身、倒车镜单独损坏保险条款	　
+240	多次事故免赔率特约条款	　
+241	家庭自用汽车多次出险增加免赔率特约条款	　
+242	营业用汽车损失保险附加多次事故免赔补偿险	　
+243	意外事故污染责任险	
+251	选择修理厂特约条款	　
+252	指定修理厂特约条款	　
+260	新增加设备损失保险条款	　
+270	机动车停驶损失险条款	　
+280	附加换件特约条款	　
+290	涉水损失险条款	　
+291	发动机特别损失险条款	　
+310	自燃损失险条款	　
+320	附加恐怖活动、群体性暴力事件车辆损失险	　
+330	可选免赔额特约条款	车损免赔额特约条款
+350	起重、装卸、挖掘车辆损失扩展条款	特种车车辆损失扩展险
+360	特种车辆固定设备、仪器损坏扩展条款	特种车固定机具、设备损失险
+361	特种加费	
+370	约定区域通行费用特约条款	　
+371	东海大桥通行安全特约费用保险条款	　
+380	附加特约服务险	　
+381	送油、充电服务特约条款	　
+382	拖车服务特约条款	　
+383	送水、更换保险丝特约服务保险条款	　
+384	更换轮胎服务特约条款	　
+385	代步机动车服务特约条款	修理期间费用补偿特约条款
+386	停驶租车补偿险	
+390	救援费用特约条款	附加救援费用险
+410	随车行李物品损失保险	随车携带物品责任险条款
+411	车上运动器具失窃险	　
+412	全车盗抢附加高尔夫球具盗窃险	　
+420	新车特约条款	更换新车特约条款
+421	新车特约条款A	车辆重置特约险条款A
+422	新车特约条款B	车辆重置特约险条款B
+500	盗抢险	　
+510	租车人人车失踪险条款	　
+520	零部件、附属设备被盗窃险条款	　
+530	免税机动车关税责任险条款	　
+600	三者险	　
+610	附加保险事故善后处理费用险	　
+611	法律费用特约条款	附加法律服务险
+620	事故附随费用特约条款	　
+621	异地出险住宿费特约条款	　
+630	附加油污污染责任保险	附加车辆意外事故污染责任险
+油污清理费用险条款
+道路污染责任险条款
+640	附加交通事故精神损害赔偿责任保险	精神损害抚慰金责任险条款
+交通事故精神损害赔偿险条款
+700	车上人员责任险	　
+701	车上人员责任险（司机）	　
+702	车上人员责任险（乘客）	　
+703	无过失责任险	
+710	使用安全带特约条款	系安全带补偿特约条款
+800	车上货物责任险	附加承运货物责任险
+801	车载货物碰撞险	　
+802	车上货物掉落责任险条款	　
+900	不计免赔率特约条款	　
+901	绝对免赔额特约条款	
+910	基本险不计免赔特约条款	　
+911	不计免赔率（车损险）	　
+912	不计免赔率（三者险）	　
+920	附加险不计免赔特约条款	　
+921	不计免赔率（机动车盗抢险）	　
+922	不计免赔率（车身划痕损失险）	　
+923	不计免赔率（新增加设备损失保险）	　
+924	不计免赔率（发动机特别损失险）	　
+925	不计免赔率（车上货物责任险）	　
+926	不计免赔率（附加油污污染责任险）	　
+927	不计免赔率（车上人员责任险）	　
+928	不计免赔率（车上人员责任险（司机））	　
+929	不计免赔率（车上人员责任险（乘客））	　
+940	教练车特约条款	　
+941	教练车特约条款（车损险）	　
+942	教练车特约条款（三者险）	　
+943	教练车特约条款（车上人员责任险）	　
+950	附加机动车出境保险	　
+951	附加机动车出境保险（车损险）	　
+952	附加机动车出境保险（三者险）	　
+960	节假日行驶区域扩展特约条款	节假日责任特约条款
+961	出省加费	
+
+7.1.17.	险种性质代码
+说明：保险产品属于主险或附加险的描述代码。
+编码方法：本代码采用一位数字顺序编码方法编制。
+代码 	名称	说明
+1	主险	
+2	附险	
+
+7.1.18.	驾驶员状态分类代码
+说明：驾驶员状态的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	正式，正常年审	
+2	正式实习	
+3	学习	
+4	临时	
+5	正式，未年审	
+6	农机	
+7	军队	
+8	武警	
+9	其他	
+7.1.19.	案件状态代码
+说明：案件状态的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	已报案	
+2	报案注销	
+3	已立案	
+4	立案注销	
+5	已结案	
+9	其它	
+
+7.1.20.	保险公司机构代码
+说明：保险公司机构的标识代码（按代码排序）。仅包括目前为止可投保交强险的公司。
+编码方法：采用4位字母表示。
+代码	名称	说明
+AAIC	上海安信农业保险股份有限公司	
+ABIC	安邦财产保险股份有限公司	
+ACIC	安诚财产保险股份有限公司	
+AHIC	安华农业保险股份有限公司	
+AICS	永诚财产保险股份有限公司	
+BOCI	中银保险有限公司	
+BPIC	渤海财产保险股份有限公司	
+CAIC	长安责任保险股份有限公司	
+CCIC	中国大地财产保险股份有限公司	
+CICP	中华联合财产保险公司	
+CPIC	中国太平洋财产保险股份有限公司	
+DBIC	都邦财产保险股份有限公司	
+DICC	大众保险股份有限公司	
+GPIC	中国人寿财产保险公司	
+HAIC	华安财产保险股份有限公司	
+HNIC	华农财产保险股份有限公司	
+HTIC	华泰财产保险股份有限公司	
+MACN	民安保险(中国)有限公司	
+PAIC	中国平安财产保险股份有限公司	
+PICC	中国人民财产保险股份有限公司	
+SMIC	阳光农业相互保险公司	
+TAIC	天安保险股份有限公司	
+TPBX	天平汽车保险股份有限公司	
+TPIC	太平保险有限公司	
+YAIC	永安财产保险股份有限公司	
+YGBX	阳光财产保险股份有限公司	
+ZSIC	浙商财产保险股份有限公司	
+ZKIC	紫金财产保险股份有限公司	
+JTIC	锦泰财产保险股份有限公司	
+
+7.1.21.	事故责任划分代码
+说明：事故责任的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	全部责任	
+2	主要责任	
+3	同等责任	
+4	次要责任	
+5	无责任	
+9	其它	
+
+7.1.22.	事故处理方式代码
+说明：事故处理方式代码。
+编码方法：本代码采用一位数字顺序编码方法。
+代码	名称	说明
+1	保险公司处理	
+2	自行协商	
+3	交管正常处理	
+4	交警简易程序处理	
+9	其他	
+
+7.1.23.	保险事故分类代码
+说明：保险事故分类代码。
+编码方法：采用三位数字、二级编码方法编制。
+代码	名称	说明
+100	交通事故类	
+111	正面相撞：指相向行驶的车辆正前部（含车辆左右两角）碰撞	
+112	侧面相撞：指车辆的接触部分有一方是车辆侧面的碰撞	
+113	尾随相撞：同车道同方向行驶的车辆，尾随车辆的前部与前车的尾部碰撞	
+121	对面刮擦：指相向行驶的车辆在会车时发生的两车侧面刮擦	
+122	同向刮擦：指同向行驶的车辆在后车超越前车时发生的两车侧面刮擦	
+130	碾压：交通强者拖碾或压过交通弱者的	
+140	翻车：指车辆在行驶过程中，因受侧向力的作用，使一部分或全部车轮悬空，车身着地的形态	
+150	坠车：指车辆整体脱离地面，经一落体过程于路面高度以下地点的事故形态	
+160	失火：车辆在行驶或发生事故的过程中，起火造成的损害	
+170	撞固定物：车辆在行驶过程中，与固定物（不包括机动车、非机动车及行人）相撞的	
+180	撞路人：车辆在行驶过程中，与行人相撞的	
+190	撞静止车辆：指一方车辆为零速度的碰撞	
+199	其它交通事故	
+200	单方事故类（非交通事故且非不可抗力事故）	
+201	火灾（非自燃）	
+202	爆炸	
+203	自燃	
+204	盗抢	
+205	载运保险车辆的渡船遭受自然灾害	
+221	玻璃单独破碎	
+222	车身划痕	
+223	轮胎单独损坏	
+224	车内物品或行李被盗抢	
+225	涉水损失、发动机进水损失	
+226	车载固定仪器、设备损坏	
+231	车载货物碰撞责任	
+232	车载货物掉落责任	
+241	外部物体倒塌	
+242	外部物体坠落	
+260	救助服务	
+261	代理驾驶	
+262	送油、送水服务	
+263	更换轮胎	
+264	电瓶充电	
+265	拖拽服务	
+270	事故费用	
+299	其它非交通事故类保险事故	
+500	自然灾害类	
+501	雷击	
+502	暴风	
+503	龙卷风	
+504	暴雨	
+505	洪水	
+506	海啸	
+507	地陷	
+508	冰陷	
+509	崖崩	
+510	雪崩	
+511	雹灾	
+512	泥石流	
+513	滑坡	
+599	其它自然灾害	
+600	社会灾害类	
+601	动乱、群体性暴力事件	
+602	战争	
+603	恐怖活动	
+699	其它社会灾害类原因	
+900	其它保险事故	
+901	油污污损	
+902	精神损害	
+
+7.1.24.	理赔类型代码
+说明：理赔类型的标识代码。
+编码方法：采用1位数字表示，从1开始
+代码	名称	说明
+1	正常理赔	
+2	无责赔案	
+3	垫付赔案	
+4	垫付救助基金	
+9	其它	
+
+7.1.25.	垫付原因代码
+说明：垫付原因的标识代码。
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	驾驶员无证驾驶或驾驶员醉酒驾驶	
+2	机动车盗抢期间肇事	
+3	被保险人故意行为	
+4	其它	
+
+7.1.26.	损失赔偿类型代码
+说明：损失费用类型代码。
+编码方法：本代码采用一位数字顺序编码方法。
+代码	名称	说明
+1	车辆损失	
+2	财产损失	
+3	人员损失	
+4	费用	
+9	其他	
+
+7.1.27.	赔付明细代码
+说明：赔付明细代码。
+编码方法：本代码采用三位数字、二级编码方法编制。
+代码	名称	说明
+100	医疗费用类赔款	
+101	医药费	
+102	诊疗费	
+103	住院费	
+104	住院伙食补助费	
+105	后续治疗费	
+106	整容费	
+107	营养费	
+200	死亡伤残类赔款	
+201	丧葬费	
+202	死亡补偿费	
+203	被扶养人生活费	
+204	家属办理丧葬事宜支出的交通费	
+205	残疾赔偿金	
+206	残疾辅助器具费	
+207	护理费	
+208	康复费	
+209	(因医疗发生的)交通费	
+210	(因医疗发生的)住宿费	
+211	(因医疗发生的)误工费	
+212	精神损害抚慰金(司法判决)	
+300	车辆损失费用	
+301	修理费	
+302	换件费	
+303	人工费	
+400	财产损失类赔款	
+500	费用类赔款	
+501	仲裁费	
+502	诉讼费	
+503	律师费	
+504	执行费	
+505	公估费	
+506	检验费	
+507	调查费	
+508	救援费	
+509	交通费	
+510	交通费	
+512	住宿费	
+513	代步车费或租金	
+514	污染责任赔偿	
+900	其它损失类	
+
+7.1.28.	赔付类型代码
+说明：赔付类型代码。
+编码方法：本代码采用一位数字顺序编码方法编制
+代码	名称	说明
+1	结案前赔付	
+2	结案后赔付	
+
+7.1.29.	案件注销类型代码
+说明：案件注销类型代码。
+编码方法：本代码采用一位数字顺序编码方法编制
+代码	名称	说明
+1	报案注销	
+2	立案注销	
+
+7.1.30.	案件注销原因代码
+说明：案件注销原因代码。
+编码方法：本代码采用二位数字，二级编码方法编制。
+代码	名称	说明
+01	出险人并非保单上被保险人（投保人）	
+02	出险时间不在保险有效期限内	
+03	理赔申请超过索赔期限	
+04	申请人资格审查不合格	
+05	单证不全且在规定期限内未予立案	
+06	合同无效	
+07	非保险责任内损失	
+08	免除责任	
+09	伪造虚假单证或虚构保险事故	
+21	保险公司注销案件	
+22	保险公司拒赔	
+31	司法注销	
+32	司法拒赔	
+51	客户放弃索赔	
+99	其他	
+
+7.1.31.	销售渠道代码
+说明：销售渠道的分类代码。
+编码方法：本代码采用二位数字，二级编码方法编制。
+代码	名称	说明
+10	直接业务	
+11	传统直销	
+12	新渠道直销	
+13	电子商务	
+14	电话营销	
+50	间接（代理)业务	
+51	个人代理	
+52	兼业代理	
+53	专业代理	
+54	经纪业务	
+99	其它	
+
+7.1.32.	天平公司客户忠诚度浮动原因代码
+说明：客户忠诚度浮动原因的标识代码。
+编码方法：采用2位字符表示。
+代码	名称	说明
+D1	新保（本年度首次在本公司投保）	天平公司专用
+D2	一年续保（保险车辆连续二年在本公司投保）	天平公司专用
+D3	多年续保（保险车辆连续三年在本公司投保）	天平公司专用
+
+7.1.33.	天平公司无赔优浮动原因代码
+说明：无赔优浮动原因的标识代码。
+编码方法：采用2位字符表示。
+代码	名称	说明
+B1	连续三年及三年以上未出险	天平公司专用
+B2	过去三年内两年未出险（连续两年未出险 ）	天平公司专用
+B3	上年未出险	天平公司专用
+B4	上年出险1次	天平公司专用
+B5	上年出险2次或3次	天平公司专用
+B6	上年出险3次以上	天平公司专用
+
+7.1.34.	风险标志代码
+说明：风险标志的标识代码。
+编码方法：采用1位字符表示。
+代码	名称	说明
+0	正常车型	
+1	稀有车型	
+2	特异车型	
+3	老旧车型	
+4	配件疑难	
+
+7.1.35.	不浮动原因代码
+说明：不浮动原因代码。
+编码方法：采用2位字符表示。
+代码	名称	说明
+01	过户车，不浮动	
+02	脱保6个月以上，不浮动	
+03	本次投保为短期单，不下浮	
+04	没有上年度保单，不浮动	
+05	上张保单为短期单，不下浮	
+06	上张保单做过批改过户，不浮动。	
+07	上年和本年不在同一公司投保，不浮动	
+08	脱保3个月至6个月（含），不下浮	
+09	车贷投保多年，不下浮	
+10	对历史保单（上平台前的保单）的批改，不重新计算客户忠诚度和无赔优系数	只在批改环节使用
+
+7.1.36.	直接承保原因代码
+说明：直接承保原因的标识代码
+编码方法：采用1位数字表示，从1开始。
+代码	名称	说明
+1	网络故障	
+2	新车中心承保	
+9	其它	
+7.1.37.	风险警示类型代码
+说明：风险警示类型的分类代码
+编码方法：采用2位字符表示。
+代码	名称	说明
+01	报案次数N次及N次以上	N由各地协会自行配置，具体数值及数值变更以各地协会的当地通知为准。
+02	夜间出险N次及N次以上	N由各地协会自行配置，具体数值及数值变更以各地协会的当地通知为准。
+夜间：晚上10点至次日6点间。
+03	无责N次及N次以上	N由各地协会自行配置，具体数值及数值变更以各地协会的当地通知为准。
+
+7.2.	公安交管代码
+7.2.1.	交管车辆机动车状态代码
+说明：交管车辆机动车状态的标识代码。
+编码方法：采用1位字母表示，从A开始
+代码	名称	说明
+A	正常	
+B	转出	
+C	被盗抢	
+D	停驶	
+E	注销	
+G	违法未处理	
+H	海关监管	
+I	事故未处理	
+J	嫌疑车	
+K	查封	
+L	暂扣	
+M	强制注销	
+N	事故逃逸	
+O	锁定	
+
+7.2.2.	交管车辆类型
+说明：交管车辆类型的标识代码，采用BX0118（机动车车辆类型代码），扩展GA 24.4-2005(车辆类型代码表)标准。。
+编码方法：采用3位字母数字混合表示。
+代码	名称	说明
+B11	重型普通半挂车	　
+B12	重型厢式半挂车	　
+B13	重型罐式半挂车	　
+B14	重型平板半挂车	　
+B15	重型集装箱半挂车	　
+B16	重型自卸半挂车	　
+B17	重型特殊结构半挂车	　
+B21	中型普通半挂车	　
+B22	中型厢式半挂车	　
+B23	中型罐式半挂车	　
+B24	中型平板半挂车	　
+B25	中型集装箱半挂车	　
+B26	中型自卸半挂车	　
+B27	中型特殊结构半挂车	　
+B31	轻型普通半挂车	　
+B32	轻型厢式半挂车	　
+B33	轻型罐式半挂车	　
+B34	轻型平板半挂车	　
+B35	轻型自卸半挂车	　
+D11	无轨电车	　
+D12	有轨电车	　
+G11	重型普通全挂车	　
+G12	重型厢式全挂车	　
+G13	重型罐式全挂车	　
+G14	重型平板全挂车	　
+G15	重型集装箱全挂车	　
+G16	重型自卸全挂车	　
+G21	中型普通全挂车	　
+G22	中型厢式全挂车	　
+G23	中型罐式全挂车	　
+G24	中型平板全挂车	　
+G25	中型集装箱全挂车	　
+G26	中型自卸全挂车	　
+G31	轻型普通全挂车	　
+G32	轻型厢式全挂车	　
+G33	轻型罐式全挂车	　
+G34	轻型平板全挂车	　
+G35	轻型自卸全挂车	　
+H11	重型普通货车	　
+H12	重型厢式货车	　
+H13	重型封闭货车	　
+H14	重型罐式货车	　
+H15	重型平板货车	　
+H16	重型集装厢车	　
+H17	重型自卸货车	　
+H18	重型特殊结构货车	　
+H21	中型普通货车	　
+H22	中型厢式货车	　
+H23	中型封闭货车	　
+H24	中型罐式货车	　
+H25	中型平板货车	　
+H26	中型集装厢车	　
+H27	中型自卸货车	　
+H28	中型特殊结构货车	　
+H31	轻型普通货车	　
+H32	轻型厢式货车	　
+H33	轻型封闭货车	　
+H34	轻型罐式货车	　
+H35	轻型平板货车	　
+H37	轻型自卸货车	　
+H38	轻型特殊结构货车	　
+H41	微型普通货车	　
+H42	微型厢式货车	　
+H43	微型封闭货车	　
+H44	微型罐式货车	　
+H45	微型自卸货车	　
+H46	微型特殊结构货车	　
+H51	低速普通货车	　
+H52	低速厢式货车	　
+H53	低速罐式货车	　
+H54	低速自卸货车	　
+J11	轮式装载机械	　
+J12	轮式挖掘机械	　
+J13	轮式平地机械	　
+K11	大型普通客车	　
+K12	大型双层客车	　
+K13	大型卧铺客车	　
+K14	大型铰接客车	　
+K15	大型越野客车	　
+K21	中型普通客车	　
+K22	中型双层客车	　
+K23	中型卧铺客车	　
+K24	中型铰接客车	　
+K25	中型越野客车	　
+K31	小型普通客车	　
+K32	小型越野客车	　
+K33	轿车	　
+K41	微型普通客车	　
+K42	微型越野客车	　
+K43	微型轿车	　
+M11	普通正三轮摩托车	　
+M12	轻便正三轮摩托车	　
+M13	正三轮载客摩托车	　
+M14	正三轮载货摩托车	　
+M15	侧三轮摩托车	　
+M21	普通二轮摩托车	　
+M22	轻便二轮摩托车	　
+N11	三轮汽车	　
+Q11	重型半挂牵引车	　
+Q21	中型半挂牵引车	　
+Q31	轻型半挂牵引车	　
+T11	大型轮式拖拉机	　
+T21	小型轮式拖拉机	　
+T22	手扶拖拉机	　
+T23	手扶变形运输机	　
+X99	其它	　
+Z11	大型专项作业车	　
+Z21	中型专项作业车	　
+Z31	小型专项作业车	　
+Z41	微型专项作业车	　
+Z51	重型专项作业车	　
+Z71	轻型专项作业车	　
+S	特种作业专用车	　
+7.2.3.	驾驶证类型代码
+说明：驾驶证类型的标识代码。
+编码方法：采用2位字符表示。
+代码	名称	说明
+A1	大型客车	
+A2	牵引车	
+A3	城市公交车	
+B1	中型客车	
+B2	大型货车	
+C1	小型汽车	
+C2	小型自动档汽车	
+C3	低速载货汽车	
+C4	三轮汽车	
+D	普通三轮摩托车	
+E	普通二轮摩托车	
+F	轻便摩托车	
+M	轮式自行机械车	
+N	无轨电车	
+P	有轨电车	
+
