@@ -1,0 +1,254 @@
+
+题目：黄金期货市场套利研究
+院    系                 
+专    业                 
+班    级                 
+学生姓名                  
+学    号                   
+导师姓名                   
+导师职称                 
+2014    年  03  月  16  日
+
+   【摘要】
+与世界上其他黄金期货市场相比我国黄金期货市场具有以下3个特点：1、走势频繁出现跳空；2、交易日内黄金期货价格变动小；3、非主力的黄金期货合约成交量小。因此黄金期货市场利用正反向市场进行期现套利是目前较谨慎、较稳妥的交易方式。在“中国大妈”疯狂抢金背后揭示的是我国投资者不理性投资的本质，而中国如何突破现阶段黄金市场瓶颈期走出低迷困境是值得我们去深思和探讨的重大课题。本文将以黄金期货的正反向市场套利理论和成本理论作为突破口，构造黄金期货无套利区间，如果无套利区间被价差突破，投资者便可以进入黄金期货市场进行套利交易，当价差重归无套利区间或者当市场正在进行正反向市场交替更新时，则必须终止交易策略，最后追踪价差的变化作为辅助完善黄金期货套利交易策略，力求寻出当前我国黄金期货市场走出黄金投资困境之道。
+
+关键词：黄金期货；黄金期货套利；成本理论；无套利区间；黄金投资
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+【Abstract】
+There are three characteristics of Gold futures market in China :1,situation frequently jump empty; 2,small changes in prices of trading days; 3,the main contrast volume small. Gold futures market using positive and negative to the market to inter-temporal set of punishment is more cautions, more safe way to trade. Behind the crazing rob of “China Boyle” reveals that the essence of the irrational investment. While China how to break through the bottleneck period out of the downturn in the gold market at present stage haze is worth us to ponder and explore the major issue .In the paper, the bull market in gold futures forward and reverse market arbitrage theory as the breakthrough point. And the construct gold futures no-arbitrage interval , if no-arbitrage interval is spreads breakthrough ,investors will be able to enter the Gold futures market carry trade, when no-arbitrage spreads back range or when the market In positive and negative alternating update to the market, you must terminate trading strategy.,and finally to track the gold futures changes of the price differences as auxiliary perfect gold futures arbitrage strategy, makes every effort to find out the current our country gold futures market out of the way of gold investment dilemma. 
+Key words: gold futures; Gold futures arbitrage; No arbitrage interval; Gold investment             
+
+
+
+
+
+
+
+目录
+一、绪论	5
+（一）研究背景	5
+（二）研究目的和意义	5
+二、 我国黄金期货套利	6
+（一）黄金期现套利方式	6
+（二）黄金期现套利特点	7
+（三）黄金期现套交易策略	7
+三、我国黄金期现套利的简易实证分析	10
+四、我国黄金期现套利存在的问题分析	12
+（一）投资者对黄金市场认识不清，存在盲目性交易	12
+（二）交易时间段差异，黄金交易各项风险增加	12
+（三）投资者结构不合理	12
+（四）投资者经验不足	13
+（五）风险意识不强	13
+五、关于我国黄金期现套利的建议和对策	13
+（一）“走出去”与“引进来”相联系的发展之路	14
+（二）增加黄金交易品种，拓宽黄金交易渠道	14
+（三） 建立黄金法，提供法律保障	14
+（四）加强国际交流与合作，营造良好的国际环境	15
+（五）加强政府等有关部门的监管和黄金市场主体的自律管理	15
+参考文献	17
+外文文献与翻译	18
+致谢	23
+ 
+一、绪论
+（一）研究背景
+ 10000年前，我们人类就发现了黄金这一稀缺宝贵的自然资源，随着人类对黄金认识的不断进步，黄金被人类所利用的程度也越来越高。历史证明，时间让黄金货币职能和支付职能得以突显，无论历史朝着什么方向发展，如何发展，它的货币职能和支付两大职能都是无法被改变的。
+在我们中国人的眼中，黄金这一稀缺的矿产资源始终是作为物质财富甚至是精神财富的象征。中国上下5000年历史中我们常用金碧辉煌非常形象地描绘建筑物精致华美且富丽堂皇的内外部装饰风格；用金玉满堂形容人的财富极其富有；用金玉其质形容人的高尚纯洁的品格等等，从这些成语中我们可以看出黄金在中国人眼中的崇高地位。
+近年来，我国通过不断深入的黄金市场改革，黄金及其金融衍生产品如黄金期货等投资方式进入人们的投资视野并受到广大中国投资者的疯狂追捧。中国的黄金期货从2008年在上海期货交易所上市以来已余6个年头，我们发现，中国的投资者对黄金的疯狂追捧程度已到让国际友人震惊的地步，但是2013年4月16日的黄金市场价格暴跌，即使是黄金期货黄金市场经历了一个起伏性的和世界性的转变，给中国黄金市场和世界黄金市场上的投资者都上了一堂深刻的理性黄金投资课[5]。当前经济飞速发展的中国，人民群众的生活水平不断提高步入小康社会的同时，人民群众的投资需求也不断提升，黄金便无可厚非地成为了中国人民群众投资的首选。2013年“中国大妈”以金融界新名词的身份入住牛津词典，成为国际黄金市场上一大历史事件。
+2007年至今，中国的黄金价格已超过50%涨幅度。在国际各国金融市场上，黄金已经在世界商品市场中占有重要的地位，其衍生产品如黄金期货也已成为一种重要的金融投资工具。目前在中国黄金市场上，上海期货交易所是中国最主要的黄金期货交易场所，上海黄金交易所是中国最主要现货黄金交易场所。且黄金现货和黄金期货之间存在的不合理价差为黄金投资进行期现套利提供了各种可能。利用套利交易方式，不仅为投资者带来了丰厚收益，也为完善我国黄金期货市场及现货市场的发展战略目标做出了贡献，利用套利交易策略，弥补了促进了我国黄金期货市场的发展缺陷，规避了我国黄金期货市场自身无法规避的相关风险，黄金期货市场的发展关系到整个中国经济的发展前景，完善的黄金期货市场将为我国经济的发展起到助推器的作用。
+（二）研究目的和意义
+ 目前我国黄金期货市场还不够成熟，各方面相较于西方成熟的黄金期货市场还具有较大的差距，但我们认为，中国的黄金期货市场将有更大的发展空间和发展潜力。黄金期货市场套利交易是期货市场交易活动的重要组成部分之一[9]，它的完善将直接影响到我国黄金期货市场的发展质量和发展前景。
+第一，我国黄金期货市场与美元汇率之间是相互挂钩的，黄金期货市场的完善将对我国研究美元汇率将有很大帮助[1]；
+其次，黄金期货市场的相关信息与我国当今高通胀率也有相关的联系，因此，黄金期货市场的完善将有利于解决我国高通胀率的现状；
+第三，黄金期货市场的相关研究将会使得我国目前黄金现货市场供大于求的现状得到改观，使得国家在黄金原料的进口和黄金的国际储备上更加合理；
+第四，黄金期货的研究完善将对整个中国期货市场的完善做出巨大贡献，使得中国期货市场更加完善；
+第五，黄金期货市场的发展关系到整个国家经济命脉，它的发展状况将间接影响到整个中国经济的发展状况，所以针对我国黄金期货市场的研究和完善将刻不容缓，相关黄金套利研究也将不容忽视。
+在国际市场黄金市场及中国黄金市场上，各个国家的投资者积极运用多种套利交易策略，为实现黄金期货投资交易的利润最大化提供了可能。黄金期货套利交易主要是指在黄金现货市场上即期买进黄金现货，同时在黄金期货市场上卖出黄金期货合约，最后通过价差赚取利润的一项黄金交易的经济活动[3]。本篇文章将以黄金这一基础商品和其金融衍生产品黄金期货作为研究对象，详细而系统地进行期货套利的相关研究，为现今我国低迷不景气的黄金市场的发展提出可行性建议。
+二、我国黄金期货套利
+（一）黄金期现套利方式
+  目前在中国黄金期货交易市场上，主要是以上海期货交易所的黄金期货交易为主。正、反向套利是目前中国黄金期货市场上运用的主要期货套利方式[11]。我们所说的黄金期货市场正向套利交易是指：
+1、黄金投资者在黄金期货市场上卖出标准的黄金期货合约的同时在黄金现货市场上买入黄金现货；
+2、黄金期货正向套利主要是以黄金期货价格和黄金现货价格的价差大于无套利区间上限为依据；
+3、套利者在黄金期货市场上买进的黄金期货价值与在现货市场上卖出黄金现货价值相同。
+4、最后是通过平仓的方式了结黄金期货交易以此来获得套利收益的交易行为。
+黄金期货反向市场套利交易正好相反：
+1、黄金投资者在黄金现货市场上卖出黄金现货的同时在黄金期货市场上买进标准化黄金期货合约；
+2、黄金期货反向套利主要是根据黄金期货和黄金现货的价差小于无套利区间下限进行的套利行为；
+3、套利者在黄金期货市场上买进的黄金期货价值与在现货市场上卖出黄金现货价值相同。
+4、黄金期货套利者最后通过平仓方式来了结黄金期货交易头寸以此来获得套利收益的交易行为。
+（二）黄金期现套利特点
+在国际黄金期货交易市场上，黄金期货套利是黄金期货交易的主要交易形式之一，黄金期货套利交易属于日常投机交易的范畴，在当今期货市场快速发展的情况下，黄金期货套利交易具有以下特点：
+1、交易风险相对较低
+我们将以跨期套为例子，A、B两份不同交割月份的黄金期货合约，受到期货市场上各个要素的影响作用是一致的，且我们可以发现其价格的趋势走向大体相同，这样的套利交易活动，在一定程度上可以为我们的套利交易提供一道保护网，减少期货市场上一些不可预知的风险，如政策风险等。
+2、收益率较稳定
+    在现今中国黄金期货市场步入熊市陷入低迷的形势下，这种交易形式是那些追求稳定收益率投资者的较好选择。黄金期货套利交易的收益不像投资者进行单边投机交易那样大起大落，实际交易中，由于黄金套利交易主要是利用黄金期货和现货市场上存在的不合理的价差进行套利交易的活动，然而在很大程度上下，由于市场资源配置的作用，不合理的价差很快就能恢复到正常水平，于是针对黄金期货套利交易来说，成功率较高。
+（三）黄金期现套交易策略
+套利假设：根据分析需要，我们提出如下假设条件：1、交易在所有成本皆连续情况下进行；2、黄金期货价格在期现结构特征之下得出，3、黄金期货近期的合约将会在到期之前做平仓处理；4、黄金期货交易产生的函数是一种线性型收益函数；5、构造建立期货套利模型时将不考虑使用黄金期货交易所产生的相关费用[13]。
+    黄金期货套利交易是指根据在黄金期货市场与黄金现货市场上存在的不合理价差，通过这两个不同交易市场所进行的反向套利交易活动，等待存在的价差趋向合理而获取交易收益的交易行为，其利用黄金现货交割和持仓成本与黄金期货价差进行套利交易的活动。我们所研究的黄金期货套利交易，持有成本理论是作为其理论依据的主要来源。在理论上，黄金期货价格应高于黄金现货价格，然而，由于存在持有成本这个上限因素，黄金期货价格不可能一直高于黄金现货价格。于是，当存在黄金期货价格和黄金现货价格的价差高出持仓成本这一情况时，一些投资者将会买进黄金现货，卖出黄金期货，最终将会促使期现价差控制到正常价差区间为止。“无套利区间”则指在在黄金期货和黄金现货的价差在持仓成本的上下限之间的区间，这一区间内是不存在套利机会的的。因此，在套利时，我们确定了无套利区间后，就可以根据此区间寻求套利机遇了。
+根据市场发展需求和投资者的选择来看，选择黄金期现套利的现货交易方式时我们需要考虑以下三个因素：
+1、黄金交易在黄金期货市场上具有相应地对冲平仓机制，即可以在期货交易市场上通过买空或者卖空的交易方式开立反向交易合约来对冲或者平仓投资者手中已有的交易合约，这样使得交易操作起来更加便捷；
+    2、交易成交之后至交易清算交割之前，其时间期限能足够长，而且保证没有过多的交易限制，这为投资者进行长期套利提供必要条件；
+3、相对应的黄金期货标准化合约要求具有较强的流动性，且要求交易够活跃，黄金期货合约的成交量够大。
+综上所述三个因素，在现今中国黄金现货市场上拥有的5中现货交易方式中，包括全额交易、Au(T+5)、Au(T+D)、Au(T+X，X≦90)及Au(T+N)。虽然Au(T+N)具有Au(T+D)很多相似的优点，但是由于Au(T+N)的有关成交量相对于其他四个品种较小，其流动性风险高于其他4个品种的数倍。综上因素考虑，本文采用Au(T+D)和AU0006作为目前研究我国黄金期现套利的现货及期货交易方式，关于黄金现货AU(T+D)和黄金期货（AU0006）的之间的关系如下图所示 ：
+
+
+图一 黄金现货AU(T+D)价格与黄金期货(AU0006)价格关系图
+ 
+图二 黄金货AU(T+D)与黄金期货AU(0006)价差图
+
+
+
+
+从上述图一和图二我们可以分析出黄金期货价格与黄金现货价格走向具有十分密切的联系，它们始终围绕在一个合理的价差区间上下波动，另外，在不同的交易时期的交易价格也将会有一定的价格波动幅度。黄金期货是以黄金为基础标的物的标准化合约，在实际交易中，我们发现黄金期货价格和黄金现货价格之间，具有十分密切的联系，由此我们在对价差进行相关计算时可以利用多种方法去进行价格的预测和估算。
+三、我国黄金期现套利的简易实证研究
+ 根据期货市场成本理论原理，黄金期货理论价格等于黄金现货价格加上黄金持仓成本。其中持仓成本包括下列三个因素：保险费、利息、仓储费用。理论上来说黄金期货的理论价格是等于黄金现货价格加上相应的持仓成本。目前来看，上海黄金交易所Au(T+D)交易的主要持仓成本包括资金递延费用、持仓费用、使用成本这三项成本。
+　　递延费我们常称之为延期补偿费，当前中国每天0.2‰作为标准，1手的Au(T+D)合约每天要支付30元左右色递延费，从持仓第二天计算收取，但是交易成交当天不收取无递延费。当对于长期交易来说，递延费对于持仓成本的影响相对较小。我们所说的仓储费，上海黄金交易所的标准是当投资者买入货权，库存每天的仓储费将以0.6元/千克作为收取标准。资金使用成本在黄金交易中其本质是资金使用的机会成本，所占持黄金交易仓成本的比例是最大的。
+中国一般使用人民币1年期限贷款利率（2014年的人民币1年期限贷款利率为6.31％）作为资金的使用成本。上述公式中t表示合约距到期日的天数。根据研究需要和计算便捷，本文将以1个月30天为操作期限，以对冲套利为交割方式，本金为500万元，下表一和图四分别是当前黄金市场上相关操作费用表，根据公式计算得出的AU0006的期货理论价格和AU0006标准化合约市场价格的走势图。
+表一黄金操作交易性相关费用表
+	AU(T+D)	AU0006
+交易手续费	0.8‰	0.2‰
+交易延期补偿费	0.2‰	无
+资金使用成本	最低交易保证金	12%	7%
+	人民币1年期限贷款利率	6.31%
+       数据来源：期货市场教程及人民银行货币政策司
+
+
+    由上表我们可以得出以下费用：
+交易手续费：500*（0.8‰+0.2‰）*2=1.00元/千克
+延期补偿费：500*0.0002*30=3.00元/千克
+资金使用成本：500*12%*7%*6.31%/12=0.0221元/千克
+总费用：1+3+0.0221=4.221元/千克
+所以我们得出无套利区间为[-4.221,4.221][17]
+
+图三 期现套利无套利区间
+
+图四 期货AU0006合约价格与期货理论价格走势图
+从上图四中，黄金现货与黄金期货的市场价格趋势和走向我们可以发现，2013年1月07日—2014年1月15日之间，既存在正向套利模式，也存在反向套利模式，2013年4月—11月市场波动的幅度相对较大，研究表明它的变化主要是受宏观经济、货币政策、市场供需和心理预期等多方面因素持续不利释放出来的的结果。鉴于各方面原因，我们主要考虑和研究的是黄金期货正向套利。
+从上图我们可以发现，2013年6月28日-8月30日，在这63内就出现了22个非常可观的黄金期货正向套利机会。假设在2013年6月28日这一日每克现货黄金的价格是￥244.3，同时在上海黄金期货市场上，我们可以按照标准期货合约价格买进黄金价格为￥254.35的合约，我们可以得出6月28日当日黄金期货与现货的价差为是￥10.05。假设黄金市场上黄金价值的资产保持到2013年8月30日，我们做出如下处理，按照当日上海黄金期货市场上的黄金期货价格与黄金现货的价格进行平仓。我们将对这一套利进行计算得出收益：
+可能地利润为：10.05-4.221=5.829元/千克
+当天可获收益5.829/(300*12%*7%+4.221)≈69.22%
+据此分析黄金期货的套利并进行未来价格预测。反之亦然，黄金期货反向套利的计算也可以依据上面论述的原理得出相应的结论。综上所述，在对黄金期货与黄金现货的价差进行套利交易计算和分析时，投资者可以根据黄金现货价格与黄金期货价格之间的价差衡量卖出黄金现货的比例的同时买进黄金期货，我们发现如果黄金期货价格与黄金现货价格突破差值[-4.221,4.221]的情况下，投资者就可以进行黄金期货套利交易。
+四、我国黄金期现套利存在的问题分析
+（一）投资者对黄金市场认识不清，存在盲目性交易
+中国历来对黄金偏爱程度已经到了无法自拔的程度，黄金期货套利的投资者对黄金期货市场的认知并不成熟，对于黄金期货市场套利交易现今的做空机制和杠杆机制没有深切的体会，缺失很多黄金期货套利交易的专业知识，投资者盲目进入黄金期货市场进行投资交易，导致投资失误，市场失灵。
+（二）交易时间段差异，黄金交易各项风险增加
+世界黄金市场上，主要的黄金定价权主要集中在欧美国家手中，现阶段，中国黄金市场没有足够的黄金交易量，发展不够成熟，因此我国的黄金价格只能是透过欧美国家的黄金价格影射出来，这样的影射价格在很大程度上存在很大的时间段差异交易风险。中国黄金市场存在这样的交易风险在很大程度上影响了中国黄金市场的健康稳定发展。
+（三）投资者结构不合理
+    在我国黄金期货市场上，套利交易者主要是中小投资者，甚至存在大部分散户现象，而机构投资者是黄金期货市场最重要的投资者，它起到活跃市场、壮大资金规模、增加交易量等巨大作用，我国由于缺乏机构投资者，导致我国黄金期货市场资金规模较小、市场不够活跃、交易量不足等问题。投资结构的不合理导致我国黄金期货市场发展举步维艰。
+（四）投资者经验不足
+我国黄金期货从2008年在上海黄金期货交易所上市以来，仅仅6年时间，在这六年中，我国投资者始终在摸索着前进，黄金期货套利交易适用于具有丰富投资经验的投资者，而目前我国绝大多数投资者在这6年时间积累的投资经验还无法完全适应黄金期货市场发展。
+（五）风险意识不强
+黄金期货作为黄金这一基础商品的衍生产品，交易存在高杠杆、高风险等特点，黄金期货市场要求投资者具有较高的风险意识，和化解风险的能力[2]，而我国绝大多数投资者对黄金期货市场风险认识不清，对于黄金期货市场存在的许多风险也没有能力去化解，如果投资者在这样的情况下进入黄金期货市场，如果风险无法控制在合理范围内，这样将对投资者带来巨大的损失，这样的交易行为也将不利于我国黄金期货市场秩序的未来发展。
+五、关于我国黄金期现套利的建议和对策
+在中国的实体黄金产品及其衍生品投资交易市场上，投资者进行的套利交易活动主要是对黄金资产的具体分析与未来预测，这一项交易行为是中国黄金期货市场上投资者及操作人员运用的主要方法。 黄金期货套利交易参考依据主要是黄金市场上黄金产品及其衍生品交易的相关历史交易数据为主[15]。我们可以发现，黄金期货的套利交易主要是根据相关黄金期货及现货的历史交易数据，以此来分析和预测黄金资产未来价值的大小的。在我国的黄金期货投资过程中，我们需要评价交易双方或者多方的交易活动，在市场实际情况下，分析黄金期货市场可能存在的风险，然后根据分析所得风险提出相应的、及时的、准确的补救措施。在黄金期货实际交易中，无套利交易主要是根据原有历史数据进行归纳和总结并得出最后交易结论。到目前为止，中国的黄金期货市场较西方成熟市场还具有一定差距，且交易的时间段不同。由此，在这个变化多端的黄金期货市场上，中国广大的投资者需要全面考虑各方面可能存在的风险和不利因素，提出切实有效的措施减少投资者的投资烦恼，减少投资者对黄金产品及其衍生品带来的巨大损失。
+（一）“走出去”与“引进来”相联系的发展之路
+放眼全球，在2008年发生金融危机的影响下，国与国之间的联系较之以前更加紧密，这次金融危机对我国经济发展带来了巨大影响，黄金期货市场受之影响也不例外，中国的黄金交易是受国际黄金市场影射的[4]，假设我们只是依据中国的经济发展状况片面地制定相关的战略措施，会严重影响决策的科学有效性。因此，在我们的政府作出相关政策时，需要充分考虑国际市场上各方面因素，汲取优秀成熟市场的黄金套利交易策略，制定相关的黄金产品及其衍生品减免税政策，和黄金原料提炼国建立良好的国际友好关系，鼓励中国黄金相关企业在原料国积极引进黄金原料，以此来提高中国在国际上的黄金储备能力。此外，中国的黄金期货交易市场的价格受到国际金价影响巨大，所以就要求中国期货市场在制定价格机制时，我们必须充分参考国际上相关黄金价格机制，不断地引进国外优质额黄金原料以次满足中国黄金市场的黄金需求，保障中国黄金市场的正常有序运行。
+（二）增加黄金交易品种，拓宽黄金交易渠道
+    目前中国的黄金期货交易市场上，交易品种较国外相对较少，而且交易品种受到国际市场、国内市场各方面因素的影响，交易量有限、市场不活跃、投资前景令人堪忧，为满足国内黄金产品及其金融衍生品的需求，提高我国黄金投资者投资理财风险意识，采取增加黄金投资者积极性，活跃我国的黄金交易市场，扩大黄金期货交易市场中的交易品种是我国的黄金期货交易市场目前最为有效的脱困之计。此外，我国政府和相关企业需要竭尽全力拓宽黄金市场的交易渠道[6]，以此来减少黄金市场的各项交易成本，增加投资者的投资机会和选择机会，进一步提高我国黄金交易市场的运作效率，提高我国黄金交易市场的投资效益，增强我国黄金市场黄金及其衍生品投资者的投资信心，稳固中国的黄金期货交易市场。
+（三）建立黄金法，提供法律保障
+目前，我国关于黄金期货交易市场的相关法律规章制度还不够完善，相较于西方发达国家黄金期货交易市场，我国黄金期货交易市场的相关法律规章制度还很落后。 现今我国的黄金期货市场飞速发展，面临的机遇和挑战这把双刃剑，对于实际交易中出现的新问题还不能及时地、科学地、有效地处理。因此为了中国黄金期货交易市场的又好又快发展，配合经济前进的步伐，这就要求我国的证监会、期货业协会等相关法律规章制度部门组织结合我国黄金期货市场发展实际[8]，联合国内外的有经验国家的部门、专家制定出适合我国黄金期货市场发展的法律法规制度-黄金法，使企业、民众参与到黄金法的完善中来，走出一条中国特色社会主义的黄金期货发展之路。通过法律手段，强制性地为我国黄金期货市场提供一个良好的发展平台，为黄金期货市场营造一个健康的交易发展环境。
+（四）加强国际交流与合作，营造良好的国际环境
+对于国际上成熟的交易市场，他们可以提供较多的发展经验。我们可以通过国际交流与合作，密切和国际市场的联系，相互学习，取长补短，我国应该认真学习国外相关的黄金期货交易优秀策略，认真分析和研究国际黄金期货市场相关政策和措施，拓展我国黄金期货市场的研究视野，为我国黄金期货市场提供坚实的研究基础[16]，并结合我国当前黄金期货市场的实际状况和出现的实际问题，因地制宜、因时制宜制定出相应政策和措施，改善和摆脱中国在国际黄金交易市场上的不利地位。另外中国政府要搞好国家间的友好合作关系，为我国黄金期货市场提供一个宽广的国际舞台，为我国黄金期货市场的发展创造一个良好的国际环境。
+（五）加强政府等有关部门的监管和黄金市场主体的自律管理
+ 因为黄金期货市场本身存在的缺陷，光靠市场这一看不见的手的调节是无法做到摆脱的，所以我国需要政府这只看得见的手发挥其宏观调控的作用，运用经济手段、法律手段、行政手段引导换进期货市场有序健康运行。在黄金本身价值规律的基础上。
+1、经济手段：政府可以运用经济手段降低或减免相关黄金产品及其衍生品的交易税收或相关手续费等；提高期货从业人员的工资，引导优秀人才参与到黄金期货市场来；增加我国的黄金储备量，正确引导黄金价格走向，以及黄金期货经纪杠杆的调节作用，对黄金期货惊醒必要的宏观调控。
+2、法律手段：政府依靠法律的强制力量，通过黄金产品及其衍生品的经济立法，运用黄金市场上的黄金经济法规来调节黄金的经济关系和相关黄金的经济活动，以达到政府宏观调控目标的又一有效手段，运用经济立法制定黄金法，规范黄金市场交易秩序和交易行为，为黄金交易市场营造一个合规合法的交易环境，另外运用经济司法使司法机关按照黄金法律规定的制度、程序，对黄金交易中出现的违法经济案件进行彻底的检察和合规审理，维护黄金期货市场的市场稳定秩序，惩罚和制裁黄金交易经济犯罪。
+3、行政手段：依靠证监会、期货业协会等行政机构，采取强制性的命令、指示、规定等行政方式来调节黄金交易的经济活动，以达到黄金市场政府宏观调控的目标。宏观调控中的政府行政手段是最具有权威性、纵向性和无偿性及速效性的，例如关闭严重违规操作的期货公司、期货交易所等。黄金期货市场的运行其最主要因素还是其市场本身的交易行为和交易活动。目前，我们可以通过对黄金期货交易市场的自律管理，此项措施可以尽可能地来减少相关黄金期货交易市场中的不规范、不合法的相关黄金交易操作，由此来促进我国黄金期货交易市场的快速、稳健发展[10]。
+   六、结束语
+综上所述，中国的黄金期货交易市场正处于与国际黄金期货交易市场循序渐进地接轨阶段，面对现今中国黄金期货市场的困境，中国需要在黄金期货市场交易投资过程中找准自己的位置，准确给自己定位，要时时刻刻地保持清醒的头脑，认真对待和处理黄金期货交易市场中出现的不利因素，科学把握和运用黄金期货市场的有力因素，争取在挑战和机遇并存的当前黄金市场上发挥自己的优势，有效运用我国广阔的市场和我国居民历来对黄金的偏爱来摆脱当前黄金低迷困境。认真分析研究黄金期货、现货交易的相关历史交易数据，运用黄金期货套利交易来尽可能地规避黄金期货投资存在的一系列的风险，最大化地增加黄金产品及其衍生品投资的收益率，促进中国黄金期货市场全方位、多层次、立体化的完善[12]，以此来进一步促进中国黄金期货交易市场的又好又快发展。  
+中国不管是黄金产品及其衍生品的个人投资者还是机构投资者，我们必须考虑到当前中国以及世界经济发展的大环境，相较于股票、基金、债券，亦或是让人眼花缭乱的各式理财产品这些虚拟金融投资产品，黄金、白银、房地产、雕塑、瓷器、艺术品等实物投资产品在收益率和风险方面更具有较大优势。我们也不可否认，无论何种投资方式风险与收益组合都是因人而异的选择，只有认清产品的属性、掌握并熟练运用投资交易策略、清楚认知市场的功能、选择自己能承受的风险产品、适合自己的投资理财方式，才能达到投资者理想中的效用最大化的投资理财效果[14]。经上述论证，在黄金期货投资中，套利方式是最好的规避黄金投资风险的交易方式，在实际交易中能给黄金投资者带来较低的投资风险和较稳定的投资收益，在现今黄金期货市场发展相对低迷的情况下，在世界经济和中国经济发展都放缓的大背景下，黄金期现套利已成为我们中国广大投资者最佳投资方式选择。
+由于知识缺乏、对整个黄金市场把握不到位、对使用研究方法出现偏差等原因，本篇文章还存在着很多的不足，例如相关操作费用的计算中忽略了佣金这一因素，使得在套利区间在一定程度上偏大，如果考虑进去佣金的因素，价差区间将会缩小，套利机会将会减少。论文中有待改进的地方，我将会在未来的学习和工作中去弥补这些不足。
+参考文献
+[1] Frederic S. Mishkin . The Economics of Money ,Banking & Financial 
+    Market(9th Edition )  China Renmin University Press ，2009.
+[2] Zvi Bodie、Alex Kane 、Alan J.Marcus .Investments .China Machine Press          
+    (2012).
+[3]Mahmod Qadan  Fear sentiments and gold price: testing causality in-mean   
+   and in-variance Applied Economics Letters  2012.
+[4]Justin London.Modeling Derivatives Edited by Fabozzi 2010.
+[5]李星辉.黄金期货套利研究[J].时代金融.2013,(8):526.
+[6]唐融.利用正反向市场更替进行黄金期货跨期套利[N].科教创新.2010,（02）.
+[7]谭云.中国黄金步入熊市后如何投资黄金[J].金融经济 2013,(10)
+[8]张海波、郭玲.Zhang hai-bo.Guo ling .中国黄金市场的现状及发展趋势分析     
+   [N].兰州大学学报.2009,37(1)
+[9]郑雨玮.世界黄金及黄金期货市场概览[N]-新财经.2010,(11)
+[10]高礼彦、蒋屏法.交叉上市价格差异与投资策略[J]. 金融与经济.2011,（01）.
+[11]曾继民、李一智、侯晓鸿.市场弱型有效检验方法研究—兼论中国黄金期货市 
+   场效率[J]. 管理工程学报.2012,（1).
+[12]吴志峰、李一智.套利与市场均衡:对中国证券市场失衡的套利分析[D]. 
+    上海暨南大学.2009.
+[13]何志刚.黄金期货投资.中国经济出版社.2010.
+[14]林顺顺、吕妍、卫娴.中国黄金储备现状及路径选择[J]-河北金融                                
+     2011,(2)
+[15]吕想.中国发展黄金衍生品市场策略研究[N]-黄金 2012(2)
+[16]边记颃.中国黄金期货的引入对黄金现货市场质量的影响[J]-商    
+场现代化2010,(10).
+[17]贺圣遂.黄金期货简明知识读本[F].复旦大学出版社.2008
+
+
+
+
+
+外文文献与翻译
+一、文献原文
+Gold futures arbitrage risk prevention
+Investment in real gold market, gold futures operator mainly through the
+Arbitrage activity analysis and forecasting of assets , primarily related to the historical data as reference
+Test basis. Therefore , the main gold futures arbitrage is to predict the future value of the gold assets .In the process of investing in gold futures on both or more parties to transactions into Evaluated and analyzed in accordance with the actual situation of the possible risks for gold futures to mention The timely remedial measures. Gold futures arbitrage is mainly based on non- original data into inductive conclusions. Our market is not mature and gold futures trading Relatively short period of time . Therefore, in the vagaries of the gold futures market Investors will be included in the various factors that may arise within the scope of consideration and propose effective Measures to reduce the losses caused by investment in gold .
+1. adhere to the "going out and bringing in" development strategy
+Under the influence of the financial crisis, the link between the various countries are getting closer and closer .Gold futures markets must also be determined by the international market, if only based on The country's level of economic development to the development of relevant measures for the development of China's Yellow blindly affect Gold futures healthy development of the market . Therefore, China's government departments through Over the development of relevant tax policy and encourage enterprises to actively introduce raw gold to improve our The ability of gold reserves . Of the price of gold futures market to fully develop Reference to relevant international gold price policy and continue to introduce high-quality raw gold abroad Material to protect the domestic gold normal supply.
+2. expand the gold futures market trading products and broaden trade channels
+Gold futures market trading products will be affected by various factors. Therefore ,To raise public awareness of the risks of gold investment and financial management. In order to better Residents meet domestic demand for gold , the gold futures market and to increase gradually.Rich variety of gold trading. In addition, enterprises should try to broaden the gold market Channels to reduce the cost of trading gold trading gold trading market to further improve.Efficiency in order to attract more people to join the gold futures market .
+3. establish and improve relevant laws and regulations, improve the gold futures market Self-discipline
+Because China's relevant laws and regulations currently regulate the gold futures market is still relatively Behind the gold futures market, the emergence of new problems and new situations can not be positive Correctly processed. Therefore, in order orderly development of China's gold futures market , as well as Subject to consultation and discussion on China's relevant laws and combine sector organizations and international experts China's actual situation of the gold futures market to develop a more comprehensive method of gold . By forcing the law to provide a good role for the development of the gold futures market Platform. Meanwhile, gold futures for international policies related to conduct research seriously Research and analysis in order to develop a relevant response measures to avoid our country in the international gold futures Easy market at a disadvantage . Relevant government departments should increase gold futures Supervision and management of the market, constantly enrich varieties gold futures market in order to construct Build a perfect gold futures market trading mechanisms. Through the gold futures market The self-management in order to reduce the gold futures market does not regulate the operation and ultimately promote
+Into the orderly development of the gold futures market.
+Introduction to Gold Futures
+the lease has no value because opening the mine would be a money-losing project. However, the traditional approach ignores the value of flexibility: If gold prices decline in the future, management can shut down production and leave the gold in the ground. Once we consider the possibility of shutting down, the cash flows from the mine can be viewed in a different and more realistic manner.It was virtually the same phenomenon which was paralleled in 1929 by brokers loans. The forced selling which these encouraged as markets started to fall was at the heart of the subsequent financial disaster. In benign times this structure merely encourages volatility. In less benign times it can lead to structural failure.
+Risk of Systemic Failure
+Gold is bought as the ultimate defensive investment. Many people buying gold hope to make large profits from a global economic shock which might be disastrous to many other people. Indeed many gold investors fear financial meltdown occurring as a result of the over-extended global credit base - a significant part of which is derivatives.The paradox in investing in gold futures is that a future is itself a 'derivative' instrument constructed on about 95% pure credit. There are many speculators involved in the commodities market and any rapid movement in the gold price is likely to be reflecting financial carnage somewhere else.
+Fear sentiments and gold price: testing causality in-mean and in-variance
+The futures exchanges we see around us today are those whose appetite for risk has most accurately trodden the fine line between aggressive risk taking and occasional appropriate caution. There is no guarantee that the next management step will not be just a bit too brave.Succeeding in the futures market is not easy. To be successful you need strong nerves and sound judgment. Investors should recognise that futures are at their best for market professionals and short term speculations in anticipation of big moves, which diminish the effects of contango and rollover costs.
+The investor should understand that there are problems when a market loses its transparency. Once a market can apply costs which are opaque and difficult to comprehend - and surely the futures market qualifies in this regard - the advantage shifts to professionals who are sophisticated enough to see through the fog.Many individuals who have tried their luck in this market have been surprised at the speed at which their money has gone.
+注：摘自Mahmod Qadan  Fear sentiments and gold price: testing causality in-mean and in-variance Applied Economics Letters 
+二、中文翻译
+在实际的黄金投资市场中，黄金期货操作人员主要是通过对套利活动进行资产的分析和预测，主要以历史的相关数据作为参考依据。因此，黄金期货套利主要是预测黄金资产未来的价值。在对黄金期货进行投资的过程中要对双方或者多方的交易行为进行评价并根据实际情况对可能存在的黄金期货风险进行分析以提出及时的补救措施。黄金期货中的无套利主要是依据原有数据进行归纳得出结论。我国的黄金期货的交易市场还不成熟并且交易的时间较为短暂。因此，在变幻莫测的黄金期货交易市场中需要投资者将各种可能出现的因素列入考虑范围之内并提出实施有效的措施来减少对黄金投资中带来的损失。
+坚持“走出去、引进来”的发展策略
+在金融危机的影响下，各个国家之间的联系也越来越密切。黄金期货市场的交易也必须通过国际市场来决定，如果只是根据本国的经济发展水平来盲目地制定相关的发展措施会影响我国黄金期货交易市场的健康发展。因此，需要我国的政府有关部门通过制定相关的税收政策并鼓励企业积极地引进黄金原料提高我国的黄金储备的能力。我国的黄金期货交易市场的价格制定要充分地参考国际上相关黄金价格政策并不断地引进国外的优质黄金原料以保障国内黄金的正常供应。
+扩大黄金期货交易市场中的交易品种，拓宽交易渠道
+黄金期货交易市场的交易品种会受到各种因素的影响。因此，我国要提高居民对黄金投资和理财的风险意识。为了能够更好地满足国内居民对黄金的需求，黄金期货交易市场要逐步地增加和丰富黄金交易的品种。除此之外，企业还要尽量地拓宽黄金市场交易的渠道以减少对黄金交易的成本进一步提高黄金交易市场的效率，以吸引更多的人加入黄金期货交易市场。
+建立和完善相关法律法规，提高黄金期货交易市场的自律性
+由于我国目前规范黄金期货交易市场的相关法律法规还比较落后，对于黄金期货交易市场中出现的新问题和新情况还不能正确地处理。因此，为了我国黄金期货交易市场的有序发展，还有待于我国相关法律部门组织国内外专家进行协商和探讨并且结合我国的黄金期货市场的实际情况制定出一部较为完善的黄金法。通过法律的强制作用为黄金期货交易市场的发展提供一个良好的平台。同时，对于国际的相关黄金期货交易的政策进行认真地研究和分析从而制定出相关的应对措施避免我国在国际黄金期货交易市场中处于不利的地位。政府相关部门要加大对黄金期货交易市场的监督和管理，不断地丰富黄金期货市场交易的品种，以构
+建一个完善的黄金期货市场交易机制。通过对黄金期货交易市场的自律管理以减少对黄金期货交易市场中的不规范操作并最终促进黄金期货交易市场的有序发展。租约有没有价值，因为开煤矿会 是一个赔钱的项目。然而，传统方法忽略的灵活性的价值：如果 黄金价格下跌在未来，管理层可以关闭生产和离开金地面。一旦我们考虑关停的可能性，现金从矿流可 在不同的和更逼真的方式来查看。
+今天我们看到周围的期货交易所是那些风险偏好已经最准确地践踏积极的冒险，偶尔适当的谨慎之间的界线。有没有保证，下一个管理步骤将不只是有点太勇敢。成功的期货市场是不容易的。为了获得成功，你需要坚强的神经和良好的判断。投资者应认识到，期货是在他们的最好的市场专业人士及短期投机预期的大动作，这diminsh的正价差和展期成本的影响。
+投资者应明白，有问题的时候，市场就失去了透明度。一旦市场可以申请哪些成本是不透明的，并很难理解 - 当然和期货市场资格在这方面 - 的优势转移到谁是复杂的，足以看穿迷雾的专业人士。这是几乎相同的现象，是由经纪人贷款并联于1929年。在被迫抛售这些鼓励作为市场开始下跌，在随后的金融灾难的心脏。在良性的时候，这仅仅是结构鼓励波动。在不太良性的时候，它可能会导致结构破坏。全身衰竭的风险购买黄金作为最终的防御性投资。许多人购买黄金希望从可能是灾难性的许多其他人的全球经济冲击使大量利润。事实上，许多黄金投资者担心发生的过度扩张的全球信用基础的结果，金融危机一个显著其中一部分是衍生工具。
+在投资黄金期货吊诡的是，未来的本身就是对约95 ％的纯信用构建的'衍生'的仪器。有参与大宗商品市场的许多投机者和黄金价格的快速运动很可能是反映了金融大屠杀别的地方。无论是清晰，交换理论上可以发现自己无法搜集各种商品的未平仓重要余量，所以黄金投资者可能使这些不能支付捣毁参与者拖欠这样的数字巨大的账面利润，个别清纱器，甚至交流本身无法弥补的损失。谁曾尝试自己的运气在这个市场上许多人都感到惊讶时，他们的钱已经没了速度。
+
+
+
+
+
+
+
+
+
+
+
+
+致谢
+    从2014年1月2日至2014年5月11日这段时间进行论文的撰写过程，完稿这一刻，感慨万千。这将是2014年6月即将毕业的我交上的最后一份答卷，希望大家能够满意！在此篇论文写作过程中，首先我要感谢的是我的导师战雪丽老师从开题报告到初稿再到二稿，最后的终稿，她的耐心指导，一遍遍不厌其烦的讲解使我感动不已。其次是感谢陪伴我的舍友梁艺怀、丁玉姣、戴婷丽同学，在整个论文写作中，我们互相取长补短，为我的论文提供更加有力的黄金期货及现货交易的相关历史数据，甚至到最后的格式整理等等她们都在帮助我很多。最后感谢我家人的陪伴，在整个论文的写作过程中，家人不间断地鼓励给了我完成论文的巨大信心，也给了我强烈的使命感，让我在写作过程中更加顺心、顺手。衷心感谢上述为我提供各项帮助的人们。特此献给我的家人、同学和老师！下面我将用小仲马的话来作为我毕业论文的尾声：时刻绷紧时光的耳朵，听那过去的声音和有限的未来。

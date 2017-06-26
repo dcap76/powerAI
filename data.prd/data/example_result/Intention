@@ -1,0 +1,111 @@
+{
+    "type": "Fiance Product Classifcation",
+    "result": [
+        {
+            "prob": 0.561,
+            "sampleId": "1-1-1.txt",
+            "label": "肯定"
+        },
+        {
+            "prob": 0.231,
+            "sampleId": "1-1-1.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.09,
+            "sampleId": "1-1-1.txt",
+            "label": "疑问"
+        },
+        {
+            "prob": 0.789,
+            "sampleId": "1-1-2.txt",
+            "label": "肯定"
+        },
+        {
+            "prob": 0.21,
+            "sampleId": "1-1-2.txt",
+            "label": "疑问"
+        },        
+        {
+            "prob": 0.161,
+            "sampleId": "1-1-3.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.231,
+            "sampleId": "1-1-3.txt",
+            "label": "肯定"
+        },        
+        {
+            "prob": 0.289,
+            "sampleId": "1-1-4.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.21,
+            "sampleId": "1-1-4.txt",
+            "label": "疑问"
+        },
+        {
+            "prob": 0.589,
+            "sampleId": "1-1-5.txt",
+            "label": "肯定"
+        },
+        {
+            "prob": 0.521,
+            "sampleId": "1-1-5.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.0721,
+            "sampleId": "1-1-5.txt",
+            "label": "疑问"
+        },
+        {
+            "prob": 0.561,
+            "sampleId": "1-1-6.txt",
+            "label": "肯定"
+        },
+        {
+            "prob": 0.231,
+            "sampleId": "1-1-6.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.09,
+            "sampleId": "1-1-7.txt",
+            "label": "肯定"
+        },
+        {
+            "prob": 0.789,
+            "sampleId": "1-1-7.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.21,
+            "sampleId": "1-1-7.txt",
+            "label": "疑问"
+        },        
+        {
+            "prob": 0.09,
+            "sampleId": "1-1-9.txt",
+            "label": "否定"
+        },
+        {
+            "prob": 0.519,
+            "sampleId": "1-1-10.txt",
+            "label": "疑问"
+        },
+        {
+            "prob": 0.521,
+            "sampleId": "1-1-10.txt",
+            "label": "肯定"
+        },
+        {
+            "prob": 0.0721,
+            "sampleId": "1-1-10.txt",
+            "label": "否定"
+        }     
+        
+    ]
+} 
